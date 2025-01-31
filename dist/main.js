@@ -40384,8 +40384,6 @@ along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 
 
 //# sourceMappingURL=index.js.map
-;// ./src/abi.json
-const src_abi_namespaceObject = {};
 ;// ./src/index.js
 
 

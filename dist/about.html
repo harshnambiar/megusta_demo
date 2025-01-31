@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Megusta - Web3 Gaming</title>
-  <link rel="shortcut icon" href="images/logo.png">
+  <link rel="shortcut icon" href="img/logo.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -15,7 +15,7 @@
   <header>
     <nav class="navbar">
       <div class="nav-left">
-        <a href="index.html"><img src="images/logo.png" alt="Me Gusta Logo" class="logo"></a> 
+        <a href="index.html"><img src="img/logo.png" alt="Me Gusta Logo" class="logo"></a>
     </div>
 
       <div class="menu-toggle" id="mobile-menu-about"> 
@@ -25,12 +25,12 @@
       </div>
 
       <ul class="nav-center">
-        <li><a href="index.html">HOME</a></li> 
-        <li><a href="index.html#featured-games">GAMES</a></li>
+        <li><a href="./">HOME</a></li>
+        <li><a href="games.html">DEMO</a></li>
         <li><a href="faqs.html">FAQS</a></li> 
       </ul>
-      <div class="nav-right">
-        <img src="images/wallet-icon.svg" alt="Wallet" class="wallet-icon">
+      <div class="nav-right" style="visibility:hidden;">
+        <img src="img/wallet-icon.svg" alt="Wallet" class="wallet-icon">
       </div>
     </nav>
   </header>
@@ -71,16 +71,16 @@
   <footer>
     <div class="footer-container">
       <div class="footer-left">
-        <img src="images/logo.png" alt="Me Gusta Logo" class="footer-logo">
+        <img src="img/logo.png" alt="Me Gusta Logo" class="footer-logo">
         <p>&copy; 2025 Megusta Gaming by Darksun Labs | All Rights Reserved</p>
       </div>
       <div class="footer-right">
         <a href="about.html">About</a>
-        <a href="#">Games</a>
+        <a href="games.html">Games</a>
       </div>
     </div>
   </footer>
-
+  <canvas id="game" width="620" height="620" style="display:none"></canvas>
   <script>
       document.getElementById("mobile-menu-about").addEventListener("click", function () {
       document.querySelector(".nav-center").classList.toggle("nav-active");

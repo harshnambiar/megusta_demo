@@ -3,6 +3,149 @@ import Web3 from "web3";
 
 
 
+
+
+
+//50-36gold 47 9-39grey 11-21blue 26-40bluishgreen 34-16grey 26-40greenish 37-5blue 43-18fadedblue 30-46maroon 36-12gold
+async function connect(code) {
+  var url = window.location.toString();
+  var chain_name = document.getElementById('chain_name').value;
+  console.log(chain_name);
+  if (chain_name == 'current'){
+    console.log('no chain selected');
+    return;
+  }
+
+  var chainId = 0;
+  var cid = '';
+  var chain = '';
+  var symbol = '';
+  var name = '';
+  var rpc = '';
+
+  if (chain_name == 'mnt'){
+    chainId = 5003;
+    cid = '0x138b';
+    chain = 'Mantle Testnet Sepolia';
+    name = 'MANTLE';
+    symbol = 'MNT';
+    rpc = "https://rpc.sepolia.mantle.xyz";
+  }
+  else if (chain_name == 'flr'){
+    chainId = 114;
+    cid = '0x72';
+    chain = 'Flare Testnet Coston 2';
+    name = 'FLARE';
+    symbol = 'C2FLR';
+    rpc = "https://coston2-api.flare.network/ext/bc/C/rpc";
+  }
+  else if (chain_name == 'lsk'){
+    chainId = 4202;
+    cid = '0x106a';
+    chain = 'Lisk Sepolia'
+    name = 'LISK';
+    symbol = 'ETH';
+    rpc = "https://rpc.sepolia-api.lisk.com";
+  }
+  else if (chain_name == 'fhe'){
+    chainId = 8008148;
+    cid = '0x7a31d4';
+    chain = 'Fhenix Nitrogen';
+    name = 'FHENIX';
+    symbol = 'FHE';
+    rpc = "https://api.nitrogen.fhenix.zone";
+  }
+  else if (chain_name == 'gvt'){
+    chainId = 13505;
+    cid = '0x34c1';
+    chain = 'Gravity Alpha Testnet Sepolia';
+    name = 'GRAVITY';
+    symbol = 'G';
+    rpc = "https://rpc-sepolia.gravity.xyz";
+  }
+  else {
+    console.log('unrecognized chain');
+    return;
+  }
+  const provider = await detectEthereumProvider()
+  console.log(window.ethereum);
+  if (provider && provider === window.ethereum) {
+    console.log("MetaMask is available!");
+
+    console.log(window.ethereum.networkVersion);
+    if (window.ethereum.networkVersion !== chainId) {
+      try {
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: cid }]
+        });
+        console.log("changed to ".concat(name).concat(" testnet successfully"));
+
+      } catch (err) {
+        console.log(err);
+          // This error code indicates that the chain has not been added to MetaMask
+        if (err.code === 4902) {
+        console.log("please add ".concat(name).concat(" Testnet as a network"));
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                chainName: chain,
+                chainId: cid,
+                nativeCurrency: { name: name, decimals: 18, symbol: symbol },
+                rpcUrls: [rpc]
+              }
+            ]
+          });
+        }
+        else {
+            console.log(err);
+        }
+      }
+    }
+    await startApp(provider, chain_name);
+  } else {
+    console.log("Please install MetaMask!")
+  }
+
+
+
+}
+window.connect = connect;
+
+
+async function startApp(provider, chain) {
+  if (provider !== window.ethereum) {
+    console.error("Do you have multiple wallets installed?")
+  }
+  else {
+    const accounts = await window.ethereum
+    .request({ method: "eth_requestAccounts" })
+    .catch((err) => {
+      if (err.code === 4001) {
+        console.log("Please connect to MetaMask.")
+      } else {
+        console.error(err)
+      }
+    })
+    console.log("hi");
+  const account = accounts[0];
+  var web3 = new Web3(window.ethereum);
+  const bal = await web3.eth.getBalance(account);
+  //console.log("hi");
+  console.log(bal);
+  console.log(account);
+  localStorage.setItem("acc",account.toString());
+  const tnow = Date.now();
+  localStorage.setItem('last_session', tnow.toString());
+  localStorage.setItem("last_chain", chain);
+  }
+}
+
+
+
+
+
 // connects metamask to the flare testnet (coston2)
 var key = Array(25).fill().map(() => Array(25).fill(0));
 var op = Array(25).fill().map(() => Array(25).fill(0));
@@ -307,16 +450,16 @@ async function load_this_game(){
       document.getElementById('game_title').textContent = 'Space Rumble';
       document.getElementById('bod').innerHTML = `
       <br/><br/>
-      <div style="color: purple;font-size: 4em;font-family:monospace;">Space Rumble</div>
+      <div style="color: #ff9933;font-size: 4em;font-family:monospace;">Space Rumble</div>
       <br/>
 
       <canvas id="game2" width="800" height="500" ></canvas>
 
       <div>
               <br/>
-              <div id="start" onclick="to_rules();" style="color:white;background-color: purple;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right: 0.2%;">Rules</div>
-              <div id="start" onclick="reloadRun();" style="color:white;background-color: purple;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right: 0.2%;">Play!</div>
-              <div id="restart" onclick="restartRun();" style="color:white;background-color: purple;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;">Retry!</div>
+              <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right: 0.2%;">Rules</div>
+              <div id="start" onclick="reloadRun();" style="color:black;background-color: #ff9933;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right: 0.2%;">Play!</div>
+              <div id="restart" onclick="restartRun();" style="color:black;background-color: #ff9933;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;">Retry</div>
         </div>
       `;
       canvas3=document.getElementById('game2');
@@ -329,19 +472,19 @@ async function load_this_game(){
       document.getElementById('game_title').textContent = 'Tetris';
       document.getElementById('bod').innerHTML = `
       <div style="position: absolute; left: 10%; top: 15%;">
-        <h1 style="color:purple; font-size: 4em; ">Tetris</h1>
-        <div style="color: purple;font-weight: 800;font-size:1.5em;background-color:pink;">Play the all time classic game Tetris on Web 3</div><br/>
-        <div style="color: purple;font-weight:800;font-size:1.5em;">Rules: <br/>You can only move the pieces in specific ways. <br/>Your game is over if your pieces reach the top of the screen, <br/>and you can only remove pieces from the screen <br/>by filling all the blank space in a line.</div>
+        <h1 style="color:#ff9933; font-size: 4em; ">Tetris</h1>
+        <div style="color: #ff9933;font-weight: 800;font-size:1.5em;background-color:purple;">Play the all time classic game Tetris on Web 3</div><br/>
+        <div style="color: #ff9933;font-weight:800;font-size:1.5em;">Rules: <br/>You can only move the pieces in specific ways. <br/>Your game is over if your pieces reach the top of the screen, <br/>and you can only remove pieces from the screen <br/>by filling all the blank space in a line.</div>
       </div><br/>
       <canvas id="game2" width="320" height="640" style="margin-left: 30%"></canvas>
 
       <div style="margin-left: 30%;">
               <br/>
-              <div id="start" onclick="to_rules();" style="color:white;background-color: purple;font-size: 2em; width: 8%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;">Rules</div>
+              <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: 2em; width: 8%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;">Rules</div>
 
-              <div id="start" onclick="reloadTetris();" style="color:white;background-color: purple;font-size: 2em; width: 8%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;">Play!</div>
+              <div id="start" onclick="reloadTetris();" style="color:black;background-color: #ff9933;font-size: 2em; width: 8%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;">Play!</div>
 
-              <div id="restart" onclick="restartTetris();" style="color:white;background-color: purple;font-size: 2em; width: 9%;height:6%; text-align: center; cursor: pointer;display:inline-block;">Retry!</div>
+              <div id="restart" onclick="restartTetris();" style="color:black;background-color: #ff9933;font-size: 2em; width: 9%;height:6%; text-align: center; cursor: pointer;display:inline-block;">Retry</div>
         </div>
       `;
       canvas4=document.getElementById('game2');
@@ -1665,10 +1808,10 @@ async function load_rules(){
   else if (game_name == 'tetris'){
     el2.textContent = 'Tetris';
     el.innerHTML = `
-        <p style="font-size: 2em;">The Iconic Tetris Game is back to remind you of the Good Ol' Days</p>
-        <p style="font-size: 1.6em;">Accommodate as many blocks on the canvas as you can before they overflow.  </p>
-        <p style="font-size: 1.6em;">Completely filled horizontal rows disappear, leaving you with more room to work with.</p>
-        <p style="font-size: 1.6em;">The highest score at the time of competition close wins!</p>
+        <p style="font-size: 1.9em;">The Iconic Tetris Game is back to remind you of the Good Ol' Days</p>
+        <p style="font-size: 1.5em;">Accommodate as many blocks on the canvas as you can before they overflow.  </p>
+        <p style="font-size: 1.5em;">Completely filled horizontal rows disappear, leaving you with more room to work with.</p>
+        <p style="font-size: 1.5em;">The highest score at the time of competition close wins!</p>
 
     `;
   }
@@ -1819,6 +1962,29 @@ window.choose_chain = choose_chain;
 
 
 async function loadHome(){
-    localStorage.setItem('chain_meg', 'eth');
+    var c = localStorage.getItem('last_chain');
+    var ts = localStorage.getItem('last_session');
+    const tnow = Date.now();
+    if (c == null || ts == null){
+      localStorage.setItem('last_chain', 'eth');
+      localStorage.setItem('last_session', tnow.toString());
+      localStorage.setItem('acc', '');
+    }
+    else if (parseInt(tnow) - parseInt(ts) > 6000000){
+      localStorage.setItem('last_session', tnow.toString());
+      localStorage.setItem('acc', '');
+    }
+    c = localStorage.getItem('last_chain');
+    const a = localStorage.getItem('acc');
+    ts = localStorage.getItem('last_session');
+    console.log(ts);
+    console.log(c);
+    console.log(a);
+
 }
 window.loadHome = loadHome;
+
+async function to_faq(){
+  window.location.href = './faqs.html';
+}
+window.to_faq = to_faq;

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Megusta - Web3 Gaming</title>
+  <link rel="shortcut icon" href="img/logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer="defer" src="./main.js"></script>
+</head>
+
+<body>
+  <div class="background-glitch"></div>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html"><img src="img/logo.png" alt="Me Gusta Logo" class="logo"></a>
+    </div>
+
+      <div class="menu-toggle" id="mobile-menu-about">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <ul class="nav-center">
+        <li><a href="./">HOME</a></li>
+        <li><a href="index.html#featured-games">DEMO</a></li>
+        <li><a href="faqs.html">FAQS</a></li>
+      </ul>
+      <div class="nav-right" style="visibility:hidden;">
+        <img src="img/wallet-icon.svg" alt="Wallet" class="wallet-icon">
+      </div>
+    </nav>
+  </header>
+
+ <section class="featured-games" id="featured-games">
+        <h2>🔥 Featured Games 🔥</h2>
+        <div class="game-grid">
+            <div class="game-card animated" onclick="to_launch('spacerumble')" style="cursor: pointer;">
+                <img src="img/game1.png" alt="Space Rumble">
+                <h3>Space Rumble</h3>
+            </div>
+            <div class="game-card animated" onclick="to_launch('tetris')" style="cursor: pointer;">
+                <img src="img/game1.png" alt="Tetris">
+                <h3>Tetris</h3>
+            </div>
+            <div class="game-card animated">
+                <img src="img/game1.png" alt="Game 3">
+                <h3>More Coming Soon!</h3>
+            </div>
+        </div>
+    </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <img src="img/logo.png" alt="Me Gusta Logo" class="footer-logo">
+        <p>&copy; 2025 Megusta Gaming by Darksun Labs | All Rights Reserved</p>
+      </div>
+      <div class="footer-right">
+        <a href="about.html">About</a>
+        <a href="games.html">Games</a>
+      </div>
+    </div>
+  </footer>
+    <canvas id="game" width="620" height="620" style="display:none"></canvas>
+  <script>
+      document.getElementById("mobile-menu-about").addEventListener("click", function () {
+      document.querySelector(".nav-center").classList.toggle("nav-active");
+    });
+  </script>
+</body>
+
+</html>

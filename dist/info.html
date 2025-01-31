@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Megusta - Web3 Gaming</title>
+  <link rel="shortcut icon" href="img/logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer="defer" src="./main.js"></script>
+</head>
+
+<body onload="load_rules();">
+  <div class="background-glitch"></div>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html"><img src="img/logo.png" alt="Me Gusta Logo" class="logo"></a>
+    </div>
+    <div class="nav-center">
+         <h2 id="game_title" style="font-size: 2em;margin-right: 30%"> Game </h2>
+    </div>
+
+
+    </nav>
+  </header>
+
+
+
+
+        <br/><br/>
+      <p id="game_info" style="color: black;">This game does not exist. Is your link correct?</p>
+
+
+
+
+
+
+  <canvas id="game" width="620" height="620" style="display:none"></canvas>
+  <script>
+      document.getElementById("mobile-menu-about").addEventListener("click", function () {
+      document.querySelector(".nav-center").classList.toggle("nav-active");
+    });
+  </script>
+</body>
+
+</html>
