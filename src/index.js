@@ -63,6 +63,14 @@ async function connect(code) {
     symbol = 'G';
     rpc = "https://rpc-sepolia.gravity.xyz";
   }
+  else if (chain_name == 'eth'){
+    chainId = 11155111;
+    cid = '0xaa36a7';
+    chain = 'Sepolia';
+    name = 'SEPOLIA-ETH';
+    symbol = 'ETH';
+    rpc = "https://sepolia.infura.io";
+  }
   else {
     console.log('unrecognized chain');
     return;
@@ -139,6 +147,10 @@ async function startApp(provider, chain) {
   const tnow = Date.now();
   localStorage.setItem('last_session', tnow.toString());
   localStorage.setItem("last_chain", chain);
+  document.getElementById('nright').innerHTML = `
+    <a>`.concat(account.slice(0,10).concat('...')).concat(`</a>
+    <a style="color: black; background-color: #ff6600; cursor: pointer; border-radius: 5%;padding: 1%; padding-bottom: 2%" onclick='logout();'>logout</a>
+  `);
   }
 }
 
@@ -194,6 +206,16 @@ window.to_launch = to_launch;
 
 
 async function load_this_game(){
+  const w = window.innerWidth;
+  if (w < 1200){
+    document.getElementById('bod').innerHTML = `
+      <h1 style='color: red'>Screen Too Small</h1>
+      <div style="color: whitesmoke;font-size: 1.3em;text-align: left;margin-left: 5%;margin-right: 5%">Megusta currently only supports wider PCs for gameplay. Since mobile devices make swift and precise clicking difficult, they are not currently supported.</div>
+      <div style="color: whitesmoke;font-size: 1.3em;text-align: left;margin-left: 5%;margin-right: 5%">Please use a supported device or try again later.</div>
+      <canvas id="game" width="620" height="620" style="display:none"></canvas>
+    `;
+    return;
+  }
   var url = window.location.toString();
   var game_name = url.substring(url.indexOf('?') + 1);
   if (game_name == 'pixelmayhem'){
@@ -1156,8 +1178,12 @@ canvas3.width = 640;
 canvas3.height = 480;
 
 // Load the assets
-const playerImage = new Image();
+var playerImage = new Image();
 playerImage.src = './img/playerbg.png';
+
+if (localStorage.getItem('last_chain') == 'mnt'){
+  playerImage.src = './img/mantle5.svg';
+}
 
 const obstacle1Image = new Image();
 obstacle1Image.src = './img/obstacle1bg.png';
@@ -1380,7 +1406,7 @@ async function reloadRun() {
   // add ExpUp
 
   
-  var chain_name = localStorage.getItem('chain_meg');
+  var chain_name = localStorage.getItem('last_chain');
 
   if (chain_name == 'mnt'){
     expImage.src = './img/mnt.png';
@@ -1838,6 +1864,11 @@ async function back_to_game(){
 }
 window.back_to_game = back_to_game;
 
+async function to_games(){
+  window.location.href = './games.html';
+}
+window.to_games = to_games;
+
 //add event listener to our body
  //document.body.addEventListener('keydown', keyDown);
 
@@ -1962,6 +1993,11 @@ window.choose_chain = choose_chain;
 
 
 async function loadHome(){
+    const w = window.innerWidth;
+    if (w < 1000){
+      document.getElementById('nright').style.display = 'none';
+    };
+    console.log(w);
     var c = localStorage.getItem('last_chain');
     var ts = localStorage.getItem('last_session');
     const tnow = Date.now();
@@ -1975,14 +2011,41 @@ async function loadHome(){
       localStorage.setItem('acc', '');
     }
     c = localStorage.getItem('last_chain');
-    const a = localStorage.getItem('acc');
-    ts = localStorage.getItem('last_session');
-    console.log(ts);
-    console.log(c);
-    console.log(a);
+    var acc = localStorage.getItem('acc');
+    console.log(acc);
+   if (acc == null || acc == ''){
+      return;
+    }
+    else {
+      document.getElementById('nright').innerHTML = `
+        <a>`.concat(acc.slice(0,10).concat('...')).concat(`</a>
+        <a style="color: black; background-color: #ff6600; cursor: pointer; border-radius: 5%;padding: 1%; padding-bottom: 2%" onclick='logout();'>logout</a>
+      `);
+
+    }
 
 }
 window.loadHome = loadHome;
+
+async function logout(){
+  localStorage.setItem('last_chain', null);
+  localStorage.setItem('last_session', null);
+  localStorage.setItem('acc', '');
+  document.getElementById('nright').innerHTML = `
+    <select name="typc" id="chain_name" style="width: 60%;font-size: 1.4em;padding-top: 3%;padding-bottom: 1%;">
+        <option value="current">Select Chain</option>
+        <option value="eth">Ethereum</option>
+        <option value="mnt">Mantle</option>
+        <option value="lsk">Lisk</option>
+        <option value="flr">Flare</option>
+        <option value="gvt">Gravity</option>
+
+
+    </select>
+    <img src="img/wallet-icon.svg" alt="Wallet" class="wallet-icon" onclick="connect();">
+  `;
+}
+window.logout = logout;
 
 async function to_faq(){
   window.location.href = './faqs.html';
