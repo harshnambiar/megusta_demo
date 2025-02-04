@@ -1181,8 +1181,20 @@ canvas3.height = 480;
 var playerImage = new Image();
 playerImage.src = './img/playerbg.png';
 
-if (localStorage.getItem('last_chain') == 'mnt'){
-  playerImage.src = './img/mantle5.svg';
+if (localStorage.getItem('last_chain') == 'eth'){
+  playerImage.src = './img/ethpl.png';
+}
+else if (localStorage.getItem('last_chain') == 'mnt'){
+  playerImage.src = './img/mntpl.png';
+}
+else if (localStorage.getItem('last_chain') == 'flr'){
+  playerImage.src = './img/flrpl.png';
+}
+else if (localStorage.getItem('last_chain') == 'lsk'){
+  playerImage.src = './img/lskpl.png';
+}
+else if (localStorage.getItem('last_chain') == 'gvt'){
+  playerImage.src = './img/gvtpl.png';
 }
 
 const obstacle1Image = new Image();
@@ -1386,6 +1398,8 @@ async function reloadRun() {
     exps[i].x -= expSpeed;
 
     // Draw the exp
+    ctx3.fillStyle = 'rgba(230,230,230,0.7)';
+    ctx3.fillRect(exps[i].x, exps[i].y, 50,50);
     ctx3.drawImage(exps[i].image, 0, 0, exps[i].image.width, exps[i].image.height, exps[i].x, exps[i].y, 50, 50);
 
 
@@ -1409,22 +1423,22 @@ async function reloadRun() {
   var chain_name = localStorage.getItem('last_chain');
 
   if (chain_name == 'mnt'){
-    expImage.src = './img/mnt.png';
+    expImage.src = './img/mntlog.png';
   }
   else if (chain_name == 'gvt'){
-    expImage.src = './img/gvt.png';
+    expImage.src = './img/gvtlog.png';
   }
   else if (chain_name == 'lsk'){
-    expImage.src = './img/lsk.png';
+    expImage.src = './img/lsklog.png';
   }
   else if (chain_name == 'flr'){
-    expImage.src = './img/flr.png';
+    expImage.src = './img/flrlog.png';
   }
   else if (chain_name == 'eth'){
-    expImage.src = './img/eth.png';
+    expImage.src = './img/ethlog2.png';
   }
 
-  if (Date.now() - lastExp >= 30000){
+  if (Date.now() - lastExp >= 20000){
     lastExp = Date.now();
     const yExp = Math.floor(Math.random()*(canvas3.height - 50));
     exps.push({ x: canvas3.width, y: yExp, image: expImage });
