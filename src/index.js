@@ -1318,6 +1318,13 @@ async function reloadRun() {
     // Draw the obstacle
     ctx3.drawImage(obstacles[i].image, 0, 0, obstacles[i].image.width, obstacles[i].image.height, obstacles[i].x, obstacles[i].y, 50, 50);
 
+    if (obstacles[i].x <= 90 && Math.abs(playerY - obstacles[i].y) <= 100){
+      ctx3.fillStyle = 'rgb(255,0,0, 0.3)';
+      ctx3.beginPath();
+      ctx3.ellipse(obstacles[i].x + 22, obstacles[i].y + 25, 35, 30, 0, 0,  2 * Math.PI);
+      ctx3.fill();
+    }
+
     // Check for collision with the player
     if (checkCollisionRun(playerX, playerY, 50, 50, obstacles[i].x, obstacles[i].y, 50, 50)) {
       if (armorOn){
@@ -1398,7 +1405,7 @@ async function reloadRun() {
     exps[i].x -= expSpeed;
 
     // Draw the exp
-    ctx3.fillStyle = 'rgba(230,230,230,0.7)';
+    ctx3.fillStyle = 'rgba(170,170,170,0.7)';
     ctx3.fillRect(exps[i].x, exps[i].y, 50,50);
     ctx3.drawImage(exps[i].image, 0, 0, exps[i].image.width, exps[i].image.height, exps[i].x, exps[i].y, 50, 50);
 
@@ -1839,7 +1846,7 @@ async function load_rules(){
     el.innerHTML = `
         <p style="font-size: 2em;">A Sort of Variation of Space Impact from Our Black and White Phone Days</p>
         <p style="font-size: 1.6em;">Can you help Space Doggo navigate through space dodging the scary asteroids?  </p>
-        <p style="font-size: 1.6em;">Move him up and down the screen to avoid getting hit. Remember, asteroids can destabilize the ship without touching it so try to not be TOO CLOSE. There is always 'at least' one place safe on the screen and it is advised to remain close to the center to have access to that spot at all times.</p>
+        <p style="font-size: 1.6em;">Move him up and down the screen to avoid getting hit. Remember, asteroids can destabilize the spacetime around the ship without touching it so try to not be TOO CLOSE. The red zone around the asteroid will help you remember this. There is always 'at least' one place safe on the screen and it is advised to remain close to the center to have access to that spot at all times.</p>
         <p style="font-size: 1.6em;">Try to get the EXP powerups that whizz past. They appear every 30 seconds. You also have an armor that makes you invincible for 3 seconds. You can activate it with the Left key, but don't rely on it too much: it gets rarer as your score goes higher.</p>
         <p style="font-size: 1.6em;">The highest score at the time of competition close wins!</p>
 
