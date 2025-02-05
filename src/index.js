@@ -2017,6 +2017,7 @@ async function loadHome(){
     const w = window.innerWidth;
     if (w < 1000){
       document.getElementById('nright').style.display = 'none';
+      document.getElementById('gli').style.display = 'none';
     };
     console.log(w);
     var c = localStorage.getItem('last_chain');
@@ -2045,6 +2046,7 @@ async function loadHome(){
 
     }
 
+
 }
 window.loadHome = loadHome;
 
@@ -2072,3 +2074,14 @@ async function to_faq(){
   window.location.href = './faqs.html';
 }
 window.to_faq = to_faq;
+
+async function face_adjust(){
+  const el = document.getElementById('hc');
+  if (el.style.visibility == 'hidden'){
+    el.style.visibility = 'visible';
+  }
+  else {
+    el.style.visibility = 'hidden';
+  }
+}
+window.face_adjust = face_adjust;
