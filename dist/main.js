@@ -1706,6 +1706,18 @@ if (true) {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -1912,6 +1924,7 @@ __webpack_require__.d(esm_secp256k1_namespaceObject, {
 
 // EXTERNAL MODULE: ./node_modules/@metamask/detect-provider/dist/index.js
 var dist = __webpack_require__(975);
+var dist_default = /*#__PURE__*/__webpack_require__.n(dist);
 ;// ./node_modules/web3-types/lib/esm/data_format_types.js
 /*
 This file is part of web3.js.
@@ -39852,7 +39865,7 @@ along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 
 
 
-class web3_Web3 extends Web3Context {
+class Web3 extends Web3Context {
     constructor(providerOrContext = esm_mainnet) {
         var _a;
         if (validation_isNullish(providerOrContext) ||
@@ -39962,18 +39975,18 @@ class web3_Web3 extends Web3Context {
         });
     }
 }
-web3_Web3.version = Web3PkgInfo.version;
-web3_Web3.utils = web3_utils_lib_esm_namespaceObject;
-web3_Web3.requestEIP6963Providers = requestEIP6963Providers;
-web3_Web3.onNewProviderDiscovered = onNewProviderDiscovered;
-web3_Web3.modules = {
+Web3.version = Web3PkgInfo.version;
+Web3.utils = web3_utils_lib_esm_namespaceObject;
+Web3.requestEIP6963Providers = requestEIP6963Providers;
+Web3.onNewProviderDiscovered = onNewProviderDiscovered;
+Web3.modules = {
     Web3Eth: web3_eth_Web3Eth,
     Iban: iban_Iban,
     Net: net_Net,
     ENS: ENS,
     Personal: personal_Personal,
 };
-/* harmony default export */ const web3 = ((/* unused pure expression or super */ null && (web3_Web3)));
+/* harmony default export */ const web3 = (Web3);
 //# sourceMappingURL=web3.js.map
 ;// ./node_modules/web3/lib/esm/eth.exports.js
 /*
@@ -40350,7 +40363,7 @@ along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 
 
 
-/* harmony default export */ const web3_lib_esm = ((/* unused pure expression or super */ null && (Web3)));
+/* harmony default export */ const web3_lib_esm = (web3);
 /**
  * Named exports for all objects which are the default-exported-object in their packages
  */
@@ -40385,6 +40398,161 @@ along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 
 //# sourceMappingURL=index.js.map
 ;// ./src/index.js
+
+
+
+
+
+
+
+
+//50-36gold 47 9-39grey 11-21blue 26-40bluishgreen 34-16grey 26-40greenish 37-5blue 43-18fadedblue 30-46maroon 36-12gold
+async function connect(code) {
+  var url = window.location.toString();
+  var chain_name = document.getElementById('chain_name').value;
+  console.log(chain_name);
+  if (chain_name == 'current'){
+    console.log('no chain selected');
+    return;
+  }
+
+  var chainId = 0;
+  var cid = '';
+  var chain = '';
+  var symbol = '';
+  var name = '';
+  var rpc = '';
+
+  if (chain_name == 'mnt'){
+    chainId = 5003;
+    cid = '0x138b';
+    chain = 'Mantle Testnet Sepolia';
+    name = 'MANTLE';
+    symbol = 'MNT';
+    rpc = "https://rpc.sepolia.mantle.xyz";
+  }
+  else if (chain_name == 'flr'){
+    chainId = 114;
+    cid = '0x72';
+    chain = 'Flare Testnet Coston 2';
+    name = 'FLARE';
+    symbol = 'C2FLR';
+    rpc = "https://coston2-api.flare.network/ext/bc/C/rpc";
+  }
+  else if (chain_name == 'lsk'){
+    chainId = 4202;
+    cid = '0x106a';
+    chain = 'Lisk Sepolia'
+    name = 'LISK';
+    symbol = 'ETH';
+    rpc = "https://rpc.sepolia-api.lisk.com";
+  }
+  else if (chain_name == 'fhe'){
+    chainId = 8008148;
+    cid = '0x7a31d4';
+    chain = 'Fhenix Nitrogen';
+    name = 'FHENIX';
+    symbol = 'FHE';
+    rpc = "https://api.nitrogen.fhenix.zone";
+  }
+  else if (chain_name == 'gvt'){
+    chainId = 13505;
+    cid = '0x34c1';
+    chain = 'Gravity Alpha Testnet Sepolia';
+    name = 'GRAVITY';
+    symbol = 'G';
+    rpc = "https://rpc-sepolia.gravity.xyz";
+  }
+  else if (chain_name == 'eth'){
+    chainId = 11155111;
+    cid = '0xaa36a7';
+    chain = 'Sepolia';
+    name = 'SEPOLIA-ETH';
+    symbol = 'ETH';
+    rpc = "https://sepolia.infura.io";
+  }
+  else {
+    console.log('unrecognized chain');
+    return;
+  }
+  const provider = await dist_default()()
+  console.log(window.ethereum);
+  if (provider && provider === window.ethereum) {
+    console.log("MetaMask is available!");
+
+    console.log(window.ethereum.networkVersion);
+    if (window.ethereum.networkVersion !== chainId) {
+      try {
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: cid }]
+        });
+        console.log("changed to ".concat(name).concat(" testnet successfully"));
+
+      } catch (err) {
+        console.log(err);
+          // This error code indicates that the chain has not been added to MetaMask
+        if (err.code === 4902) {
+        console.log("please add ".concat(name).concat(" Testnet as a network"));
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                chainName: chain,
+                chainId: cid,
+                nativeCurrency: { name: name, decimals: 18, symbol: symbol },
+                rpcUrls: [rpc]
+              }
+            ]
+          });
+        }
+        else {
+            console.log(err);
+        }
+      }
+    }
+    await startApp(provider, chain_name);
+  } else {
+    console.log("Please install MetaMask!")
+  }
+
+
+
+}
+window.connect = connect;
+
+
+async function startApp(provider, chain) {
+  if (provider !== window.ethereum) {
+    console.error("Do you have multiple wallets installed?")
+  }
+  else {
+    const accounts = await window.ethereum
+    .request({ method: "eth_requestAccounts" })
+    .catch((err) => {
+      if (err.code === 4001) {
+        console.log("Please connect to MetaMask.")
+      } else {
+        console.error(err)
+      }
+    })
+    console.log("hi");
+  const account = accounts[0];
+  var web3 = new web3_lib_esm(window.ethereum);
+  const bal = await web3.eth.getBalance(account);
+  //console.log("hi");
+  console.log(bal);
+  console.log(account);
+  localStorage.setItem("acc",account.toString());
+  const tnow = Date.now();
+  localStorage.setItem('last_session', tnow.toString());
+  localStorage.setItem("last_chain", chain);
+  document.getElementById('nright').innerHTML = `
+    <a>`.concat(account.slice(0,10).concat('...')).concat(`</a>
+    <a style="color: black; background-color: #ff6600; cursor: pointer; border-radius: 5%;padding: 1%; padding-bottom: 2%" onclick='logout();'>logout</a>
+  `);
+  }
+}
 
 
 
@@ -40438,6 +40606,16 @@ window.to_launch = to_launch;
 
 
 async function load_this_game(){
+  const w = window.innerWidth;
+  if (w < 1200){
+    document.getElementById('bod').innerHTML = `
+      <h1 style='color: red'>Screen Too Small</h1>
+      <div style="color: whitesmoke;font-size: 1.3em;text-align: left;margin-left: 5%;margin-right: 5%">Megusta currently only supports wider PCs for gameplay. Since mobile devices make swift and precise clicking difficult, they are not currently supported.</div>
+      <div style="color: whitesmoke;font-size: 1.3em;text-align: left;margin-left: 5%;margin-right: 5%">Please use a supported device or try again later.</div>
+      <canvas id="game" width="620" height="620" style="display:none"></canvas>
+    `;
+    return;
+  }
   var url = window.location.toString();
   var game_name = url.substring(url.indexOf('?') + 1);
   if (game_name == 'pixelmayhem'){
@@ -40694,16 +40872,16 @@ async function load_this_game(){
       document.getElementById('game_title').textContent = 'Space Rumble';
       document.getElementById('bod').innerHTML = `
       <br/><br/>
-      <div style="color: purple;font-size: 4em;font-family:monospace;">Space Rumble</div>
+      <div style="color: #ff9933;font-size: 4em;font-family:monospace;">Space Rumble</div>
       <br/>
 
       <canvas id="game2" width="800" height="500" ></canvas>
 
       <div>
               <br/>
-              <div id="start" onclick="to_rules();" style="color:white;background-color: purple;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right: 0.2%;">Rules</div>
-              <div id="start" onclick="reloadRun();" style="color:white;background-color: purple;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right: 0.2%;">Play!</div>
-              <div id="restart" onclick="restartRun();" style="color:white;background-color: purple;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;">Retry!</div>
+              <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right: 0.2%;">Rules</div>
+              <div id="start" onclick="reloadRun();" style="color:black;background-color: #ff9933;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right: 0.2%;">Play!</div>
+              <div id="restart" onclick="restartRun();" style="color:black;background-color: #ff9933;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;">Retry</div>
         </div>
       `;
       canvas3=document.getElementById('game2');
@@ -40716,19 +40894,19 @@ async function load_this_game(){
       document.getElementById('game_title').textContent = 'Tetris';
       document.getElementById('bod').innerHTML = `
       <div style="position: absolute; left: 10%; top: 15%;">
-        <h1 style="color:purple; font-size: 4em; ">Tetris</h1>
-        <div style="color: purple;font-weight: 800;font-size:1.5em;background-color:pink;">Play the all time classic game Tetris on Web 3</div><br/>
-        <div style="color: purple;font-weight:800;font-size:1.5em;">Rules: <br/>You can only move the pieces in specific ways. <br/>Your game is over if your pieces reach the top of the screen, <br/>and you can only remove pieces from the screen <br/>by filling all the blank space in a line.</div>
+        <h1 style="color:#ff9933; font-size: 4em; ">Tetris</h1>
+        <div style="color: #ff9933;font-weight: 800;font-size:1.5em;background-color:purple;">Play the all time classic game Tetris on Web 3</div><br/>
+        <div style="color: #ff9933;font-weight:800;font-size:1.5em;">Rules: <br/>You can only move the pieces in specific ways. <br/>Your game is over if your pieces reach the top of the screen, <br/>and you can only remove pieces from the screen <br/>by filling all the blank space in a line.</div>
       </div><br/>
       <canvas id="game2" width="320" height="640" style="margin-left: 30%"></canvas>
 
       <div style="margin-left: 30%;">
               <br/>
-              <div id="start" onclick="to_rules();" style="color:white;background-color: purple;font-size: 2em; width: 8%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;">Rules</div>
+              <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: 2em; width: 8%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;">Rules</div>
 
-              <div id="start" onclick="reloadTetris();" style="color:white;background-color: purple;font-size: 2em; width: 8%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;">Play!</div>
+              <div id="start" onclick="reloadTetris();" style="color:black;background-color: #ff9933;font-size: 2em; width: 8%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;">Play!</div>
 
-              <div id="restart" onclick="restartTetris();" style="color:white;background-color: purple;font-size: 2em; width: 9%;height:6%; text-align: center; cursor: pointer;display:inline-block;">Retry!</div>
+              <div id="restart" onclick="restartTetris();" style="color:black;background-color: #ff9933;font-size: 2em; width: 9%;height:6%; text-align: center; cursor: pointer;display:inline-block;">Retry</div>
         </div>
       `;
       canvas4=document.getElementById('game2');
@@ -41400,8 +41578,24 @@ canvas3.width = 640;
 canvas3.height = 480;
 
 // Load the assets
-const playerImage = new Image();
+var playerImage = new Image();
 playerImage.src = './img/playerbg.png';
+
+if (localStorage.getItem('last_chain') == 'eth'){
+  playerImage.src = './img/ethpl.png';
+}
+else if (localStorage.getItem('last_chain') == 'mnt'){
+  playerImage.src = './img/mntpl.png';
+}
+else if (localStorage.getItem('last_chain') == 'flr'){
+  playerImage.src = './img/flrpl.png';
+}
+else if (localStorage.getItem('last_chain') == 'lsk'){
+  playerImage.src = './img/lskpl.png';
+}
+else if (localStorage.getItem('last_chain') == 'gvt'){
+  playerImage.src = './img/gvtpl.png';
+}
 
 const obstacle1Image = new Image();
 obstacle1Image.src = './img/obstacle1bg.png';
@@ -41524,6 +41718,13 @@ async function reloadRun() {
     // Draw the obstacle
     ctx3.drawImage(obstacles[i].image, 0, 0, obstacles[i].image.width, obstacles[i].image.height, obstacles[i].x, obstacles[i].y, 50, 50);
 
+    if (obstacles[i].x <= 90 && Math.abs(playerY - obstacles[i].y) <= 100){
+      ctx3.fillStyle = 'rgb(255,0,0, 0.3)';
+      ctx3.beginPath();
+      ctx3.ellipse(obstacles[i].x + 22, obstacles[i].y + 25, 35, 30, 0, 0,  2 * Math.PI);
+      ctx3.fill();
+    }
+
     // Check for collision with the player
     if (checkCollisionRun(playerX, playerY, 50, 50, obstacles[i].x, obstacles[i].y, 50, 50)) {
       if (armorOn){
@@ -41604,6 +41805,8 @@ async function reloadRun() {
     exps[i].x -= expSpeed;
 
     // Draw the exp
+    ctx3.fillStyle = 'rgba(170,170,170,0.7)';
+    ctx3.fillRect(exps[i].x, exps[i].y, 50,50);
     ctx3.drawImage(exps[i].image, 0, 0, exps[i].image.width, exps[i].image.height, exps[i].x, exps[i].y, 50, 50);
 
 
@@ -41624,25 +41827,25 @@ async function reloadRun() {
   // add ExpUp
 
   
-  var chain_name = localStorage.getItem('chain_meg');
+  var chain_name = localStorage.getItem('last_chain');
 
   if (chain_name == 'mnt'){
-    expImage.src = './img/mnt.png';
+    expImage.src = './img/mntlog.png';
   }
   else if (chain_name == 'gvt'){
-    expImage.src = './img/gvt.png';
+    expImage.src = './img/gvtlog.png';
   }
   else if (chain_name == 'lsk'){
-    expImage.src = './img/lsk.png';
+    expImage.src = './img/lsklog.png';
   }
   else if (chain_name == 'flr'){
-    expImage.src = './img/flr.png';
+    expImage.src = './img/flrlog.png';
   }
   else if (chain_name == 'eth'){
-    expImage.src = './img/eth.png';
+    expImage.src = './img/ethlog2.png';
   }
 
-  if (Date.now() - lastExp >= 30000){
+  if (Date.now() - lastExp >= 20000){
     lastExp = Date.now();
     const yExp = Math.floor(Math.random()*(canvas3.height - 50));
     exps.push({ x: canvas3.width, y: yExp, image: expImage });
@@ -42043,7 +42246,7 @@ async function load_rules(){
     el.innerHTML = `
         <p style="font-size: 2em;">A Sort of Variation of Space Impact from Our Black and White Phone Days</p>
         <p style="font-size: 1.6em;">Can you help Space Doggo navigate through space dodging the scary asteroids?  </p>
-        <p style="font-size: 1.6em;">Move him up and down the screen to avoid getting hit. Remember, asteroids can destabilize the ship without touching it so try to not be TOO CLOSE. There is always 'at least' one place safe on the screen and it is advised to remain close to the center to have access to that spot at all times.</p>
+        <p style="font-size: 1.6em;">Move him up and down the screen to avoid getting hit. Remember, asteroids can destabilize the spacetime around the ship without touching it so try to not be TOO CLOSE. The red zone around the asteroid will help you remember this. There is always 'at least' one place safe on the screen and it is advised to remain close to the center to have access to that spot at all times.</p>
         <p style="font-size: 1.6em;">Try to get the EXP powerups that whizz past. They appear every 30 seconds. You also have an armor that makes you invincible for 3 seconds. You can activate it with the Left key, but don't rely on it too much: it gets rarer as your score goes higher.</p>
         <p style="font-size: 1.6em;">The highest score at the time of competition close wins!</p>
 
@@ -42052,10 +42255,10 @@ async function load_rules(){
   else if (game_name == 'tetris'){
     el2.textContent = 'Tetris';
     el.innerHTML = `
-        <p style="font-size: 2em;">The Iconic Tetris Game is back to remind you of the Good Ol' Days</p>
-        <p style="font-size: 1.6em;">Accommodate as many blocks on the canvas as you can before they overflow.  </p>
-        <p style="font-size: 1.6em;">Completely filled horizontal rows disappear, leaving you with more room to work with.</p>
-        <p style="font-size: 1.6em;">The highest score at the time of competition close wins!</p>
+        <p style="font-size: 1.9em;">The Iconic Tetris Game is back to remind you of the Good Ol' Days</p>
+        <p style="font-size: 1.5em;">Accommodate as many blocks on the canvas as you can before they overflow.  </p>
+        <p style="font-size: 1.5em;">Completely filled horizontal rows disappear, leaving you with more room to work with.</p>
+        <p style="font-size: 1.5em;">The highest score at the time of competition close wins!</p>
 
     `;
   }
@@ -42081,6 +42284,11 @@ async function back_to_game(){
   window.location.href = './launch.html?'.concat(game_name);
 }
 window.back_to_game = back_to_game;
+
+async function to_games(){
+  window.location.href = './games.html';
+}
+window.to_games = to_games;
 
 //add event listener to our body
  //document.body.addEventListener('keydown', keyDown);
@@ -42206,9 +42414,77 @@ window.choose_chain = choose_chain;
 
 
 async function loadHome(){
-    localStorage.setItem('chain_meg', 'eth');
+    const w = window.innerWidth;
+    if (w < 1000){
+      document.getElementById('nright').style.display = 'none';
+      document.getElementById('gli').style.display = 'none';
+    };
+    console.log(w);
+    var c = localStorage.getItem('last_chain');
+    var ts = localStorage.getItem('last_session');
+    const tnow = Date.now();
+    if (c == null || ts == null){
+      localStorage.setItem('last_chain', 'eth');
+      localStorage.setItem('last_session', tnow.toString());
+      localStorage.setItem('acc', '');
+    }
+    else if (parseInt(tnow) - parseInt(ts) > 6000000){
+      localStorage.setItem('last_session', tnow.toString());
+      localStorage.setItem('acc', '');
+    }
+    c = localStorage.getItem('last_chain');
+    var acc = localStorage.getItem('acc');
+    console.log(acc);
+   if (acc == null || acc == ''){
+      return;
+    }
+    else {
+      document.getElementById('nright').innerHTML = `
+        <a>`.concat(acc.slice(0,10).concat('...')).concat(`</a>
+        <a style="color: black; background-color: #ff6600; cursor: pointer; border-radius: 5%;padding: 1%; padding-bottom: 2%" onclick='logout();'>logout</a>
+      `);
+
+    }
+
+
 }
 window.loadHome = loadHome;
+
+async function logout(){
+  localStorage.setItem('last_chain', null);
+  localStorage.setItem('last_session', null);
+  localStorage.setItem('acc', '');
+  document.getElementById('nright').innerHTML = `
+    <select name="typc" id="chain_name" style="width: 60%;font-size: 1.4em;padding-top: 3%;padding-bottom: 1%;">
+        <option value="current">Select Chain</option>
+        <option value="eth">Ethereum</option>
+        <option value="mnt">Mantle</option>
+        <option value="lsk">Lisk</option>
+        <option value="flr">Flare</option>
+        <option value="gvt">Gravity</option>
+
+
+    </select>
+    <img src="img/wallet-icon.svg" alt="Wallet" class="wallet-icon" onclick="connect();">
+  `;
+}
+window.logout = logout;
+
+async function to_faq(){
+  window.location.href = './faqs.html';
+}
+window.to_faq = to_faq;
+
+async function face_adjust(){
+  const el = document.getElementById('hc');
+  if (el.style.visibility == 'hidden'){
+    el.style.visibility = 'visible';
+  }
+  else {
+    el.style.visibility = 'hidden';
+  }
+}
+window.face_adjust = face_adjust;
 
 })();
 
