@@ -475,14 +475,15 @@ async function load_this_game(){
       <div style="color: #ff9933;font-size: 4em;font-family:monospace;">Space Rumble</div>
       <br/>
 
-      <canvas id="game2" width="800" height="500" ></canvas>
-
-      <div>
+       <div style="display: flex; align-items: flex-start;margin-left: 18%">
+        <div style="margin-right: 1%; margin-top: 15%">
               <br/>
-              <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right: 0.2%;">Rules</div>
-              <div id="start" onclick="reloadRun();" style="color:black;background-color: #ff9933;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;margin-right: 0.2%;">Play!</div>
-              <div id="restart" onclick="restartRun();" style="color:black;background-color: #ff9933;font-size: 2em; width: 7%;height:6%; text-align: center; cursor: pointer;display:inline-block;">Retry</div>
+              <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: 2em;height:6%; text-align: center; cursor: pointer;margin-bottom: 5%;padding: 5px;">Rules</div>
+              <div id="start" onclick="reloadRun();" style="color:black;background-color: #ff9933;font-size: 2em;height:6%; text-align: center; cursor: pointer;margin-bottom: 5%;padding: 5px;">Play!</div>
+              <div id="restart" onclick="restartRun();" style="color:black;background-color: #ff9933;font-size: 2em;height:6%; text-align: center; cursor: pointer;padding-top: 4%;padding-bottom: 3%;padding: 5px">Retry</div>
         </div>
+        <canvas id="game2" width="800" height="600" ></canvas>
+      </div>
       `;
       canvas3=document.getElementById('game2');
       ctx3=canvas3.getContext('2d');
@@ -1208,7 +1209,7 @@ expImage.src = './img/nyan.png';
 
 // Define the game variables
 var playerX = 10;
-var playerY = canvas3.height - 50;
+var playerY = canvas3.height - 60;
 let playerSpeed = 25;
 
 var obstacles = [];
@@ -1283,7 +1284,7 @@ async function setupRun() {
   clearScreen2();
   // Draw the player
 
-  ctx3.drawImage(playerImage, 0, 0, playerImage.width, playerImage.height, playerX, playerY, 70, 50);
+  ctx3.drawImage(playerImage, 0, 0, playerImage.width, playerImage.height, playerX, playerY, 80, 60);
 
 
 
@@ -1299,7 +1300,7 @@ async function reloadRun() {
   ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
   clearScreen2();
   // Draw the player
-  ctx3.drawImage(playerImage, 0, 0, playerImage.width, playerImage.height, playerX, playerY, 70, 50);
+  ctx3.drawImage(playerImage, 0, 0, playerImage.width, playerImage.height, playerX, playerY, 80, 60);
   if (Date.now() - armorStart >= 3000){
     armorOn = false;
   }
@@ -1307,7 +1308,7 @@ async function reloadRun() {
     ctx3.fillStyle = 'rgb(255,255,0, 0.3)';
     //ctx3.fillRect(playerX,playerY,70, 50);
     ctx3.beginPath();
-    ctx3.ellipse(playerX + 35, playerY + 25, 40, 30, 0, 0,  2 * Math.PI);
+    ctx3.ellipse(playerX + 40, playerY + 30, 45, 35, 0, 0,  2 * Math.PI);
     ctx3.fill();
   }
 
@@ -1316,17 +1317,29 @@ async function reloadRun() {
     obstacles[i].x -= obstacleSpeed;
 
     // Draw the obstacle
-    ctx3.drawImage(obstacles[i].image, 0, 0, obstacles[i].image.width, obstacles[i].image.height, obstacles[i].x, obstacles[i].y, 50, 50);
+    ctx3.drawImage(obstacles[i].image, 0, 0, obstacles[i].image.width, obstacles[i].image.height, obstacles[i].x, obstacles[i].y, 60, 60);
 
     if (obstacles[i].x <= 90 && Math.abs(playerY - obstacles[i].y) <= 100){
       ctx3.fillStyle = 'rgb(255,0,0, 0.3)';
       ctx3.beginPath();
-      ctx3.ellipse(obstacles[i].x + 22, obstacles[i].y + 25, 35, 30, 0, 0,  2 * Math.PI);
+      ctx3.roundRect(obstacles[i].x - 5, obstacles[i].y, 70, 60, 20);
+      ctx3.strokeStyle = 'rgb(255,0,0, 0.2)';
+      ctx3.stroke();
+      //ctx3.ellipse(obstacles[i].x + 30, obstacles[i].y + 30, 37, 37, 0, 0,  2 * Math.PI);
       ctx3.fill();
+      if (!armorOn){
+        ctx3.fillStyle = 'rgb(255,0,0, 0.2)';
+        //ctx3.fillRect(playerX,playerY,70, 50);
+        ctx3.beginPath();
+        ctx3.roundRect(playerX - 5, playerY, 85, 60, 20);
+        ctx3.strokeStyle = 'rgb(255,0,0, 0.2)';
+        ctx3.stroke();
+        ctx3.fill();
+      }
     }
 
     // Check for collision with the player
-    if (checkCollisionRun(playerX, playerY, 50, 50, obstacles[i].x, obstacles[i].y, 50, 50)) {
+    if (checkCollisionRun(playerX, playerY, 60, 60, obstacles[i].x, obstacles[i].y, 60, 60)) {
       if (armorOn){
         continue;
       }
@@ -1363,7 +1376,7 @@ async function reloadRun() {
   }
 
   // Add new obstacles
-  var yObst = Math.floor(Math.random() * (canvas3.height - 50));
+  var yObst = Math.floor(Math.random() * (canvas3.height - 60));
   var zone_prev = 0;
   var zone_new = 1;
   var strikes = 0;
@@ -1377,11 +1390,11 @@ async function reloadRun() {
       zone_new = 1;
     }
     else if (yObst <= 2*band && yObst > band){
-      yObst = Math.floor(Math.random() * (band - 50) + 2*band);
+      yObst = Math.floor(Math.random() * (band - 60) + 2*band);
       zone_new = 2;
     }
     else {
-      yObst = Math.floor(Math.random() * (band - 50) + band);
+      yObst = Math.floor(Math.random() * (band - 60) + band);
       zone_new = 3;
     }
 
@@ -1406,8 +1419,8 @@ async function reloadRun() {
 
     // Draw the exp
     ctx3.fillStyle = 'rgba(170,170,170,0.7)';
-    ctx3.fillRect(exps[i].x, exps[i].y, 50,50);
-    ctx3.drawImage(exps[i].image, 0, 0, exps[i].image.width, exps[i].image.height, exps[i].x, exps[i].y, 50, 50);
+    ctx3.fillRect(exps[i].x, exps[i].y, 60,60);
+    ctx3.drawImage(exps[i].image, 0, 0, exps[i].image.width, exps[i].image.height, exps[i].x, exps[i].y, 60, 60);
 
 
 
@@ -1417,7 +1430,7 @@ async function reloadRun() {
     }
 
     // Check if the player received the incoming exp
-    else if (checkCollisionRun(playerX, playerY, 50, 50, exps[i].x, exps[i].y, 50, 50)) {
+    else if (checkCollisionRun(playerX, playerY, 60, 60, exps[i].x, exps[i].y, 60, 60)) {
       expOn = true;
       exps.splice(i, 1);
     }
@@ -1447,7 +1460,7 @@ async function reloadRun() {
 
   if (Date.now() - lastExp >= 20000){
     lastExp = Date.now();
-    const yExp = Math.floor(Math.random()*(canvas3.height - 50));
+    const yExp = Math.floor(Math.random()*(canvas3.height - 60));
     exps.push({ x: canvas3.width, y: yExp, image: expImage });
   }
 
@@ -1861,8 +1874,8 @@ async function load_rules(){
     el.innerHTML = `
         <p style="font-size: 2em;">A Sort of Variation of Space Impact from Our Black and White Phone Days</p>
         <p style="font-size: 1.6em;">Can you help Space Doggo navigate through space dodging the scary asteroids?  </p>
-        <p style="font-size: 1.6em;">Move him up and down the screen to avoid getting hit. Remember, asteroids can destabilize the spacetime around the ship without touching it so try to not be TOO CLOSE. The red zone around the asteroid will help you remember this. There is always 'at least' one place safe on the screen and it is advised to remain close to the center to have access to that spot at all times.</p>
-        <p style="font-size: 1.6em;">Try to get the EXP powerups that whizz past. They appear every 30 seconds. You also have an armor that makes you invincible for 3 seconds. You can activate it with the Left key, but don't rely on it too much: it gets rarer as your score goes higher.</p>
+        <p style="font-size: 1.6em;">Move him up and down the screen to avoid getting hit. Remember, asteroids can destabilize the spacetime around the ship without touching it so try to not be TOO CLOSE. The red zone around the asteroid and your ship becomes visible when you're flying dangerously close. DO NOT let these fields overlap or it is game over. There is always 'at least' one place safe on the screen and it is advised to remain close to the center to have access to that spot at all times.</p>
+        <p style="font-size: 1.6em;">Try to get the EXP powerups that whizz past. They appear every 20 seconds. You also have an armor that makes you invincible for 3 seconds. You can activate it with the Left key, but don't rely on it too much: it gets rarer as your score goes higher.</p>
         <p style="font-size: 1.6em;">The highest score at the time of competition close wins!</p>
 
     `;
@@ -1965,8 +1978,8 @@ window.to_games = to_games;
 
       }
       if (e.code == "ArrowDown"){
-        if (playerY + playerSpeed > canvas3.height - 50){
-          playerY = canvas3.height - 50;
+        if (playerY + playerSpeed > canvas3.height - 60){
+          playerY = canvas3.height - 60;
         }
         else {
           playerY = playerY + playerSpeed;

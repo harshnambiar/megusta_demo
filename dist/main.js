@@ -42194,6 +42194,21 @@ async function to_wp(){
 }
 window.to_wp = to_wp;
 
+async function to_gh(){
+  window.open('https://github.com/darksunlabs', '_blank');
+}
+window.to_gh = to_gh;
+
+async function to_medium(){
+  window.open('https://darksunlabs.medium.com', '_blank');
+}
+window.to_medium = to_medium;
+
+async function to_discord(){
+  window.open('https://discord.com/invite/UgRnPt639K', '_blank');
+}
+window.to_discord = to_discord;
+
 async function to_rules(){
   var url = window.location.toString();
   var game_name = url.substring(url.indexOf('?') + 1);
