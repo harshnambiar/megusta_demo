@@ -1240,6 +1240,7 @@ var obstacleSpeed = 4;
 
 
 var scoreRun = 0;
+var pendingScoreRun = false;
 
 var stars = [];
 var ongoingRun = false;
@@ -1359,6 +1360,7 @@ async function preloadRun(){
 
 
   console.log(freq);
+  pendingScoreRun = false;
     await reloadRun();
   }
 }
@@ -1420,7 +1422,7 @@ async function reloadRun() {
           // Game over
           ctx3.fillStyle = 'black';
           ctx3.globalAlpha = 0.75;
-          ctx3.fillRect(0, canvas3.height / 2 - usize/2, canvas3.width, usize);
+          ctx3.fillRect(0, canvas3.height / 2 - usize/2, canvas3.width, usize + 20);
 
           ctx3.globalAlpha = 1;
           ctx3.fillStyle = 'white';
@@ -1428,6 +1430,8 @@ async function reloadRun() {
           ctx3.textAlign = 'center';
           ctx3.textBaseline = 'middle';
           ctx3.fillText('GAME OVER! Your score is '.concat(scoreRun.toString()), canvas3.width / 2, canvas3.height / 2);
+          ctx3.font = '28px monospace';
+          ctx3.fillText('Click ENTER to record your score On-Chain', canvas3.width / 2, canvas3.height / 2 + 30);
           obstacles = [];
           scoreRun = 0;
           exps = [];
@@ -1438,6 +1442,7 @@ async function reloadRun() {
           armorLeft = 1;
           armorLevel = 1000;
           ongoingRun = false;
+          pendingScoreRun = true;
           return;
         }
 
@@ -1791,7 +1796,7 @@ function showGameOver() {
 
   ctx4.fillStyle = 'black';
   ctx4.globalAlpha = 0.75;
-  ctx4.fillRect(0, canvas4.height / 2 - 30, canvas4.width, 60);
+  ctx4.fillRect(0, canvas4.height / 2 - 30, canvas4.width, 120);
 
   ctx4.globalAlpha = 1;
   ctx4.fillStyle = 'white';
@@ -1804,6 +1809,8 @@ function showGameOver() {
   ctx4.textAlign = 'center';
   ctx4.textBaseline = 'middle';
   ctx4.fillText('GAME OVER! Your score is '.concat(scoreTetris.toString()), canvas4.width / 2, canvas4.height / 2);
+  ctx4.fillText('Click ENTER to record your', canvas4.width / 2, canvas4.height / 2 + 30);
+  ctx4.fillText('score On-Chain', canvas4.width / 2, canvas4.height / 2 + 60);
 }
 
 
@@ -2088,6 +2095,11 @@ window.to_games = to_games;
           armorLeft = armorLeft - 1;
         }
       }
+      if (e.code == "Enter"){
+        if (pendingScoreRun){
+          window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+        }
+      }
   }
   else if (game_name == "tetris"){
     if (e.code == "ArrowLeft"){
@@ -2119,6 +2131,11 @@ window.to_games = to_games;
       }
 
       tetromino.row = row;
+      }
+    else if (e.code == "Enter"){
+        if (gameOverTetris){
+          window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+        }
       }
 
     else {}
