@@ -491,6 +491,7 @@ async function load_this_game(){
         <div style="margin-right: 1%; margin-top: `.concat(mt.toString()).concat(`%">
               <br/>
               <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: 2em;height:6%; text-align: center; cursor: pointer;margin-bottom: 5%;padding: 5px;">Rules</div>
+              <div id="start" onclick="to_scores();" style="color:black;background-color: #ff9933;font-size: 2em;height:6%; text-align: center; cursor: pointer;margin-bottom: 5%;padding: 5px;">Scores</div>
               <div id="start" onclick="preloadRun();" style="color:black;background-color: #ff9933;font-size: 2em;height:6%; text-align: center; cursor: pointer;margin-bottom: 5%;padding: 5px;">Play!</div>
               <div id="restart" onclick="restartRun();" style="color:black;background-color: #ff9933;font-size: 2em;height:6%; text-align: center; cursor: pointer;padding-top: 4%;padding-bottom: 3%;padding: 5px">Retry</div>
         </div>
@@ -518,11 +519,12 @@ async function load_this_game(){
         <h1 style="color:#ff9933; font-size: 4em; ">Tetris</h1>
         <div style="color: #ff9933;font-weight: 800;font-size:1.5em;background-color:purple;padding: 4px">Play the all time classic game Tetris on Web 3</div><br/>
         <div style="color: #ff9933;font-weight:800;font-size:1.5em;">Rules: <br/>You can only move the pieces in specific ways. <br/>Your game is over if your pieces reach the top of the screen, <br/>and you can only remove pieces from the screen <br/>by filling all the blank space in a line.</div>
+        <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: 1.9em; width: 20%; text-align: center; cursor: pointer;display:inline-block;margin-top:1%;padding: 2px;">Detailed Rules</div>
       </div><br/>
       <canvas id="game2" width="`.concat(cw.toString()).concat(`" height="`.concat(ch.toString()).concat(`" style="margin-left: 30%"></canvas>
 
       <div style="margin-left: 30%;margin-top: 7px;">
-              <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: 1.9em; width: 8%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Rules</div>
+              <div id="start" onclick="to_scores();" style="color:black;background-color: #ff9933;font-size: 1.9em; width: 8%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Scores</div>
 
               <div id="start" onclick="reloadTetris();" style="color:black;background-color: #ff9933;font-size: 1.9em; width: 8%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Play!</div>
 
@@ -2215,6 +2217,22 @@ async function to_faq(){
   window.location.href = './faqs.html';
 }
 window.to_faq = to_faq;
+
+async function to_scores(){
+  window.open('./scores.html', '_blank');
+}
+window.to_scores = to_scores;
+
+async function load_scores(){
+  const acc = localStorage.getItem('acc');
+  const chn = localStorage.getItem('last_chain');
+  if (acc == null || chn == null){
+    document.getElementById('featured-games').innerHTML = `
+      <p>You are not logged in. Please log in with Metamask and choose a chain.</p>
+    `;
+  }
+}
+window.load_scores = load_scores;
 
 async function face_adjust(){
   const el = document.getElementById('hc');

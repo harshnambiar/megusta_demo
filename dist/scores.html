@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Scores</title>
+  <link rel="shortcut icon" href="img/logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer="defer" src="./main.js"></script>
+</head>
+
+<body onload="load_scores();">
+
+ <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html"><img src="img/logo.png" alt="Me Gusta Logo" class="logo"></a>
+    </div>
+    <div class="nav-center">
+         <h2 id="game_title" style="font-size: 2em;margin-right: 30%"> Your Scores </h2>
+    </div>
+
+
+    </nav>
+  </header>
+
+
+
+
+<section class="featured-games" id="featured-games">
+        <h2>🔥 Your Best Scores So Far 🔥</h2>
+        <div class="game-grid">
+            <div class="game-card animated">
+                <img src="img/sr.png" alt="Space Rumble" style="height: 300px;width: 300px;object-fit: fill;">
+                <h3>14803</h3>
+            </div>
+            <div class="game-card animated">
+                <img src="img/tet.png" alt="Tetris" style="height: 300px;width: 300px;object-fit: fill;">
+                <h3>1007</h3>
+            </div>
+            <div class="game-card animated">
+                <img src="img/game1.png" alt="Game 3" style="height: 300px;width: 300px;object-fit: fill;">
+                <h3>More Coming Soon!</h3>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+  <canvas id="game" width="620" height="620" style="display:none"></canvas>
+
+</body>
+
+</html>
