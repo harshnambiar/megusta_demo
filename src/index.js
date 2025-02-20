@@ -509,28 +509,36 @@ async function load_this_game(){
       const h = window.innerHeight;
       var ch = 480;
       var cw = 240;
+      var ct = "8%";
+      var fsz = "1.5em";
+      var bw1 = "7%";
+      var bw2 = "7%";
       console.log(h);
       if (h >= 725){
         ch = 640;
         cw = 320;
+        ct = "15%";
+        fsz = "1.9em";
+        bw1 = "8%";
+        bw2 = "9%";
       };
       document.getElementById('bod').innerHTML = `
-      <div style="position: absolute; left: 10%; top: 15%;width: 35%;">
+      <div style="position: absolute; left: 10%; top: `.concat(ct).concat(`;width: 35%;">
         <h1 style="color:#ff9933; font-size: 4em; ">Tetris</h1>
         <div style="color: #ff9933;font-weight: 800;font-size:1.5em;background-color:purple;padding: 4px">Play the all time classic game Tetris on Web 3</div><br/>
         <div style="color: #ff9933;font-weight:800;font-size:1.5em;">Rules: <br/>You can only move the pieces in specific ways. <br/>Your game is over if your pieces reach the top of the screen, <br/>and you can only remove pieces from the screen <br/>by filling all the blank space in a line.</div>
-        <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: 1.9em; width: 20%; text-align: center; cursor: pointer;display:inline-block;margin-top:1%;padding: 2px;">Detailed Rules</div>
+        <div id="start" onclick="to_scores();" style="color:black;background-color: #ff9933;font-size: 1.9em; text-align: center; cursor: pointer;display:inline-block;margin-top:1%;padding: 4px;">Check Your Scores</div>
       </div><br/>
       <canvas id="game2" width="`.concat(cw.toString()).concat(`" height="`.concat(ch.toString()).concat(`" style="margin-left: 30%"></canvas>
 
       <div style="margin-left: 30%;margin-top: 7px;">
-              <div id="start" onclick="to_scores();" style="color:black;background-color: #ff9933;font-size: 1.9em; width: 8%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Scores</div>
+              <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw1).concat(`; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Rules</div>
 
-              <div id="start" onclick="reloadTetris();" style="color:black;background-color: #ff9933;font-size: 1.9em; width: 8%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Play!</div>
+              <div id="start" onclick="reloadTetris();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw1).concat(`; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Play!</div>
 
-              <div id="restart" onclick="restartTetris();" style="color:black;background-color: #ff9933;font-size: 1.9em; width: 9%; text-align: center; cursor: pointer;display:inline-block;padding: 2px;">Retry</div>
+              <div id="restart" onclick="restartTetris();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw2).concat(`; text-align: center; cursor: pointer;display:inline-block;padding: 2px;">Retry</div>
         </div>
-      `));
+      `)))))))));
       canvas4=document.getElementById('game2');
       ctx4=canvas4.getContext('2d');
       ctx4.fillStyle = 'pink';
@@ -1424,15 +1432,27 @@ async function reloadRun() {
           // Game over
           ctx3.fillStyle = 'black';
           ctx3.globalAlpha = 0.75;
-          ctx3.fillRect(0, canvas3.height / 2 - usize/2, canvas3.width, usize + 20);
+          if (usize == 40){
+            ctx3.fillRect(0, canvas3.height / 2 - usize/2, canvas3.width, usize + 30);
+          }
+          else {
+            ctx3.fillRect(0, canvas3.height / 2 - usize/2, canvas3.width, usize + 20);
+          }
+
 
           ctx3.globalAlpha = 1;
           ctx3.fillStyle = 'white';
           ctx3.font = '32px monospace';
+          if (usize == 40){
+            ctx3.font = '28px monospace';
+          }
           ctx3.textAlign = 'center';
           ctx3.textBaseline = 'middle';
           ctx3.fillText('GAME OVER! Your score is '.concat(scoreRun.toString()), canvas3.width / 2, canvas3.height / 2);
           ctx3.font = '28px monospace';
+          if (usize == 40){
+            ctx3.font = '24px monospace';
+          }
           ctx3.fillText('Click ENTER to record your score On-Chain', canvas3.width / 2, canvas3.height / 2 + 30);
           obstacles = [];
           scoreRun = 0;

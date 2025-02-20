@@ -40891,6 +40891,7 @@ async function load_this_game(){
         <div style="margin-right: 1%; margin-top: `.concat(mt.toString()).concat(`%">
               <br/>
               <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: 2em;height:6%; text-align: center; cursor: pointer;margin-bottom: 5%;padding: 5px;">Rules</div>
+              <div id="start" onclick="to_scores();" style="color:black;background-color: #ff9933;font-size: 2em;height:6%; text-align: center; cursor: pointer;margin-bottom: 5%;padding: 5px;">Scores</div>
               <div id="start" onclick="preloadRun();" style="color:black;background-color: #ff9933;font-size: 2em;height:6%; text-align: center; cursor: pointer;margin-bottom: 5%;padding: 5px;">Play!</div>
               <div id="restart" onclick="restartRun();" style="color:black;background-color: #ff9933;font-size: 2em;height:6%; text-align: center; cursor: pointer;padding-top: 4%;padding-bottom: 3%;padding: 5px">Retry</div>
         </div>
@@ -40908,27 +40909,36 @@ async function load_this_game(){
       const h = window.innerHeight;
       var ch = 480;
       var cw = 240;
+      var ct = "8%";
+      var fsz = "1.5em";
+      var bw1 = "7%";
+      var bw2 = "7%";
       console.log(h);
       if (h >= 725){
         ch = 640;
         cw = 320;
+        ct = "15%";
+        fsz = "1.9em";
+        bw1 = "8%";
+        bw2 = "9%";
       };
       document.getElementById('bod').innerHTML = `
-      <div style="position: absolute; left: 10%; top: 15%;width: 35%;">
+      <div style="position: absolute; left: 10%; top: `.concat(ct).concat(`;width: 35%;">
         <h1 style="color:#ff9933; font-size: 4em; ">Tetris</h1>
         <div style="color: #ff9933;font-weight: 800;font-size:1.5em;background-color:purple;padding: 4px">Play the all time classic game Tetris on Web 3</div><br/>
         <div style="color: #ff9933;font-weight:800;font-size:1.5em;">Rules: <br/>You can only move the pieces in specific ways. <br/>Your game is over if your pieces reach the top of the screen, <br/>and you can only remove pieces from the screen <br/>by filling all the blank space in a line.</div>
+        <div id="start" onclick="to_scores();" style="color:black;background-color: #ff9933;font-size: 1.9em; text-align: center; cursor: pointer;display:inline-block;margin-top:1%;padding: 4px;">Check Your Scores</div>
       </div><br/>
       <canvas id="game2" width="`.concat(cw.toString()).concat(`" height="`.concat(ch.toString()).concat(`" style="margin-left: 30%"></canvas>
 
       <div style="margin-left: 30%;margin-top: 7px;">
-              <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: 1.9em; width: 8%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Rules</div>
+              <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw1).concat(`; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Rules</div>
 
-              <div id="start" onclick="reloadTetris();" style="color:black;background-color: #ff9933;font-size: 1.9em; width: 8%; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Play!</div>
+              <div id="start" onclick="reloadTetris();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw1).concat(`; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Play!</div>
 
-              <div id="restart" onclick="restartTetris();" style="color:black;background-color: #ff9933;font-size: 1.9em; width: 9%; text-align: center; cursor: pointer;display:inline-block;padding: 2px;">Retry</div>
+              <div id="restart" onclick="restartTetris();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw2).concat(`; text-align: center; cursor: pointer;display:inline-block;padding: 2px;">Retry</div>
         </div>
-      `));
+      `)))))))));
       canvas4=document.getElementById('game2');
       ctx4=canvas4.getContext('2d');
       ctx4.fillStyle = 'pink';
@@ -41640,6 +41650,7 @@ var obstacleSpeed = 4;
 
 
 var scoreRun = 0;
+var pendingScoreRun = false;
 
 var stars = [];
 var ongoingRun = false;
@@ -41759,6 +41770,7 @@ async function preloadRun(){
 
 
   console.log(freq);
+  pendingScoreRun = false;
     await reloadRun();
   }
 }
@@ -41820,14 +41832,28 @@ async function reloadRun() {
           // Game over
           ctx3.fillStyle = 'black';
           ctx3.globalAlpha = 0.75;
-          ctx3.fillRect(0, canvas3.height / 2 - usize/2, canvas3.width, usize);
+          if (usize == 40){
+            ctx3.fillRect(0, canvas3.height / 2 - usize/2, canvas3.width, usize + 30);
+          }
+          else {
+            ctx3.fillRect(0, canvas3.height / 2 - usize/2, canvas3.width, usize + 20);
+          }
+
 
           ctx3.globalAlpha = 1;
           ctx3.fillStyle = 'white';
           ctx3.font = '32px monospace';
+          if (usize == 40){
+            ctx3.font = '28px monospace';
+          }
           ctx3.textAlign = 'center';
           ctx3.textBaseline = 'middle';
           ctx3.fillText('GAME OVER! Your score is '.concat(scoreRun.toString()), canvas3.width / 2, canvas3.height / 2);
+          ctx3.font = '28px monospace';
+          if (usize == 40){
+            ctx3.font = '24px monospace';
+          }
+          ctx3.fillText('Click ENTER to record your score On-Chain', canvas3.width / 2, canvas3.height / 2 + 30);
           obstacles = [];
           scoreRun = 0;
           exps = [];
@@ -41838,6 +41864,7 @@ async function reloadRun() {
           armorLeft = 1;
           armorLevel = 1000;
           ongoingRun = false;
+          pendingScoreRun = true;
           return;
         }
 
@@ -42191,7 +42218,7 @@ function showGameOver() {
 
   ctx4.fillStyle = 'black';
   ctx4.globalAlpha = 0.75;
-  ctx4.fillRect(0, canvas4.height / 2 - 30, canvas4.width, 60);
+  ctx4.fillRect(0, canvas4.height / 2 - 30, canvas4.width, 120);
 
   ctx4.globalAlpha = 1;
   ctx4.fillStyle = 'white';
@@ -42204,6 +42231,8 @@ function showGameOver() {
   ctx4.textAlign = 'center';
   ctx4.textBaseline = 'middle';
   ctx4.fillText('GAME OVER! Your score is '.concat(scoreTetris.toString()), canvas4.width / 2, canvas4.height / 2);
+  ctx4.fillText('Click ENTER to record your', canvas4.width / 2, canvas4.height / 2 + 30);
+  ctx4.fillText('score On-Chain', canvas4.width / 2, canvas4.height / 2 + 60);
 }
 
 
@@ -42488,6 +42517,11 @@ window.to_games = to_games;
           armorLeft = armorLeft - 1;
         }
       }
+      if (e.code == "Enter"){
+        if (pendingScoreRun){
+          window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+        }
+      }
   }
   else if (game_name == "tetris"){
     if (e.code == "ArrowLeft"){
@@ -42519,6 +42553,11 @@ window.to_games = to_games;
       }
 
       tetromino.row = row;
+      }
+    else if (e.code == "Enter"){
+        if (gameOverTetris){
+          window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+        }
       }
 
     else {}
@@ -42598,6 +42637,22 @@ async function to_faq(){
   window.location.href = './faqs.html';
 }
 window.to_faq = to_faq;
+
+async function to_scores(){
+  window.open('./scores.html', '_blank');
+}
+window.to_scores = to_scores;
+
+async function load_scores(){
+  const acc = localStorage.getItem('acc');
+  const chn = localStorage.getItem('last_chain');
+  if (acc == null || chn == null){
+    document.getElementById('featured-games').innerHTML = `
+      <p>You are not logged in. Please log in with Metamask and choose a chain.</p>
+    `;
+  }
+}
+window.load_scores = load_scores;
 
 async function face_adjust(){
   const el = document.getElementById('hc');
