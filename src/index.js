@@ -217,6 +217,7 @@ async function load_this_game(){
     `;
     return;
   }
+
   var url = window.location.toString();
   var game_name = url.substring(url.indexOf('?') + 1);
   if (game_name == 'pixelmayhem'){
@@ -1453,7 +1454,15 @@ async function reloadRun() {
           if (usize == 40){
             ctx3.font = '24px monospace';
           }
-          ctx3.fillText('Click ENTER to record your score On-Chain', canvas3.width / 2, canvas3.height / 2 + 30);
+          const acc = localStorage.getItem('acc');
+          const cn = localStorage.getItem('last_chain');
+          if (acc == null || acc == "" || cn == "" || cn == null){
+            ctx3.fillText('Thank you for playing Space Rumble', canvas3.width / 2, canvas3.height / 2 + 30);
+          }
+          else {
+            ctx3.fillText('Click ENTER to record your score On-Chain', canvas3.width / 2, canvas3.height / 2 + 30);
+          }
+
           obstacles = [];
           scoreRun = 0;
           exps = [];
@@ -1831,8 +1840,17 @@ function showGameOver() {
   ctx4.textAlign = 'center';
   ctx4.textBaseline = 'middle';
   ctx4.fillText('GAME OVER! Your score is '.concat(scoreTetris.toString()), canvas4.width / 2, canvas4.height / 2);
-  ctx4.fillText('Click ENTER to record your', canvas4.width / 2, canvas4.height / 2 + 30);
-  ctx4.fillText('score On-Chain', canvas4.width / 2, canvas4.height / 2 + 60);
+  const acc = localStorage.getItem('acc');
+  const cn = localStorage.getItem('last_chain');
+  if (acc == null || acc == "" || cn == "" || cn == null){
+    ctx4.fillText('Thank you for playing', canvas4.width / 2, canvas4.height / 2 + 30);
+    ctx4.fillText('our Tetris Game', canvas4.width / 2, canvas4.height / 2 + 60);
+  }
+  else {
+    ctx4.fillText('Click ENTER to record your', canvas4.width / 2, canvas4.height / 2 + 30);
+    ctx4.fillText('score On-Chain', canvas4.width / 2, canvas4.height / 2 + 60);
+  }
+
 }
 
 
@@ -2039,6 +2057,18 @@ async function to_games(){
 }
 window.to_games = to_games;
 
+async function load_games(){
+  const acc = localStorage.getItem('acc');
+  const cn = localStorage.getItem('last_chain');
+  const warn = localStorage.getItem('warn_once');
+  if ((acc == null || acc == "" || cn == "" || cn == null) && (warn == 'n')){
+    localStorage.setItem('warn_once', 'y');
+    alert('You are not logged in to your Metamask. Please Login now if you want to store your score On-Chain. You can play without loggin in, though.');
+  }
+}
+window.load_games = load_games;
+
+
 //add event listener to our body
  //document.body.addEventListener('keydown', keyDown);
 
@@ -2183,6 +2213,7 @@ async function loadHome(){
       document.getElementById('gli').style.display = 'none';
     };
     console.log(w);
+    localStorage.setItem('warn_once','n');
     var c = localStorage.getItem('last_chain');
     var ts = localStorage.getItem('last_session');
     const tnow = Date.now();
