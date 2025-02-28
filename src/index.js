@@ -2149,7 +2149,12 @@ window.load_games = load_games;
       }
       if (e.code == "Enter"){
         if (pendingScoreRun){
-          window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+          const acc = localStorage.getItem('acc');
+          const cn = localStorage.getItem('last_chain');
+          if (acc == null || acc == "" || cn == "" || cn == null){}
+          else {
+            window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+          }
         }
       }
   }
@@ -2186,7 +2191,13 @@ window.load_games = load_games;
       }
     else if (e.code == "Enter"){
         if (gameOverTetris){
-          window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+          const acc = localStorage.getItem('acc');
+          const cn = localStorage.getItem('last_chain');
+          if (acc == null || acc == "" || cn == "" || cn == null){}
+          else {
+            window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+          }
+
         }
       }
 
