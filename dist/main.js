@@ -40575,7 +40575,7 @@ async function getMyScore() {
     const web3 = new web3_lib_esm(window.ethereum);
     var abiInstance;
     var contract;
-    
+
     if (chn == 'eth'){
         abiInstance = abi_eth_namespaceObject.HV;
         contract = new web3.eth.Contract(
@@ -40604,14 +40604,14 @@ async function getMyScore() {
         abiInstance = abi_gvt_namespaceObject.HV;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x7caF9c2f5074A58EBeC737dB6022b1B6D46b8B50");
+                     "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
     }
     else {
         console.log('unknown chain');
         return;
     }
   
-  
+
   var s1 = 0;
   var s2 = 0;
 
@@ -40632,6 +40632,9 @@ async function getMyScore() {
   catch (err){
     console.log(err);
   }
+
+  document.getElementById('g1scr').textContent = s1.toString();
+  document.getElementById('g2scr').textContent = s2.toString();
 
 
 }
@@ -42555,7 +42558,7 @@ window.load_games = load_games;
 //add event listener to our body
  //document.body.addEventListener('keydown', keyDown);
 
- document.body.addEventListener('keydown', (e) => {
+ document.body.addEventListener('keydown', async (e) => {
 
   const key = e.key;
   const code = e.code;
@@ -42678,7 +42681,7 @@ window.load_games = load_games;
           const cn = localStorage.getItem('last_chain');
           if (acc == null || acc == "" || cn == "" || cn == null){}
           else {
-            window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+            await registerScore(scoreTetris, 2);
           }
 
         }
@@ -42790,6 +42793,73 @@ async function face_adjust(){
   }
 }
 window.face_adjust = face_adjust;
+
+
+async function registerScore(scr, gid){
+    const web3 = new web3_lib_esm(window.ethereum);
+    const chn = localStorage.getItem("last_chain");
+    const acc = localStorage.getItem("acc");
+    var abiInstance;
+    var contract;
+
+    if (chn == 'eth'){
+        abiInstance = abi_eth_namespaceObject.HV;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
+    }
+    else if (chn == 'mnt'){
+        abiInstance = abi_mnt_namespaceObject.HV;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x2765cd9a5892c0c19fcb5a9b0c76aef65fafe421");
+
+    }
+    else if (chn == 'lsk'){
+        abiInstance = abi_lsk_namespaceObject.HV;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x235df0fa64b5c273a83835906b5c8f9acb5fe878");
+    }
+    else if (chn == 'flr'){
+        abiInstance = abi_flr_namespaceObject.HV;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0xb0A2aBcb9C0E18b5C66b69d8f7b9018118CE681C");
+    }
+    else if (chn == 'gvt'){
+        abiInstance = abi_gvt_namespaceObject.HV;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
+
+    }
+    else {
+        console.log('unknown chain');
+        return;
+    }
+
+  var gasEst = BigInt(100000);
+  var gasPriceEst = BigInt(10);
+  try {
+    gasEst = await contract.methods.register(44,1).estimateGas({from: acc});
+    gasEst = (BigInt(100) * gasEst)/BigInt(10);
+    gasPriceEst = await web3.eth.getGasPrice();
+    gasPriceEst = (BigInt(100) * gasPriceEst)/BigInt(10);
+  }
+  catch (err){
+    console.log(err);
+  }
+
+
+  contract.methods.register(scr, gid)
+    .send({from: acc, gas: gasEst, gasPrice: gasPriceEst})
+    .catch((error) => {
+        console.error('Call Error:', error);
+    });
+
+}
+window.registerScore = registerScore;
 
 })();
 
