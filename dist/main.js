@@ -40397,7 +40397,21 @@ along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 
 
 //# sourceMappingURL=index.js.map
+;// ./src/abi_eth.json
+const abi_eth_namespaceObject = /*#__PURE__*/JSON.parse('{"HV":[{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"bestscores","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"entries","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_bestscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"fetch_count","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_myscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_mytime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"score","type":"uint256"},{"internalType":"uint256","name":"game","type":"uint256"}],"name":"register","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"scores","outputs":[{"internalType":"uint256","name":"rid","type":"uint256"},{"internalType":"uint256","name":"scr","type":"uint256"},{"internalType":"uint256","name":"ts","type":"uint256"}],"stateMutability":"view","type":"function"}]}');
+;// ./src/abi_mnt.json
+const abi_mnt_namespaceObject = /*#__PURE__*/JSON.parse('{"HV":[{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"bestscores","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"entries","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_bestscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"fetch_count","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_myscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_mytime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"score","type":"uint256"},{"internalType":"uint256","name":"game","type":"uint256"}],"name":"register","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"scores","outputs":[{"internalType":"uint256","name":"rid","type":"uint256"},{"internalType":"uint256","name":"scr","type":"uint256"},{"internalType":"uint256","name":"ts","type":"uint256"}],"stateMutability":"view","type":"function"}]}');
+;// ./src/abi_lsk.json
+const abi_lsk_namespaceObject = /*#__PURE__*/JSON.parse('{"HV":[{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"bestscores","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"entries","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_bestscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"fetch_count","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_myscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_mytime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"score","type":"uint256"},{"internalType":"uint256","name":"game","type":"uint256"}],"name":"register","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"scores","outputs":[{"internalType":"uint256","name":"rid","type":"uint256"},{"internalType":"uint256","name":"scr","type":"uint256"},{"internalType":"uint256","name":"ts","type":"uint256"}],"stateMutability":"view","type":"function"}]}');
+;// ./src/abi_gvt.json
+const abi_gvt_namespaceObject = /*#__PURE__*/JSON.parse('{"HV":[{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"bestscores","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"entries","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_bestscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"fetch_count","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_myscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_mytime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"score","type":"uint256"},{"internalType":"uint256","name":"game","type":"uint256"}],"name":"register","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"scores","outputs":[{"internalType":"uint256","name":"rid","type":"uint256"},{"internalType":"uint256","name":"scr","type":"uint256"},{"internalType":"uint256","name":"ts","type":"uint256"}],"stateMutability":"view","type":"function"}]}');
+;// ./src/abi_flr.json
+const abi_flr_namespaceObject = /*#__PURE__*/JSON.parse('{"HV":[{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"bestscores","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"entries","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_bestscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"fetch_count","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_myscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_mytime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"score","type":"uint256"},{"internalType":"uint256","name":"game","type":"uint256"}],"name":"register","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"scores","outputs":[{"internalType":"uint256","name":"rid","type":"uint256"},{"internalType":"uint256","name":"scr","type":"uint256"},{"internalType":"uint256","name":"ts","type":"uint256"}],"stateMutability":"view","type":"function"}]}');
 ;// ./src/index.js
+
+
+
+
 
 
 
@@ -40429,7 +40443,8 @@ async function connect(code) {
     chain = 'Mantle Testnet Sepolia';
     name = 'MANTLE';
     symbol = 'MNT';
-    rpc = "https://rpc.sepolia.mantle.xyz";
+    //rpc = "https://rpc.sepolia.mantle.xyz";
+    rpc = "https://rpc.ankr.com/mantle_sepolia";
   }
   else if (chain_name == 'flr'){
     chainId = 114;
@@ -40437,7 +40452,7 @@ async function connect(code) {
     chain = 'Flare Testnet Coston 2';
     name = 'FLARE';
     symbol = 'C2FLR';
-    rpc = "https://coston2-api.flare.network/ext/bc/C/rpc";
+    rpc = "https://coston2-api.flare.network/ext/C/rpc";
   }
   else if (chain_name == 'lsk'){
     chainId = 4202;
@@ -40554,6 +40569,74 @@ async function startApp(provider, chain) {
   }
 }
 
+async function getMyScore() {
+    const chn = localStorage.getItem("last_chain");
+    const acc = localStorage.getItem("acc");
+    const web3 = new web3_lib_esm(window.ethereum);
+    var abiInstance;
+    var contract;
+    
+    if (chn == 'eth'){
+        abiInstance = abi_eth_namespaceObject.HV;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
+    }
+    else if (chn == 'mnt'){
+        abiInstance = abi_mnt_namespaceObject.HV;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x2765cd9a5892c0c19fcb5a9b0c76aef65fafe421");
+    }
+    else if (chn == 'lsk'){
+        abiInstance = abi_lsk_namespaceObject.HV;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x235df0fa64b5c273a83835906b5c8f9acb5fe878");
+    }
+    else if (chn == 'flr'){
+        abiInstance = abi_flr_namespaceObject.HV;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0xb0A2aBcb9C0E18b5C66b69d8f7b9018118CE681C");
+    }
+    else if (chn == 'gvt'){
+        abiInstance = abi_gvt_namespaceObject.HV;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x7caF9c2f5074A58EBeC737dB6022b1B6D46b8B50");
+    }
+    else {
+        console.log('unknown chain');
+        return;
+    }
+  
+  
+  var s1 = 0;
+  var s2 = 0;
+
+  try  {
+    const arg1 = BigInt(1);
+    var res1 = await contract.methods['fetch_myscore'](arg1).call({from: acc});
+    s1 = res1;
+  }
+  catch (err){
+    console.log(err);
+  }
+
+  try  {
+    const arg2 = BigInt(2);
+    var res2 = await contract.methods['fetch_myscore'](arg2).call({from: acc});
+    s2 = res2;
+  }
+  catch (err){
+    console.log(err);
+  }
+
+
+}
+window.getMyScore = getMyScore;
+
 
 
 
@@ -40617,6 +40700,7 @@ async function load_this_game(){
     `;
     return;
   }
+
   var url = window.location.toString();
   var game_name = url.substring(url.indexOf('?') + 1);
   if (game_name == 'pixelmayhem'){
@@ -41853,7 +41937,15 @@ async function reloadRun() {
           if (usize == 40){
             ctx3.font = '24px monospace';
           }
-          ctx3.fillText('Click ENTER to record your score On-Chain', canvas3.width / 2, canvas3.height / 2 + 30);
+          const acc = localStorage.getItem('acc');
+          const cn = localStorage.getItem('last_chain');
+          if (acc == null || acc == "" || cn == "" || cn == null){
+            ctx3.fillText('Thank you for playing Space Rumble', canvas3.width / 2, canvas3.height / 2 + 30);
+          }
+          else {
+            ctx3.fillText('Click ENTER to record your score On-Chain', canvas3.width / 2, canvas3.height / 2 + 30);
+          }
+
           obstacles = [];
           scoreRun = 0;
           exps = [];
@@ -42231,8 +42323,17 @@ function showGameOver() {
   ctx4.textAlign = 'center';
   ctx4.textBaseline = 'middle';
   ctx4.fillText('GAME OVER! Your score is '.concat(scoreTetris.toString()), canvas4.width / 2, canvas4.height / 2);
-  ctx4.fillText('Click ENTER to record your', canvas4.width / 2, canvas4.height / 2 + 30);
-  ctx4.fillText('score On-Chain', canvas4.width / 2, canvas4.height / 2 + 60);
+  const acc = localStorage.getItem('acc');
+  const cn = localStorage.getItem('last_chain');
+  if (acc == null || acc == "" || cn == "" || cn == null){
+    ctx4.fillText('Thank you for playing', canvas4.width / 2, canvas4.height / 2 + 30);
+    ctx4.fillText('our Tetris Game', canvas4.width / 2, canvas4.height / 2 + 60);
+  }
+  else {
+    ctx4.fillText('Click ENTER to record your', canvas4.width / 2, canvas4.height / 2 + 30);
+    ctx4.fillText('score On-Chain', canvas4.width / 2, canvas4.height / 2 + 60);
+  }
+
 }
 
 
@@ -42439,6 +42540,18 @@ async function to_games(){
 }
 window.to_games = to_games;
 
+async function load_games(){
+  const acc = localStorage.getItem('acc');
+  const cn = localStorage.getItem('last_chain');
+  const warn = localStorage.getItem('warn_once');
+  if ((acc == null || acc == "" || cn == "" || cn == null) && (warn == 'n')){
+    localStorage.setItem('warn_once', 'y');
+    alert('You are not logged in to your Metamask. Please Login now if you want to store your score On-Chain. You can play without loggin in, though.');
+  }
+}
+window.load_games = load_games;
+
+
 //add event listener to our body
  //document.body.addEventListener('keydown', keyDown);
 
@@ -42519,7 +42632,12 @@ window.to_games = to_games;
       }
       if (e.code == "Enter"){
         if (pendingScoreRun){
-          window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+          const acc = localStorage.getItem('acc');
+          const cn = localStorage.getItem('last_chain');
+          if (acc == null || acc == "" || cn == "" || cn == null){}
+          else {
+            window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+          }
         }
       }
   }
@@ -42556,7 +42674,13 @@ window.to_games = to_games;
       }
     else if (e.code == "Enter"){
         if (gameOverTetris){
-          window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+          const acc = localStorage.getItem('acc');
+          const cn = localStorage.getItem('last_chain');
+          if (acc == null || acc == "" || cn == "" || cn == null){}
+          else {
+            window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+          }
+
         }
       }
 
@@ -42583,6 +42707,7 @@ async function loadHome(){
       document.getElementById('gli').style.display = 'none';
     };
     console.log(w);
+    localStorage.setItem('warn_once','n');
     var c = localStorage.getItem('last_chain');
     var ts = localStorage.getItem('last_session');
     const tnow = Date.now();
@@ -42651,6 +42776,7 @@ async function load_scores(){
       <p>You are not logged in. Please log in with Metamask and choose a chain.</p>
     `;
   }
+  await getMyScore();
 }
 window.load_scores = load_scores;
 

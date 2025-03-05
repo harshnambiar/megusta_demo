@@ -1,6 +1,10 @@
 import detectEthereumProvider from "@metamask/detect-provider"
 import Web3 from "web3";
-
+import ABIETH from './abi_eth.json';
+import ABIMNT from './abi_mnt.json';
+import ABILSK from './abi_lsk.json';
+import ABIGVT from './abi_gvt.json';
+import ABIFLR from './abi_flr.json';
 
 
 
@@ -29,7 +33,8 @@ async function connect(code) {
     chain = 'Mantle Testnet Sepolia';
     name = 'MANTLE';
     symbol = 'MNT';
-    rpc = "https://rpc.sepolia.mantle.xyz";
+    //rpc = "https://rpc.sepolia.mantle.xyz";
+    rpc = "https://rpc.ankr.com/mantle_sepolia";
   }
   else if (chain_name == 'flr'){
     chainId = 114;
@@ -37,7 +42,7 @@ async function connect(code) {
     chain = 'Flare Testnet Coston 2';
     name = 'FLARE';
     symbol = 'C2FLR';
-    rpc = "https://coston2-api.flare.network/ext/bc/C/rpc";
+    rpc = "https://coston2-api.flare.network/ext/C/rpc";
   }
   else if (chain_name == 'lsk'){
     chainId = 4202;
@@ -153,6 +158,77 @@ async function startApp(provider, chain) {
   `);
   }
 }
+
+async function getMyScore() {
+    const chn = localStorage.getItem("last_chain");
+    const acc = localStorage.getItem("acc");
+    const web3 = new Web3(window.ethereum);
+    var abiInstance;
+    var contract;
+    
+    if (chn == 'eth'){
+        abiInstance = ABIETH.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
+    }
+    else if (chn == 'mnt'){
+        abiInstance = ABIMNT.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x2765cd9a5892c0c19fcb5a9b0c76aef65fafe421");
+    }
+    else if (chn == 'lsk'){
+        abiInstance = ABILSK.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x235df0fa64b5c273a83835906b5c8f9acb5fe878");
+    }
+    else if (chn == 'flr'){
+        abiInstance = ABIFLR.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0xb0A2aBcb9C0E18b5C66b69d8f7b9018118CE681C");
+    }
+    else if (chn == 'gvt'){
+        abiInstance = ABIGVT.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x7caF9c2f5074A58EBeC737dB6022b1B6D46b8B50");
+    }
+    else {
+        console.log('unknown chain');
+        return;
+    }
+  
+
+  var s1 = 0;
+  var s2 = 0;
+
+  try  {
+    const arg1 = BigInt(1);
+    var res1 = await contract.methods['fetch_myscore'](arg1).call({from: acc});
+    s1 = res1;
+  }
+  catch (err){
+    console.log(err);
+  }
+
+  try  {
+    const arg2 = BigInt(2);
+    var res2 = await contract.methods['fetch_myscore'](arg2).call({from: acc});
+    s2 = res2;
+  }
+  catch (err){
+    console.log(err);
+  }
+
+  document.getElementById('g1scr').textContent = s1.toString();
+  document.getElementById('g2scr').textContent = s2.toString();
+
+
+}
+window.getMyScore = getMyScore;
 
 
 
@@ -2293,6 +2369,7 @@ async function load_scores(){
       <p>You are not logged in. Please log in with Metamask and choose a chain.</p>
     `;
   }
+  await getMyScore();
 }
 window.load_scores = load_scores;
 
