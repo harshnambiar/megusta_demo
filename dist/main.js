@@ -41737,6 +41737,7 @@ var obstacleSpeed = 4;
 
 
 var scoreRun = 0;
+var scoreRec = 0;
 var pendingScoreRun = false;
 
 var stars = [];
@@ -41950,6 +41951,7 @@ async function reloadRun() {
           }
 
           obstacles = [];
+          scoreRec = scoreRun;
           scoreRun = 0;
           exps = [];
           expOn = false;
@@ -42639,7 +42641,8 @@ window.load_games = load_games;
           const cn = localStorage.getItem('last_chain');
           if (acc == null || acc == "" || cn == "" || cn == null){}
           else {
-            window.open('https://docs.google.com/document/d/1QllAptTCUifm2BWRoMr8lhODAeokwHTPDXP5lr6IN5U/edit?usp=sharing', '_blank');
+            await registerScore(scoreRec, 1);
+
           }
         }
       }
@@ -42774,10 +42777,14 @@ window.to_scores = to_scores;
 async function load_scores(){
   const acc = localStorage.getItem('acc');
   const chn = localStorage.getItem('last_chain');
-  if (acc == null || chn == null){
+
+  if (acc == null || chn == null || acc == "" || chn == ""){
     document.getElementById('featured-games').innerHTML = `
-      <p>You are not logged in. Please log in with Metamask and choose a chain.</p>
+      <p style="font-size: 1.4em;">You are not logged in. Please log in with Metamask and choose a chain.</p>
+      <p>If this is not the case, please contact our support.</p>
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     `;
+    return;
   }
   await getMyScore();
 }
@@ -42801,6 +42808,7 @@ async function registerScore(scr, gid){
     const acc = localStorage.getItem("acc");
     var abiInstance;
     var contract;
+    var tol = 100;
 
     if (chn == 'eth'){
         abiInstance = abi_eth_namespaceObject.HV;
@@ -42833,6 +42841,7 @@ async function registerScore(scr, gid){
                                     abiInstance,
                      "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
 
+
     }
     else {
         console.log('unknown chain');
@@ -42841,11 +42850,12 @@ async function registerScore(scr, gid){
 
   var gasEst = BigInt(100000);
   var gasPriceEst = BigInt(10);
+
   try {
     gasEst = await contract.methods.register(44,1).estimateGas({from: acc});
-    gasEst = (BigInt(100) * gasEst)/BigInt(10);
+    gasEst = (BigInt(tol) * gasEst)/BigInt(10);
     gasPriceEst = await web3.eth.getGasPrice();
-    gasPriceEst = (BigInt(100) * gasPriceEst)/BigInt(10);
+    gasPriceEst = (BigInt(tol) * gasPriceEst)/BigInt(10);
   }
   catch (err){
     console.log(err);

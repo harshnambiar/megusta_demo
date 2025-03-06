@@ -2367,10 +2367,14 @@ window.to_scores = to_scores;
 async function load_scores(){
   const acc = localStorage.getItem('acc');
   const chn = localStorage.getItem('last_chain');
-  if (acc == null || chn == null){
+
+  if (acc == null || chn == null || acc == "" || chn == ""){
     document.getElementById('featured-games').innerHTML = `
-      <p>You are not logged in. Please log in with Metamask and choose a chain.</p>
+      <p style="font-size: 1.4em;">You are not logged in. Please log in with Metamask and choose a chain.</p>
+      <p>If this is not the case, please contact our support.</p>
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     `;
+    return;
   }
   await getMyScore();
 }
