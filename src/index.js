@@ -580,9 +580,9 @@ async function load_this_game(){
       ctx3.fillStyle = 'pink';
       setupRun();
     }
-    else if (game_name == "tetris"){
+    else if (game_name == "tilegusta"){
       console.log('this is '.concat(game_name));
-      document.getElementById('game_title').textContent = 'Tetris';
+      document.getElementById('game_title').textContent = 'Tile Gusta';
       const h = window.innerHeight;
       var ch = 480;
       var cw = 240;
@@ -601,8 +601,8 @@ async function load_this_game(){
       };
       document.getElementById('bod').innerHTML = `
       <div style="position: absolute; left: 10%; top: `.concat(ct).concat(`;width: 35%;">
-        <h1 style="color:#ff9933; font-size: 4em; ">Tetris</h1>
-        <div style="color: #ff9933;font-weight: 800;font-size:1.5em;background-color:purple;padding: 4px">Play the all time classic game Tetris on Web 3</div><br/>
+        <h1 style="color:#ff9933; font-size: 4em; ">Tile Gusta</h1>
+        <div style="color: #ff9933;font-weight: 800;font-size:1.5em;background-color:purple;padding: 4px">Play the all time classic game on Web 3</div><br/>
         <div style="color: #ff9933;font-weight:800;font-size:1.5em;">Rules: <br/>You can only move the pieces in specific ways. <br/>Your game is over if your pieces reach the top of the screen, <br/>and you can only remove pieces from the screen <br/>by filling all the blank space in a line.</div>
         <div id="start" onclick="to_scores();" style="color:black;background-color: #ff9933;font-size: 1.9em; text-align: center; cursor: pointer;display:inline-block;margin-top:1%;padding: 4px;">Check Your Scores</div>
       </div><br/>
@@ -611,9 +611,9 @@ async function load_this_game(){
       <div style="margin-left: 30%;margin-top: 7px;">
               <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw1).concat(`; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Rules</div>
 
-              <div id="start" onclick="reloadTetris();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw1).concat(`; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Play!</div>
+              <div id="start" onclick="reloadTilegusta();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw1).concat(`; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Play!</div>
 
-              <div id="restart" onclick="restartTetris();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw2).concat(`; text-align: center; cursor: pointer;display:inline-block;padding: 2px;">Retry</div>
+              <div id="restart" onclick="restartTilegusta();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw2).concat(`; text-align: center; cursor: pointer;display:inline-block;padding: 2px;">Retry</div>
         </div>
       `)))))))));
       canvas4=document.getElementById('game2');
@@ -1694,7 +1694,7 @@ function restartRun(){
 window.restartRun = restartRun;
 
 
-// tetris
+// tile gusta
 
 var canvas4 = document.getElementById('game');
 var ctx4 = canvas4.getContext('2d');
@@ -1703,14 +1703,14 @@ var ctx4 = canvas4.getContext('2d');
 canvas4.width = 640;
 canvas4.height = 480;
 
-var gridTetris = 32;
+var gridTilegusta = 32;
 if (window.innerHeight < 725){
-  gridTetris = 24;
+  gridTilegusta = 24;
 }
 const tetrominoSequence = [];
 
 // keep track of what is in every cell of the game using a 2d array
-// tetris playfield is 10x20, with a few rows offscreen
+// tilegusta playfield is 10x20, with a few rows offscreen
 const playfield = [];
 
 // populate the empty state
@@ -1723,7 +1723,6 @@ for (let row = -2; row < 20; row++) {
 }
 
 // how to draw each tetromino
-// @see https://tetris.fandom.com/wiki/SRS
 const tetrominos = {
   'I': [
     [0,0,0,0],
@@ -1763,7 +1762,7 @@ const tetrominos = {
 };
 
 // color of each tetromino
-const colorsTetris = {
+const colorsTilegusta = {
   'I': 'cyan',
   'O': 'yellow',
   'T': 'purple',
@@ -1773,11 +1772,11 @@ const colorsTetris = {
   'L': 'orange'
 };
 
-var countTetris = 0;
+var countTilegusta = 0;
 var tetromino = getNextTetromino();
 var rAF = null;  // keep track of the animation frame so we can cancel it
-var gameOverTetris = false;
-var scoreTetris = 0;
+var gameOverTilegusta = false;
+var scoreTilegusta = 0;
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -1788,7 +1787,6 @@ function getRandomInt(min, max) {
 
 
 // generate a new tetromino sequence
-// @see https://tetris.fandom.com/wiki/Random_Generator
 function generateSequence() {
   const sequence = ['I', 'J', 'L', 'O', 'S', 'T', 'Z'];
 
@@ -1869,7 +1867,7 @@ function placeTetromino() {
           return showGameOver();
         }
         else {
-          scoreTetris++;
+          scoreTilegusta++;
         }
 
         playfield[tetromino.row + row][tetromino.col + col] = tetromino.name;
@@ -1887,7 +1885,7 @@ function placeTetromino() {
           playfield[r][c] = playfield[r-1][c];
         }
       }
-      scoreTetris += 10;
+      scoreTilegusta += 10;
     }
     else {
       row--;
@@ -1901,7 +1899,7 @@ function placeTetromino() {
 // show the game over screen
 function showGameOver() {
   cancelAnimationFrame(rAF);
-  gameOverTetris = true;
+  gameOverTilegusta = true;
 
   ctx4.fillStyle = 'black';
   ctx4.globalAlpha = 0.75;
@@ -1909,7 +1907,7 @@ function showGameOver() {
 
   ctx4.globalAlpha = 1;
   ctx4.fillStyle = 'white';
-  if (gridTetris == 24){
+  if (gridTilegusta == 24){
     ctx4.font = '14px monospace';
   }
   else {
@@ -1917,12 +1915,12 @@ function showGameOver() {
   }
   ctx4.textAlign = 'center';
   ctx4.textBaseline = 'middle';
-  ctx4.fillText('GAME OVER! Your score is '.concat(scoreTetris.toString()), canvas4.width / 2, canvas4.height / 2);
+  ctx4.fillText('GAME OVER! Your score is '.concat(scoreTilegusta.toString()), canvas4.width / 2, canvas4.height / 2);
   const acc = localStorage.getItem('acc');
   const cn = localStorage.getItem('last_chain');
   if (acc == null || acc == "" || cn == "" || cn == null){
     ctx4.fillText('Thank you for playing', canvas4.width / 2, canvas4.height / 2 + 30);
-    ctx4.fillText('our Tetris Game', canvas4.width / 2, canvas4.height / 2 + 60);
+    ctx4.fillText('our Tile Gusta Game', canvas4.width / 2, canvas4.height / 2 + 60);
   }
   else {
     ctx4.fillText('Click ENTER to record your', canvas4.width / 2, canvas4.height / 2 + 30);
@@ -1936,7 +1934,7 @@ function clearScreen4(){
   ctx4.fillStyle = 'pink';
   ctx4.fillRect(0, 0, canvas4.width, canvas4.height);
   // Draw the score
-  if (gridTetris == 24){
+  if (gridTilegusta == 24){
     ctx4.font = '18px Arial';
   }
   else {
@@ -1945,7 +1943,7 @@ function clearScreen4(){
   ctx4.fillStyle = 'purple';
   ctx4.textAlign = 'left';
   ctx4.textBaseline = 'top';
-  ctx4.fillText('Score: ' + scoreTetris, 10, 10);
+  ctx4.fillText('Score: ' + scoreTilegusta, 10, 10);
 }
 
 
@@ -1964,12 +1962,12 @@ function loop() {
         ctx4.shadowBlur = 2;
         ctx4.shadowOffsetX = 1;
         ctx4.shadowOffsetY = 1;
-        ctx4.fillStyle = colorsTetris[name];
+        ctx4.fillStyle = colorsTilegusta[name];
 
         // drawing 1 px smaller than the grid creates a grid effect
-        ctx4.fillRect(col * gridTetris, row * gridTetris, gridTetris-1, gridTetris-1);
+        ctx4.fillRect(col * gridTilegusta, row * gridTilegusta, gridTilegusta-1, gridTilegusta-1);
         ctx4.strokeStyle = 'pink';
-        ctx4.strokeRect(col * gridTetris, row * gridTetris, gridTetris-1, gridTetris-1);
+        ctx4.strokeRect(col * gridTilegusta, row * gridTilegusta, gridTilegusta-1, gridTilegusta-1);
       }
     }
   }
@@ -1978,9 +1976,9 @@ function loop() {
   if (tetromino) {
 
     // tetromino falls every 35 frames
-    if (++countTetris > 35) {
+    if (++countTilegusta > 35) {
       tetromino.row++;
-      countTetris = 0;
+      countTilegusta = 0;
 
       // place piece if it runs into anything
       if (!isValidMove(tetromino.matrix, tetromino.row, tetromino.col)) {
@@ -1989,14 +1987,14 @@ function loop() {
       }
     }
 
-    ctx4.fillStyle = colorsTetris[tetromino.name];
+    ctx4.fillStyle = colorsTilegusta[tetromino.name];
 
     for (let row = 0; row < tetromino.matrix.length; row++) {
       for (let col = 0; col < tetromino.matrix[row].length; col++) {
         if (tetromino.matrix[row][col]) {
 
           // drawing 1 px smaller than the grid creates a grid effect
-          ctx4.fillRect((tetromino.col + col) * gridTetris, (tetromino.row + row) * gridTetris, gridTetris-1, gridTetris-1);
+          ctx4.fillRect((tetromino.col + col) * gridTilegusta, (tetromino.row + row) * gridTilegusta, gridTilegusta-1, gridTilegusta-1);
         }
       }
     }
@@ -2005,17 +2003,17 @@ function loop() {
 
 
 
-async function reloadTetris(){
+async function reloadTilegusta(){
   rAF = requestAnimationFrame(loop);
 }
-window.reloadTetris = reloadTetris;
+window.reloadTilegusta = reloadTilegusta;
 
 
 
-async function restartTetris(){
+async function restartTilegusta(){
   window.location.reload();
 }
-window.restartTetris = restartTetris;
+window.restartTilegusta = restartTilegusta;
 
 // common
 
@@ -2097,10 +2095,10 @@ async function load_rules(){
 
     `;
   }
-  else if (game_name == 'tetris'){
-    el2.textContent = 'Tetris';
+  else if (game_name == 'tilegusta'){
+    el2.textContent = 'Tile Gusta';
     el.innerHTML = `
-        <p style="font-size: 1.9em;">The Iconic Tetris Game is back to remind you of the Good Ol' Days</p>
+        <p style="font-size: 1.9em;">The Iconic Classic Game is back to remind you of the Good Ol' Days</p>
         <p style="font-size: 1.5em;">Accommodate as many blocks on the canvas as you can before they overflow.  </p>
         <p style="font-size: 1.5em;">Completely filled horizontal rows disappear, leaving you with more room to work with.</p>
         <p style="font-size: 1.5em;">The highest score at the time of competition close wins!</p>
@@ -2237,7 +2235,7 @@ window.load_games = load_games;
         }
       }
   }
-  else if (game_name == "tetris"){
+  else if (game_name == "tilegusta"){
     if (e.code == "ArrowLeft"){
       const col = tetromino.col - 1;
       if (isValidMove(tetromino.matrix, tetromino.row, col)) {
@@ -2269,12 +2267,12 @@ window.load_games = load_games;
       tetromino.row = row;
       }
     else if (e.code == "Enter"){
-        if (gameOverTetris){
+        if (gameOverTilegusta){
           const acc = localStorage.getItem('acc');
           const cn = localStorage.getItem('last_chain');
           if (acc == null || acc == "" || cn == "" || cn == null){}
           else {
-            await registerScore(scoreTetris, 2);
+            await registerScore(scoreTilegusta, 2);
           }
 
         }
