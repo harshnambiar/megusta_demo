@@ -40969,12 +40969,14 @@ async function load_this_game(){
         fsz = 4;
         mt = 15;
       };
+      var content_perc = ((w - (10*cw)/8) * 100) / w;
+      const ml = (Math.floor(content_perc/2)).toString().concat("%");
       document.getElementById('bod').innerHTML = `
       <br/><br/>
       <div style="color: #ff9933;font-size: `.concat(fsz).concat(`em;font-family:monospace;">Space Rumble</div>
       <br/>
 
-       <div style="display: flex; align-items: flex-start;margin-left: 18%">
+       <div style="display: flex; align-items: flex-start;margin-left: `.concat(ml).concat(`">
         <div style="margin-right: 1%; margin-top: `.concat(mt.toString()).concat(`%">
               <br/>
               <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: 2em;height:6%; text-align: center; cursor: pointer;margin-bottom: 5%;padding: 5px;">Rules</div>
@@ -40984,7 +40986,7 @@ async function load_this_game(){
         </div>
         <canvas id="game2" width="`.concat(cw.toString()).concat(`" height="`.concat(ch.toString()).concat(`" ></canvas>
       </div>
-      `))));
+      `)))));
       canvas3=document.getElementById('game2');
       ctx3=canvas3.getContext('2d');
       ctx3.fillStyle = 'pink';
