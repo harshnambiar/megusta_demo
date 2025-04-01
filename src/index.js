@@ -2141,7 +2141,7 @@ async function load_games(){
   const warn = localStorage.getItem('warn_once');
   if ((acc == null || acc == "" || cn == "" || cn == null) && (warn == 'n')){
     localStorage.setItem('warn_once', 'y');
-    alert('You are not logged in to your Metamask. Please Login now if you want to store your score On-Chain. You can play without loggin in, though. Also, please note that we currently only support PCs for playing.');
+    alert('You are not logged in to your Metamask. Please Login now if you want to store your score On-Chain. You can play without loggin in, though. Also, please note that we currently only support PCs for playing. Please note that the Gravity Alpha Testnet is currently undergoing maintenance and might be unable to record your score.');
   }
 }
 window.load_games = load_games;
