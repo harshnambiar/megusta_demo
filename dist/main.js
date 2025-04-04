@@ -40604,7 +40604,7 @@ async function getMyScore() {
         abiInstance = abi_gvt_namespaceObject.HV;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
+                     "0x235df0fA64B5c273a83835906b5c8f9acb5fe878");
     }
     else {
         console.log('unknown chain');
@@ -42551,7 +42551,7 @@ async function load_games(){
   const warn = localStorage.getItem('warn_once');
   if ((acc == null || acc == "" || cn == "" || cn == null) && (warn == 'n')){
     localStorage.setItem('warn_once', 'y');
-    alert('You are not logged in to your Metamask. Please Login now if you want to store your score On-Chain. You can play without loggin in, though. Also, please note that we currently only support PCs for playing. Please note that the Gravity Alpha Testnet is currently undergoing maintenance and might be unable to record your score.');
+    alert('You are not logged in to your Metamask. Please Login now if you want to store your score On-Chain. You can play without loggin in, though. Also, please note that we currently only support PCs for playing.');
   }
 }
 window.load_games = load_games;
@@ -42839,7 +42839,7 @@ async function registerScore(scr, gid){
         abiInstance = abi_gvt_namespaceObject.HV;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
+                     "0x235df0fA64B5c273a83835906b5c8f9acb5fe878");
 
 
     }
