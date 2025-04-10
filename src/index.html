@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Me Gusta - Web3 Gaming</title>
+    <title>Me Gusta - Web3 Gaming Platform</title>
     <link rel="stylesheet" href="main.css">
-    <link rel="shortcut icon" href="img/logo.png">
+    <link rel="shortcut icon" href="img/megusta-face.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body onload="loadHome();">
@@ -15,156 +16,812 @@
     <header>
         <nav class="navbar">
             <div class="nav-left">
-                <a href="index.html"><img src="img/logo.png" alt="Me Gusta Logo" class="logo"></a>
+                <a href="index.html" class="logo-container">
+                    <div class="logo-glow"></div>
+                    <img src="img/megusta-face.png" alt="Me Gusta Logo" class="logo">
+                </a>
+            </div>
+
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="#about">
+                            <span class="nav-icon"><i class="fas fa-info-circle"></i></span>
+                            <span class="nav-text">ABOUT</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" id="gli">
+                        <a href="#featured-games">
+                            <span class="nav-icon"><i class="fas fa-gamepad"></i></span>
+                            <span class="nav-text">DEMO</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#faqs-section">
+                            <span class="nav-icon"><i class="fas fa-question-circle"></i></span>
+                            <span class="nav-text">FAQS</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="nright" class="nav-right">
+                <div class="chain-selector">
+                    <select name="typc" id="chain_name">
+                        <option value="current">Select Chain</option>
+                        <option value="eth">Ethereum</option>
+                        <option value="mnt">Mantle</option>
+                        <option value="lsk">Lisk</option>
+                        <option value="flr">Flare</option>
+                        <option value="gvt">Gravity</option>
+                    </select>
+                    <div class="chain-indicator"></div>
+                </div>
+                <div class="wallet-connector">
+                    <div class="wallet-pulse"></div>
+                    <img src="img/wallet-icon.svg" alt="Wallet" class="wallet-icon" onclick="connect();">
+                </div>
             </div>
 
             <div class="menu-toggle" id="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
-            <ul class="nav-center">
-                <li><a href="about.html">ABOUT</a></li>
-                <li id="gli"><a href="games.html">DEMO</a></li>
-                <li><a href="faqs.html">FAQS</a></li>
-            </ul>
-            <div id="nright" class="nav-right">
-                <select name="typc" id="chain_name" style="width: 60%;font-size: 1.4em;padding-top: 3%;padding-bottom: 1%;">
-                    <option value="current">Select Chain</option>
-                    <option value="eth">Ethereum</option>
-                    <option value="mnt">Mantle</option>
-                    <option value="lsk">Lisk</option>
-                    <option value="flr">Flare</option>
-                    <option value="gvt">Gravity</option>
-
-
-                </select>
-                <img src="img/wallet-icon.svg" alt="Wallet" class="wallet-icon" onclick="connect();">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </nav>
     </header>
-    <main class="main-container">
 
-        <div class="hero-content">
-            <div class="megusta-container" id="hc">
-                <div class="megusta-shadow"></div>
-                <img src="img/megusta-face.png" alt="Me Gusta Face" class="megusta-face animated">
+    <main class="main-container">
+        <div class="hero-scene">
+            <!-- Animated background elements -->
+            <div class="hero-bg-elements">
+                <div class="cyber-grid"></div>
+                <div class="glow-orb orb1"></div>
+                <div class="glow-orb orb2"></div>
+                <div class="glow-orb orb3"></div>
+                <div class="floating-shapes">
+                    <div class="shape shape1"></div>
+                    <div class="shape shape2"></div>
+                    <div class="shape shape3"></div>
+                    <div class="shape shape4"></div>
+                </div>
+                <div class="neon-lines">
+                    <div class="line line1"></div>
+                    <div class="line line2"></div>
+                    <div class="line line3"></div>
+                </div>
             </div>
-            <h1 class="title glitch">ME GUSTA</h1>
-            <p class="subtitle">Hypercasual multi-chain web3 Gaming</p>
-            <div class="buttons">
-                <button class="btn animated" onclick="to_games();">🎮 Play Now</button>
-                <button class="btn animated" onclick="to_faq();">🔍 Learn More</button>
+
+            <!-- Game controller animations -->
+            <div class="game-elements">
+                <div class="controller-outline left"></div>
+                <div class="controller-outline right"></div>
+                <div class="pixel-art pixel1"></div>
+                <div class="pixel-art pixel2"></div>
+            </div>
+            
+            <div class="hero-content">
+                <div class="megusta-wrapper">
+                    <div class="megusta-container" id="hc">
+                        <div class="megusta-glow-ring"></div>
+                        <div class="megusta-shadow"></div>
+                        <img src="img/megusta-face.png" alt="Me Gusta Face" class="megusta-face">
+                    </div>
+                </div>
+                
+                <div class="title-container">
+                    <h1 class="title cyber-glitch">ME GUSTA</h1>
+                    <div class="title-scanline"></div>
+                </div>
+                
+                <p class="subtitle">
+                    <span class="typing-wrapper">
+                        <span class="typing-text" data-text="Hypercasual multi-chain web3 gaming">Hypercasual multi-chain web3 gaming</span>
+                    </span>
+                    <span class="highlight revolution">revolution</span>
+                </p>
+                
+                <div class="blockchain-partners">
+                    <h3 class="partners-heading">POWERED BY</h3>
+                    <div class="partners-container">
+                        <div class="blockchain-badge lisk">
+                            <div class="blockchain-icon">
+                                <i class="blockchain-symbol">LSK</i>
+                            </div>
+                            <span class="blockchain-name">Lisk</span>
+                        </div>
+                        <div class="blockchain-badge ethereum">
+                            <div class="blockchain-icon">
+                                <i class="blockchain-symbol">ETH</i>
+                            </div>
+                            <span class="blockchain-name">Ethereum</span>
+                        </div>
+                        <div class="blockchain-badge mantle">
+                            <div class="blockchain-icon">
+                                <i class="blockchain-symbol">MNT</i>
+                            </div>
+                            <span class="blockchain-name">Mantle</span>
+                        </div>
+                        <div class="blockchain-badge flare">
+                            <div class="blockchain-icon">
+                                <i class="blockchain-symbol">FLR</i>
+                            </div>
+                            <span class="blockchain-name">Flare</span>
+                        </div>
+                        <div class="blockchain-badge gravity">
+                            <div class="blockchain-icon">
+                                <i class="blockchain-symbol">GVT</i>
+                            </div>
+                            <span class="blockchain-name">Gravity</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="crypto-particles">
+                    <div class="particle eth"></div>
+                    <div class="particle btc"></div>
+                    <div class="particle sol"></div>
+                    <div class="particle lsk"></div>
+                    <div class="particle flr"></div>
+                </div>
+                
+                <div class="action-zone">
+                    <div class="buttons">
+                        <button class="btn primary-btn" onclick="scrollToFeaturedGames();">
+                            <span class="btn-glow"></span>
+                            <i class="fas fa-gamepad"></i> 
+                            <span class="btn-text">Play Now</span>
+                        </button>
+                        <button class="btn secondary-btn" onclick="scrollToHowItWorks();">
+                            <span class="btn-glow"></span>
+                            <i class="fas fa-rocket"></i> 
+                            <span class="btn-text">Learn More</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <span class="stat-value counter" data-target="5">5+</span>
+                        <span class="stat-label">Blockchains</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <span class="stat-value counter" data-target="6">6+</span>
+                        <span class="stat-label">Games</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <span class="stat-value">24/7</span>
+                        <span class="stat-label">Tournaments</span>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    </main>
-
     <section class="features-section">
-        <h2>✨ Features ✨</h2>
+        <h2><i class="fas fa-star"></i> Core Features</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <img src="img/multi-chain.svg" alt="Multi-chain Icon">
+                <div class="feature-icon-container">
+                    <img src="img/multi-chain.svg" alt="Multi-chain Icon">
+                </div>
                 <h3>Multi-chain Architecture</h3>
                 <p>Play seamlessly on Ethereum, Mantle, Flare, and Lisk with minimal fees and lightning-fast transactions!</p>
             </div>
             <div class="feature-card">
-                <img src="img/play-to-earn.svg" alt="Play-to-Earn Icon">
+                <div class="feature-icon-container">
+                    <img src="img/play-to-earn.svg" alt="Play-to-Earn Icon">
+                </div>
                 <h3>Play-to-Earn (P2E)</h3>
                 <p>Compete in tournaments, earn Gusta points, and redeem them for native chain tokens or in-game assets!</p>
             </div>
             <div class="feature-card">
-                <img src="img/game-selection.svg" alt="Game Selection Icon">
+                <div class="feature-icon-container">
+                    <img src="img/game-selection.svg" alt="Game Selection Icon">
+                </div>
                 <h3>Wide Game Selection</h3>
                 <p>Enjoy over half a dozen games ranging from arcade to puzzle genres like Space Rumble, Tile Gusta, and Snake.</p>
             </div>
             <div class="feature-card">
-                <img src="img/join-tournaments.png" alt="Leaderboard Icon">
+                <div class="feature-icon-container">
+                    <img src="img/join-tournaments.png" alt="Leaderboard Icon">
+                </div>
                 <h3>Leaderboard Rewards</h3>
-                <p>Get rewarded for your skills! Top half of the leaderboard wins prizes, and the top player gets special
-                    rewards.</p>
+                <p>Get rewarded for your skills! Top half of the leaderboard wins prizes, and the top player gets special rewards.</p>
             </div>
             <div class="feature-card">
-                <img src="img/community.svg" alt="Player-Owned Economy Icon">
+                <div class="feature-icon-container">
+                    <img src="img/community.svg" alt="Player-Owned Economy Icon">
+                </div>
                 <h3>Player-Owned Economy</h3>
-                <p>Empower players with tokenized rewards, in-game assets, and special NFTs commemorating
-                    achievements.</p>
+                <p>Empower players with tokenized rewards, in-game assets, and special NFTs commemorating achievements.</p>
             </div>
         </div>
     </section>
 
-    <section class="about-section">
-        <div class="about-container">
-            <div class="about-text">
-                <h2>⚡ What is Me Gusta? ⚡</h2>
-                <p>Megusta is a decentralized gaming platform offering Play-to-Earn tournaments with real rewards.</p>
-            </div>
-            <div class="about-image">
-                <img src="img/about-img.png" alt="Gaming Illustration">
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2><i class="fas fa-bolt"></i> What is Me Gusta?</h2>
+                    <p>Me Gusta is a revolutionary decentralized gaming platform offering Play-to-Earn tournaments with real crypto rewards. Our platform seamlessly integrates with multiple blockchains to provide a secure, transparent, and rewarding gaming experience.</p>
+                    <p>Built by gamers for gamers, our ecosystem combines the fun of casual gaming with the benefits of web3 technology, allowing players to truly own their in-game achievements and rewards.</p>
+                    
+                    <div class="tech-badges">
+                        <div class="tech-badge"><i class="fas fa-gamepad"></i> Hypercasual</div>
+                        <div class="tech-badge"><i class="fas fa-link"></i> Multi-chain</div>
+                        <div class="tech-badge"><i class="fas fa-trophy"></i> P2E</div>
+                        <div class="tech-badge"><i class="fas fa-users"></i> Community</div>
+                    </div>
+                    
+                    <a href="about.html" class="cta-button">Discover More</a>
+                </div>
+                <div class="about-image">
+                    <img src="img/about-img.png" alt="Gaming Illustration">
+                </div>
             </div>
         </div>
     </section>
 
     <section class="how-it-works">
-        <h2>🕹️ How Me Gusta Works 🕹️</h2>
-        <div class="works-steps">
-            <div class="step">
-                <img src="img/choose-game.png" alt="Choose Game Icon">
-                <h3>1. Choose Your Game</h3>
-                <p>Dive into games from our growing collection of hypercasual and casual genres.</p>
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-cogs"></i> How Me Gusta Works</h2>
+                <p>Our platform makes blockchain gaming simple, fun, and rewarding in just three easy steps.</p>
             </div>
-            <div class="step">
-                <img src="img/join-tournaments.png" alt="Join Tournaments Icon">
-                <h3>2. Join Tournaments</h3>
-                <p>Participate in hourly, daily, weekly, or special tournaments with a small entry fee.</p>
-            </div>
-            <div class="step">
-                <img src="img/earn-redeem.png" alt="Earn & Redeem Icon">
-                <h3>3. Earn & Redeem</h3>
-                <p>Win Gusta points based on your leaderboard rank and redeem them for native chain tokens or
-                    assets.</p>
+            
+            <div class="steps-container">
+                <div class="steps-timeline"></div>
+                <div class="steps-wrapper">
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="step-connector"></div>
+                        <div class="step-content">
+                            <h3>Choose Your Game</h3>
+                            <p>Dive into games from our growing collection of hypercasual and casual genres with simple controls and addictive gameplay.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="step-connector"></div>
+                        <div class="step-content">
+                            <h3>Join Tournaments</h3>
+                            <p>Participate in hourly, daily, weekly, or special tournaments with a small entry fee and compete for the top spots.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="step-connector"></div>
+                        <div class="step-content">
+                            <h3>Earn & Redeem</h3>
+                            <p>Win Gusta points based on your leaderboard rank and redeem them for native chain tokens or exclusive in-game assets.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="featured-games" id="featured-games">
-        <h2>🔥 Featured Games 🔥</h2>
-        <div class="game-grid">
-            <div class="game-card animated" onclick="to_launch('spacerumble')" style="cursor: pointer;">
-                <img src="img/sr.png" alt="Space Rumble" style="height: 300px;width: 300px;object-fit: fill;">
-                <h3>Space Rumble</h3>
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-fire"></i> Featured Games</h2>
+                <p>Explore our collection of blockchain-powered games designed for fun, competition, and rewards</p>
             </div>
-            <div class="game-card animated" onclick="to_launch('tilegusta')" style="cursor: pointer;">
-                <img src="img/tet.png" alt="Tile Gusta" style="height: 300px;width: 300px;object-fit: fill;">
-                <h3>Tile Gusta</h3>
+            
+            <div class="games-grid">
+                <div class="game-card" onclick="to_launch('spacerumble')" style="cursor: pointer;">
+                    <div class="game-image">
+                        <img src="img/sr.png" alt="Space Rumble">
+                        <div class="game-overlay"></div>
+                        <div class="game-badge">Popular</div>
+                        <div class="play-now"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Space Rumble</h3>
+                        <p class="game-desc">Navigate your spaceship through asteroid fields and enemy attacks in this action-packed arcade game.</p>
+                        <div class="game-meta">
+                            <div class="game-genre">Arcade</div>
+                            <div class="game-rating"><i class="fas fa-award"></i> 500 GUSTA</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-card" onclick="to_launch('tilegusta')" style="cursor: pointer;">
+                    <div class="game-image">
+                        <img src="img/tet.png" alt="Tile Gusta">
+                        <div class="game-overlay"></div>
+                        <div class="game-badge">Top Rated</div>
+                        <div class="play-now"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Tile Gusta</h3>
+                        <p class="game-desc">Arrange falling blocks to complete lines in this addictive puzzle game with increasing difficulty.</p>
+                        <div class="game-meta">
+                            <div class="game-genre">Puzzle</div>
+                            <div class="game-rating"><i class="fas fa-award"></i> 750 GUSTA</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="img/ymt.png" alt="Coming Soon">
+                        <div class="game-overlay"></div>
+                        <div class="game-badge">Coming Soon</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Coming Soon</h3>
+                        <p class="game-desc">More exciting games are in development. Stay tuned for new releases and special tournaments!</p>
+                        <div class="game-meta">
+                            <div class="game-genre">Various</div>
+                            <div class="game-rating"><i class="fas fa-clock"></i> Soon</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="game-card animated">
-                <img src="img/ymt.png" alt="Game 3" style="height: 300px;width: 300px;object-fit: fill;">
-                <h3>More Coming Soon!</h3>
+        </div>
+    </section>
+
+    <section class="space-rumble-section">
+        <div class="star-field">
+            <div class="layer layer-1"></div>
+            <div class="layer layer-2"></div>
+            <div class="layer layer-3"></div>
+        </div>
+        <div class="nebula"></div>
+        <div class="comet"></div>
+        <div class="comet"></div>
+        <div class="comet"></div>
+        <div class="planet planet-1"></div>
+        <div class="planet planet-2"></div>
+        <div class="space-rumble-header">
+            <h2><i class="fas fa-star"></i> Space Rumble</h2>
+            <p>Navigate your spaceship through asteroid fields and enemy attacks in this action-packed arcade game.</p>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="faqs-section" id="faqs-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faqs-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is Me Gusta Gaming?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Me Gusta Gaming is a next-generation gaming platform that combines classic arcade gameplay with blockchain technology, offering players unique experiences and rewards.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do I need a wallet to play games?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No, you can enjoy all our games without a wallet. However, connecting a wallet allows you to earn rewards, save high scores on the blockchain, and access exclusive features.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Which blockchains are supported?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We currently support Ethereum, Mantle, Lisk, Flare, and Gravity chains, with more integrations planned in the future.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I earn rewards?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>By playing games with a connected wallet, you can earn in-game rewards based on your performance. High scores and achievements are recorded on the blockchain and may qualify for special rewards.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Are the games free to play?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, all games are free to play. Some special events or tournaments may require entry fees in the future, but our core gaming experience will always remain free.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How can I report issues or suggest features?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can contact our support team via the Discord channel or submit feedback through our official community forums. We value player input and actively incorporate suggestions into our development roadmap.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-container">
-            <div class="footer-left">
-                <img src="img/logo.png" alt="Me Gusta Logo" class="footer-logo">
-                <p>&copy; 2025 Megusta Gaming by Darksun Labs | All Rights Reserved</p>
+        <div class="container">
+            <div class="footer-logo-container">
+                <img src="img/megusta-face.png" alt="Me Gusta Logo" class="footer-logo">
             </div>
-            <div class="footer-right">
-                <a href="about.html">About</a>
-                <a href="games.html">Demo</a>
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>About</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="about.html#team">Team</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Games</h3>
+                    <ul class="footer-links">
+                        <li><a href="games.html">All Games</a></li>
+                        <li><a href="games.html#arcade">Arcade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column mobile-hide">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column mobile-hide">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2025 Megusta Gaming
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                </div>
             </div>
         </div>
     </footer>
     <canvas id="game" width="620" height="620" style="display:none"></canvas>
     <script>
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    // Get header height for offset
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
         document.getElementById("mobile-menu").addEventListener("click", function () {
             document.querySelector(".nav-center").classList.toggle("nav-active");
+            this.classList.toggle("active");
         });
+
+        // Add scroll effect to header
+        window.addEventListener("scroll", function() {
+            const header = document.querySelector("header");
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+
+        // Animate counter stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText.replace('+', '');
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment) + '+';
+                    setTimeout(animateCounters, 1);
+                } else {
+                    counter.innerText = target + '+';
+                }
+            });
+        }
+        
+        // Initialize animations when page loads
+        window.addEventListener('load', function() {
+            setTimeout(animateCounters, 1000);
+        });
+
+        // Wallet connection functionality
+        let currentAccount = null;
+        const walletConnector = document.querySelector('.wallet-connector');
+        const chainSelect = document.getElementById('chain_name');
+
+        // Function to check if MetaMask is installed
+        const isMetaMaskInstalled = () => {
+            return typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask;
+        };
+
+        // Show wallet status visually
+        const updateWalletStatus = (connected) => {
+            if (connected) {
+                walletConnector.classList.add('connected');
+                walletConnector.setAttribute('title', 'Connected: ' + currentAccount.substring(0, 6) + '...' + currentAccount.substring(38));
+            } else {
+                walletConnector.classList.remove('connected');
+                walletConnector.setAttribute('title', 'Connect Wallet');
+            }
+        };
+
+        // Handle chain selection
+        chainSelect.addEventListener('change', async function() {
+            if (!isMetaMaskInstalled()) return;
+            
+            const chainId = this.value;
+            if (chainId === 'current') return;
+            
+            try {
+                let targetChainId;
+                switch(chainId) {
+                    case 'eth': targetChainId = '0x1'; break; // Ethereum Mainnet
+                    case 'mnt': targetChainId = '0x1388'; break; // Mantle
+                    case 'lsk': targetChainId = '0x9AF'; break; // Lisk
+                    case 'flr': targetChainId = '0xE'; break; // Flare
+                    case 'gvt': targetChainId = '0x79F'; break; // Gravity
+                    default: targetChainId = '0x1';
+                }
+                
+                await window.ethereum.request({
+                    method: 'wallet_switchEthereumChain',
+                    params: [{ chainId: targetChainId }],
+                });
+            } catch (switchError) {
+                console.error('Failed to switch chains:', switchError);
+            }
+        });
+
+        // Connect wallet function
+        async function connect() {
+            if (!isMetaMaskInstalled()) {
+                alert("MetaMask is not installed. Please install MetaMask to use this feature.");
+                return;
+            }
+            
+            try {
+                // Request account access
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                
+                if (accounts.length === 0) {
+                    console.log('No accounts found');
+                    return;
+                }
+                
+                currentAccount = accounts[0];
+                updateWalletStatus(true);
+                console.log('Connected to wallet:', currentAccount);
+                
+                // Setup account changed event
+                window.ethereum.on('accountsChanged', handleAccountsChanged);
+                
+                // Get current chain
+                const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+                handleChainChanged(chainId);
+                
+                // Setup chain changed event
+                window.ethereum.on('chainChanged', handleChainChanged);
+                
+                return true;
+            } catch (error) {
+                if (error.code === 4001) {
+                    // User rejected the request
+                    console.log('User rejected the connection request');
+                } else {
+                    console.error('Error connecting to MetaMask:', error);
+                }
+                updateWalletStatus(false);
+                return false;
+            }
+        }
+
+        // Handle account changes
+        function handleAccountsChanged(accounts) {
+            if (accounts.length === 0) {
+                console.log('Please connect to MetaMask.');
+                currentAccount = null;
+                updateWalletStatus(false);
+            } else if (accounts[0] !== currentAccount) {
+                currentAccount = accounts[0];
+                updateWalletStatus(true);
+                console.log('Account changed to:', currentAccount);
+            }
+        }
+
+        // Handle chain changes
+        function handleChainChanged(chainId) {
+            console.log('Chain changed to:', chainId);
+            // Update UI based on chain
+            let selectedOption;
+            
+            switch(chainId) {
+                case '0x1': selectedOption = 'eth'; break; // Ethereum Mainnet
+                case '0x1388': selectedOption = 'mnt'; break; // Mantle
+                case '0x9AF': selectedOption = 'lsk'; break; // Lisk
+                case '0xE': selectedOption = 'flr'; break; // Flare
+                case '0x79F': selectedOption = 'gvt'; break; // Gravity
+                default: selectedOption = 'current';
+            }
+            
+            chainSelect.value = selectedOption;
+        }
+
+        // Check if already connected on page load
+        window.addEventListener('load', async () => {
+            if (isMetaMaskInstalled()) {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                    if (accounts.length > 0) {
+                        currentAccount = accounts[0];
+                        updateWalletStatus(true);
+                        console.log('Already connected to wallet:', currentAccount);
+                        
+                        // Setup listeners
+                        window.ethereum.on('accountsChanged', handleAccountsChanged);
+                        
+                        const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+                        handleChainChanged(chainId);
+                        
+                        window.ethereum.on('chainChanged', handleChainChanged);
+                    }
+                } catch (error) {
+                    console.error('Error checking connected accounts:', error);
+                }
+            }
+        });
+
+        // Ensure subtitle text displays properly on mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if mobile device
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                // Get the typing text element
+                const typingText = document.querySelector('.typing-text');
+                
+                if (typingText) {
+                    // Make sure the text is visible without animation
+                    typingText.style.animation = 'none';
+                    typingText.style.width = 'auto';
+                    typingText.style.opacity = '1';
+                    typingText.style.whiteSpace = 'normal';
+                    typingText.style.overflow = 'visible';
+                    typingText.style.borderRight = 'none';
+                }
+            }
+        });
+
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation classes to elements
+            const animateSections = document.querySelectorAll('.features-section, .about, .how-it-works, .featured-games');
+            animateSections.forEach(section => {
+                section.classList.add('scroll-fade-in');
+            });
+            
+            const animateCards = document.querySelectorAll('.feature-card, .step, .game-card');
+            animateCards.forEach(card => {
+                card.classList.add('scroll-scale-in');
+            });
+            
+            // Check which elements are visible on load
+            checkVisibility();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', checkVisibility);
+            
+            function checkVisibility() {
+                const elements = document.querySelectorAll('.scroll-fade-in, .scroll-scale-in');
+                
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    const windowHeight = window.innerHeight;
+                    
+                    // If element is in viewport
+                    if (elementTop < windowHeight - 100 && elementBottom > 0) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+        });
+
+        function scrollToHowItWorks() {
+            const howItWorksSection = document.querySelector('.how-it-works');
+            if (howItWorksSection) {
+                howItWorksSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Function to scroll to Featured Games section
+        function scrollToFeaturedGames() {
+            const featuredGamesSection = document.getElementById('featured-games');
+            if (featuredGamesSection) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = featuredGamesSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
     </script>
+    
+    <style>
+        /* Wallet connection indicator styles */
+        .wallet-connector.connected {
+            border-color: var(--success);
+        }
+        
+        .wallet-connector.connected .wallet-pulse {
+            border-color: var(--success);
+        }
+        
+        .wallet-connector.connected::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 10px;
+            height: 10px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--success);
+        }
+    </style>
 </body>
 
 </html>

@@ -2460,3 +2460,38 @@ async function registerScore(scr, gid){
 
 }
 window.registerScore = registerScore;
+
+// FAQ Accordion functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        
+        // Set initial height for CSS transitions
+        answer.style.height = '0px';
+        
+        question.addEventListener('click', () => {
+            // Toggle active class
+            const isActive = item.classList.contains('active');
+            
+            // Close all FAQs first
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-answer').style.height = '0px';
+                }
+            });
+            
+            // Toggle current FAQ
+            if (isActive) {
+                item.classList.remove('active');
+                answer.style.height = '0px';
+            } else {
+                item.classList.add('active');
+                answer.style.height = answer.scrollHeight + 'px';
+            }
+        });
+    });
+});
