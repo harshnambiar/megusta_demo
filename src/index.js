@@ -159,6 +159,75 @@ async function startApp(provider, chain) {
   }
 }
 
+async function checkIfHighscore(scr, gid){
+  const chn = localStorage.getItem("last_chain");
+  const acc = localStorage.getItem("acc");
+  const web3 = new Web3(window.ethereum);
+  var abiInstance;
+  var contract;
+
+  if (chn == "" || chn == null || acc == "" || acc == null){
+    return false;
+  }
+
+  if (chn == 'eth'){
+      abiInstance = ABIETH.abi;
+      contract = new web3.eth.Contract(
+                                  abiInstance,
+                    "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
+  }
+  else if (chn == 'mnt'){
+      abiInstance = ABIMNT.abi;
+      contract = new web3.eth.Contract(
+                                  abiInstance,
+                    "0x2765cd9a5892c0c19fcb5a9b0c76aef65fafe421");
+  }
+  else if (chn == 'lsk'){
+      abiInstance = ABILSK.abi;
+      contract = new web3.eth.Contract(
+                                  abiInstance,
+                    "0x235df0fa64b5c273a83835906b5c8f9acb5fe878");
+  }
+  else if (chn == 'flr'){
+      abiInstance = ABIFLR.abi;
+      contract = new web3.eth.Contract(
+                                  abiInstance,
+                    "0xb0A2aBcb9C0E18b5C66b69d8f7b9018118CE681C");
+  }
+  else if (chn == 'gvt'){
+      abiInstance = ABIGVT.abi;
+      contract = new web3.eth.Contract(
+                                  abiInstance,
+                    "0x235df0fA64B5c273a83835906b5c8f9acb5fe878");
+  }
+  else {
+      console.log('unknown chain');
+      return false;
+  }
+
+
+  var s1 = 0;
+
+  try  {
+    const arg1 = BigInt(gid);
+    var res1 = await contract.methods['fetch_myscore'](arg1).call({from: acc});
+    s1 = res1;
+  }
+  catch (err){
+    console.log(err);
+  }
+
+  if (scr > s1){
+    return true;
+  }
+  else {
+    return false;
+  }
+
+  return false;
+
+}
+
 async function getMyScore() {
     const chn = localStorage.getItem("last_chain");
     const acc = localStorage.getItem("acc");
@@ -1539,7 +1608,15 @@ async function reloadRun() {
             ctx3.fillText('Thank you for playing Space Rumble', canvas3.width / 2, canvas3.height / 2 + 30);
           }
           else {
-            ctx3.fillText('Click ENTER to record your score On-Chain', canvas3.width / 2, canvas3.height / 2 + 30);
+            let ss = await checkIfHighscore(scoreRun, 1);
+            if (ss){
+               ctx3.fillText('New High Score! Click ENTER to record.', canvas3.width / 2, canvas3.height / 2 + 30);
+
+            }
+            else {
+               ctx3.fillText('Click ENTER to record your score On-Chain', canvas3.width / 2, canvas3.height / 2 + 30);
+
+            }
           }
 
           obstacles = [];
@@ -1899,7 +1976,7 @@ function placeTetromino() {
 
 
 // show the game over screen
-function showGameOver() {
+async function showGameOver() {
   cancelAnimationFrame(rAF);
   gameOverTilegusta = true;
 
@@ -1925,8 +2002,16 @@ function showGameOver() {
     ctx4.fillText('our Tile Gusta Game', canvas4.width / 2, canvas4.height / 2 + 60);
   }
   else {
-    ctx4.fillText('Click ENTER to record your', canvas4.width / 2, canvas4.height / 2 + 30);
-    ctx4.fillText('score On-Chain', canvas4.width / 2, canvas4.height / 2 + 60);
+    let ss = await checkIfHighscore(scoreTilegusta, 2);
+    if (ss){
+      ctx4.fillText('New High Score!', canvas4.width / 2, canvas4.height / 2 + 30);
+      ctx4.fillText('Click ENTER to record.', canvas4.width / 2, canvas4.height / 2 + 60);
+    }
+    else {
+      ctx4.fillText('Click ENTER to record your', canvas4.width / 2, canvas4.height / 2 + 30);
+      ctx4.fillText('score On-Chain', canvas4.width / 2, canvas4.height / 2 + 60);
+    }
+
   }
 
 }
