@@ -174,31 +174,31 @@ async function checkIfHighscore(scr, gid){
       abiInstance = ABIETH.abi;
       contract = new web3.eth.Contract(
                                   abiInstance,
-                    "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
+                    "0xdbd0b45076a748270e62d5378c233981db78d581");
   }
   else if (chn == 'mnt'){
       abiInstance = ABIMNT.abi;
       contract = new web3.eth.Contract(
                                   abiInstance,
-                    "0x2765cd9a5892c0c19fcb5a9b0c76aef65fafe421");
+                    "0x7440fb654481859c181a5b135a47f69b90f4c7ce");
   }
   else if (chn == 'lsk'){
       abiInstance = ABILSK.abi;
       contract = new web3.eth.Contract(
                                   abiInstance,
-                    "0x235df0fa64b5c273a83835906b5c8f9acb5fe878");
+                    "0x293617E4cd7C57AD2Dd6239B4e7F47e0Fe1691a9");
   }
   else if (chn == 'flr'){
       abiInstance = ABIFLR.abi;
       contract = new web3.eth.Contract(
                                   abiInstance,
-                    "0xb0A2aBcb9C0E18b5C66b69d8f7b9018118CE681C");
+                    "0x3C35228c92bd72D8A8871583F000F7EB70D1f29c");
   }
   else if (chn == 'gvt'){
       abiInstance = ABIGVT.abi;
       contract = new web3.eth.Contract(
                                   abiInstance,
-                    "0x235df0fA64B5c273a83835906b5c8f9acb5fe878");
+                    "0xAA1683d804f95FF02BB829A5616baDAc0B10732E");
   }
   else {
       console.log('unknown chain');
@@ -239,31 +239,31 @@ async function getMyScore() {
         abiInstance = ABIETH.abi;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
+                     "0xdbd0b45076a748270e62d5378c233981db78d581");
     }
     else if (chn == 'mnt'){
         abiInstance = ABIMNT.abi;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x2765cd9a5892c0c19fcb5a9b0c76aef65fafe421");
+                     "0x7440fb654481859c181a5b135a47f69b90f4c7ce");
     }
     else if (chn == 'lsk'){
         abiInstance = ABILSK.abi;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x235df0fa64b5c273a83835906b5c8f9acb5fe878");
+                     "0x293617E4cd7C57AD2Dd6239B4e7F47e0Fe1691a9");
     }
     else if (chn == 'flr'){
         abiInstance = ABIFLR.abi;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0xb0A2aBcb9C0E18b5C66b69d8f7b9018118CE681C");
+                     "0x3C35228c92bd72D8A8871583F000F7EB70D1f29c");
     }
     else if (chn == 'gvt'){
         abiInstance = ABIGVT.abi;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x235df0fA64B5c273a83835906b5c8f9acb5fe878");
+                     "0xAA1683d804f95FF02BB829A5616baDAc0B10732E");
     }
     else {
         console.log('unknown chain');
@@ -2489,32 +2489,33 @@ async function registerScore(scr, gid){
         abiInstance = ABIETH.abi;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
+                     "0xdbd0b45076a748270e62d5378c233981db78d581");
     }
     else if (chn == 'mnt'){
         abiInstance = ABIMNT.abi;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x2765cd9a5892c0c19fcb5a9b0c76aef65fafe421");
+                     "0x7440fb654481859c181a5b135a47f69b90f4c7ce");
+        
 
     }
     else if (chn == 'lsk'){
         abiInstance = ABILSK.abi;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x235df0fa64b5c273a83835906b5c8f9acb5fe878");
+                     "0x293617E4cd7C57AD2Dd6239B4e7F47e0Fe1691a9");
     }
     else if (chn == 'flr'){
         abiInstance = ABIFLR.abi;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0xb0A2aBcb9C0E18b5C66b69d8f7b9018118CE681C");
+                     "0x3C35228c92bd72D8A8871583F000F7EB70D1f29c");
     }
     else if (chn == 'gvt'){
         abiInstance = ABIGVT.abi;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x235df0fA64B5c273a83835906b5c8f9acb5fe878");
+                     "0xAA1683d804f95FF02BB829A5616baDAc0B10732E");
 
 
     }
@@ -2536,7 +2537,8 @@ async function registerScore(scr, gid){
     console.log(err);
   }
 
-
+console.log(gasEst);
+console.log(gasPriceEst);
   contract.methods.register(scr, gid)
     .send({from: acc, gas: gasEst, gasPrice: gasPriceEst})
     .catch((error) => {

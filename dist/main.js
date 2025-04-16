@@ -40584,31 +40584,31 @@ async function checkIfHighscore(scr, gid){
       abiInstance = abi_eth_namespaceObject.HV;
       contract = new web3.eth.Contract(
                                   abiInstance,
-                    "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
+                    "0xdbd0b45076a748270e62d5378c233981db78d581");
   }
   else if (chn == 'mnt'){
       abiInstance = abi_mnt_namespaceObject.HV;
       contract = new web3.eth.Contract(
                                   abiInstance,
-                    "0x2765cd9a5892c0c19fcb5a9b0c76aef65fafe421");
+                    "0x7440fb654481859c181a5b135a47f69b90f4c7ce");
   }
   else if (chn == 'lsk'){
       abiInstance = abi_lsk_namespaceObject.HV;
       contract = new web3.eth.Contract(
                                   abiInstance,
-                    "0x235df0fa64b5c273a83835906b5c8f9acb5fe878");
+                    "0x293617E4cd7C57AD2Dd6239B4e7F47e0Fe1691a9");
   }
   else if (chn == 'flr'){
       abiInstance = abi_flr_namespaceObject.HV;
       contract = new web3.eth.Contract(
                                   abiInstance,
-                    "0xb0A2aBcb9C0E18b5C66b69d8f7b9018118CE681C");
+                    "0x3C35228c92bd72D8A8871583F000F7EB70D1f29c");
   }
   else if (chn == 'gvt'){
       abiInstance = abi_gvt_namespaceObject.HV;
       contract = new web3.eth.Contract(
                                   abiInstance,
-                    "0x235df0fA64B5c273a83835906b5c8f9acb5fe878");
+                    "0xAA1683d804f95FF02BB829A5616baDAc0B10732E");
   }
   else {
       console.log('unknown chain');
@@ -40649,31 +40649,31 @@ async function getMyScore() {
         abiInstance = abi_eth_namespaceObject.HV;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
+                     "0xdbd0b45076a748270e62d5378c233981db78d581");
     }
     else if (chn == 'mnt'){
         abiInstance = abi_mnt_namespaceObject.HV;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x2765cd9a5892c0c19fcb5a9b0c76aef65fafe421");
+                     "0x7440fb654481859c181a5b135a47f69b90f4c7ce");
     }
     else if (chn == 'lsk'){
         abiInstance = abi_lsk_namespaceObject.HV;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x235df0fa64b5c273a83835906b5c8f9acb5fe878");
+                     "0x293617E4cd7C57AD2Dd6239B4e7F47e0Fe1691a9");
     }
     else if (chn == 'flr'){
         abiInstance = abi_flr_namespaceObject.HV;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0xb0A2aBcb9C0E18b5C66b69d8f7b9018118CE681C");
+                     "0x3C35228c92bd72D8A8871583F000F7EB70D1f29c");
     }
     else if (chn == 'gvt'){
         abiInstance = abi_gvt_namespaceObject.HV;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x235df0fA64B5c273a83835906b5c8f9acb5fe878");
+                     "0xAA1683d804f95FF02BB829A5616baDAc0B10732E");
     }
     else {
         console.log('unknown chain');
@@ -42019,8 +42019,14 @@ async function reloadRun() {
           }
           else {
             let ss = await checkIfHighscore(scoreRun, 1);
-            console.log(ss);
-            ctx3.fillText('Click ENTER to record your score On-Chain', canvas3.width / 2, canvas3.height / 2 + 30);
+            if (ss){
+               ctx3.fillText('New High Score! Click ENTER to record.', canvas3.width / 2, canvas3.height / 2 + 30);
+
+            }
+            else {
+               ctx3.fillText('Click ENTER to record your score On-Chain', canvas3.width / 2, canvas3.height / 2 + 30);
+
+            }
           }
 
           obstacles = [];
@@ -42380,7 +42386,7 @@ function placeTetromino() {
 
 
 // show the game over screen
-function showGameOver() {
+async function showGameOver() {
   cancelAnimationFrame(rAF);
   gameOverTilegusta = true;
 
@@ -42406,8 +42412,16 @@ function showGameOver() {
     ctx4.fillText('our Tile Gusta Game', canvas4.width / 2, canvas4.height / 2 + 60);
   }
   else {
-    ctx4.fillText('Click ENTER to record your', canvas4.width / 2, canvas4.height / 2 + 30);
-    ctx4.fillText('score On-Chain', canvas4.width / 2, canvas4.height / 2 + 60);
+    let ss = await checkIfHighscore(scoreTilegusta, 2);
+    if (ss){
+      ctx4.fillText('New High Score!', canvas4.width / 2, canvas4.height / 2 + 30);
+      ctx4.fillText('Click ENTER to record.', canvas4.width / 2, canvas4.height / 2 + 60);
+    }
+    else {
+      ctx4.fillText('Click ENTER to record your', canvas4.width / 2, canvas4.height / 2 + 30);
+      ctx4.fillText('score On-Chain', canvas4.width / 2, canvas4.height / 2 + 60);
+    }
+
   }
 
 }
@@ -42885,32 +42899,33 @@ async function registerScore(scr, gid){
         abiInstance = abi_eth_namespaceObject.HV;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x0eab7b60140079059ae79357b2b9d582b90bedd1");
+                     "0xdbd0b45076a748270e62d5378c233981db78d581");
     }
     else if (chn == 'mnt'){
         abiInstance = abi_mnt_namespaceObject.HV;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x2765cd9a5892c0c19fcb5a9b0c76aef65fafe421");
+                     "0x7440fb654481859c181a5b135a47f69b90f4c7ce");
+        
 
     }
     else if (chn == 'lsk'){
         abiInstance = abi_lsk_namespaceObject.HV;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x235df0fa64b5c273a83835906b5c8f9acb5fe878");
+                     "0x293617E4cd7C57AD2Dd6239B4e7F47e0Fe1691a9");
     }
     else if (chn == 'flr'){
         abiInstance = abi_flr_namespaceObject.HV;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0xb0A2aBcb9C0E18b5C66b69d8f7b9018118CE681C");
+                     "0x3C35228c92bd72D8A8871583F000F7EB70D1f29c");
     }
     else if (chn == 'gvt'){
         abiInstance = abi_gvt_namespaceObject.HV;
         contract = new web3.eth.Contract(
                                     abiInstance,
-                     "0x235df0fA64B5c273a83835906b5c8f9acb5fe878");
+                     "0xAA1683d804f95FF02BB829A5616baDAc0B10732E");
 
 
     }
@@ -42932,7 +42947,8 @@ async function registerScore(scr, gid){
     console.log(err);
   }
 
-
+console.log(gasEst);
+console.log(gasPriceEst);
   contract.methods.register(scr, gid)
     .send({from: acc, gas: gasEst, gasPrice: gasPriceEst})
     .catch((error) => {
