@@ -41118,7 +41118,7 @@ async function load_this_game(){
       document.getElementById('game_title').textContent = 'Flapperoo';
       const h = window.innerHeight;
       var ch = 450;
-      var cw = 300;
+      var cw = 350;
       var ct = "8%";
       var fsz = "1.5em";
       var bw1 = "7%";
@@ -42578,22 +42578,27 @@ var ctx6 = canvas6.getContext('2d');
 canvas6.width = 400;
 canvas6.height = 600;
 
+let gridFlap = 50;
+if (window.innerHeight < 725){
+  gridFlap = 37;
+}
+
 // Game constants
 const GRAVITY = 0.04;
 const FLAP = -1;
-const BIRD_WIDTH = 50;
-const BIRD_HEIGHT = 50;
-const PIPE_WIDTH = 70;
-const PIPE_GAP = 100; // Gap size just enough for the bird
+const BIRD_WIDTH = 50 * gridFlap / 50;
+const BIRD_HEIGHT = 50 * gridFlap / 50;
+const PIPE_WIDTH = (70 * gridFlap) / 50;
+const PIPE_GAP = (100 * gridFlap) / 50; // Gap size just enough for the bird
 const PIPE_SPEED = 1;
-const PIPE_SPACING = 350;
+const PIPE_SPACING = (350 * gridFlap) / 50;
 
 var img_brd = new Image();
-img_brd.src = './img/nyan.png';
+img_brd.src = './img/flapup.svg';
 
 // Game state
 let bird = {
-    x: 100,
+    x: (100 * gridFlap)/50,
     y: canvas6.height / 2,
     velocity: 0,
     width: BIRD_WIDTH,
@@ -42604,13 +42609,13 @@ let gameOverFlap = false;
 let scoreFlap = 0;
 let rafFlap = null;
 let seedFlap = 0;
-let gridFlap = 50;
+
 let gameOngoingFlap = false;
 let lastEndFlap = 0;
 
 // Pipe constructor
 function createPipe() {
-    const minHeight = 100; // Minimum pipe height to ensure gap is on canvas
+    const minHeight = (100 * gridFlap) / 50; // Minimum pipe height to ensure gap is on canvas
     const maxHeight = canvas6.height - PIPE_GAP - minHeight;
     const gapY = Math.random() * (maxHeight - minHeight) + minHeight;
     return {
@@ -42687,8 +42692,9 @@ async function drawFlap() {
     ctx6.fillRect(0, 0, canvas6.width, canvas6.height);
 
     // Draw bird
-    if (seedFlap % 7 == 0){
+    if (seedFlap % 25 == 0){
       img_brd.src = "./img/flapup.svg";
+      console.log(seedFlap);
     }
     else {
       img_brd.src = "./img/flapdown.svg";
@@ -42718,7 +42724,13 @@ async function drawFlap() {
     // Draw score
     if (!gameOverFlap){
       ctx6.fillStyle = 'black';
-      ctx6.font = '20px Arial';
+      if (gridFlap == 50){
+        ctx6.font = '20px Arial';
+      }
+      else {
+        ctx6.font = '18px Arial';
+      }
+
       ctx6.fillText(`Score: ${scoreFlap}`, 10, 30);
     }
 
@@ -42754,7 +42766,7 @@ async function drawFlap() {
       }
       else {
         let ss = await checkIfHighscore(scoreFlap, 3);
-
+        ctx6.textAlign = 'center';
         if (ss){
           ctx6.fillText('New High Score!', canvas6.width / 2, canvas6.height / 2 + 30);
           ctx6.fillText('Click ENTER to record.', canvas6.width / 2, canvas6.height / 2 + 60);
@@ -42766,7 +42778,6 @@ async function drawFlap() {
         await pause2();
       }
 
-        cancelAnimationFrame(rafFlap);
         gameOngoingFlap = false;
     }
     else {
@@ -42779,6 +42790,11 @@ async function drawFlap() {
 function gameLoopFlap() {
     if (!gameOverFlap) {
         updateFlap();
+    }
+    else {
+      cancelAnimationFrame(rafFlap);
+      ctx6.textAlign = 'start';
+      return;
     }
 
     cancelAnimationFrame(rafFlap);
