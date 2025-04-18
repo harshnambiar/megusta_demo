@@ -273,6 +273,7 @@ async function getMyScore() {
 
   var s1 = 0;
   var s2 = 0;
+  var s3 = 0;
 
   try  {
     const arg1 = BigInt(1);
@@ -292,8 +293,18 @@ async function getMyScore() {
     console.log(err);
   }
 
+  try  {
+    const arg3 = BigInt(3);
+    var res3 = await contract.methods['fetch_myscore'](arg3).call({from: acc});
+    s3 = res3;
+  }
+  catch (err){
+    console.log(err);
+  }
+
   document.getElementById('g1scr').textContent = s1.toString();
   document.getElementById('g2scr').textContent = s2.toString();
+  document.getElementById('g3scr').textContent = s3.toString();
 
 
 }
@@ -692,6 +703,47 @@ async function load_this_game(){
       ctx4.fillStyle = 'pink';
       ctx4.fillRect(0, 0, canvas4.width, canvas4.height);
     }
+    else if (game_name == "flapperoo"){
+      console.log('this is '.concat(game_name));
+      document.getElementById('game_title').textContent = 'Flapperoo';
+      const h = window.innerHeight;
+      var ch = 450;
+      var cw = 300;
+      var ct = "8%";
+      var fsz = "1.5em";
+      var bw1 = "7%";
+      var bw2 = "7%";
+      console.log(h);
+      if (h >= 725){
+        ch = 600;
+        cw = 400;
+        ct = "15%";
+        fsz = "1.9em";
+        bw1 = "8%";
+        bw2 = "9%";
+      };
+      document.getElementById('bod').innerHTML = `
+      <div style="position: absolute; left: 10%; top: `.concat(ct).concat(`;width: 35%;">
+        <h1 style="color:#ff9933; font-size: 4em; ">Flapperoo</h1>
+        <div style="color: #ff9933;font-weight: 800;font-size:1.5em;background-color:purple;padding: 4px">Play the all time classic game on Web 3</div><br/>
+        <div style="color: #ff9933;font-weight:800;font-size:1.5em;">Rules: <br/>Save the bird from the pipes. <br/>You can only move UP, <br/>so be careful! <br/></div>
+        <div id="scrs" onclick="to_scores();" style="color:black;background-color: #ff9933;font-size: 1.9em; text-align: center; cursor: pointer;display:inline-block;margin-top:1%;padding: 4px;">Check Your Scores</div>
+      </div><br/>
+      <canvas id="game2" width="`.concat(cw.toString()).concat(`" height="`.concat(ch.toString()).concat(`" style="margin-left: 30%"></canvas>
+
+      <div style="margin-left: 30%;margin-top: 7px;">
+              <div id="start" onclick="to_rules();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw1).concat(`; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Rules</div>
+
+              <div id="start" onclick="reloadFlap();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw1).concat(`; text-align: center; cursor: pointer;display:inline-block;margin-right:1%;padding: 2px;">Play!</div>
+
+              <div id="restart" onclick="restartFlap();" style="color:black;background-color: #ff9933;font-size: `.concat(fsz).concat(`; width: `.concat(bw2).concat(`; text-align: center; cursor: pointer;display:inline-block;padding: 2px;">Retry</div>
+        </div>
+      `)))))))));
+      canvas6=document.getElementById('game2');
+      ctx6=canvas6.getContext('2d');
+      ctx6.fillStyle = '#87CEEB';
+      ctx6.fillRect(0, 0, canvas6.width, canvas6.height);
+    }
     else {
       document.getElementById("bod").innerHTML = `
         <div class="homeText3">This page does not exist. Are you choosing a valid game?</div>
@@ -1046,6 +1098,11 @@ function start_game_mental(){
 
 function pause(){
   last_click = Date.now();
+  return new Promise(resolve => setTimeout(resolve, 1000));
+}
+
+function pause2(){
+  ctx6.textAlign = 'start';
   return new Promise(resolve => setTimeout(resolve, 1000));
 }
 
@@ -2102,6 +2159,248 @@ async function restartTilegusta(){
 }
 window.restartTilegusta = restartTilegusta;
 
+// flapperoo
+
+var canvas6 = document.getElementById('game');
+var ctx6 = canvas6.getContext('2d');
+
+// Set the canvas dimensions
+canvas6.width = 400;
+canvas6.height = 600;
+
+// Game constants
+const GRAVITY = 0.04;
+const FLAP = -1;
+const BIRD_WIDTH = 50;
+const BIRD_HEIGHT = 50;
+const PIPE_WIDTH = 70;
+const PIPE_GAP = 100; // Gap size just enough for the bird
+const PIPE_SPEED = 1;
+const PIPE_SPACING = 350;
+
+var img_brd = new Image();
+img_brd.src = './img/nyan.png';
+
+// Game state
+let bird = {
+    x: 100,
+    y: canvas6.height / 2,
+    velocity: 0,
+    width: BIRD_WIDTH,
+    height: BIRD_HEIGHT
+};
+let pipes = [];
+let gameOverFlap = false;
+let scoreFlap = 0;
+let rafFlap = null;
+let seedFlap = 0;
+let gridFlap = 50;
+let gameOngoingFlap = false;
+let lastEndFlap = 0;
+
+// Pipe constructor
+function createPipe() {
+    const minHeight = 100; // Minimum pipe height to ensure gap is on canvas
+    const maxHeight = canvas6.height - PIPE_GAP - minHeight;
+    const gapY = Math.random() * (maxHeight - minHeight) + minHeight;
+    return {
+        x: canvas6.width,
+        gapY: gapY,
+        width: PIPE_WIDTH,
+        passed: false // Track if bird has passed this pipe for scoring
+    };
+}
+
+
+
+// Collision detection
+function checkCollisionFlap() {
+    for (let pipe of pipes) {
+        // Check collision with top pipe (from canvas top to gapY - PIPE_GAP)
+        if (
+            bird.x + bird.width > pipe.x &&
+            bird.x < pipe.x + pipe.width &&
+            (bird.y < pipe.gapY - PIPE_GAP || bird.y + bird.height > pipe.gapY)
+        ) {
+            return true;
+        }
+    }
+    // Check if bird hits the ground or ceiling
+    if (bird.y + bird.height > canvas6.height || bird.y < 0) {
+        return true;
+    }
+    return false;
+}
+
+// Update game state
+function updateFlap() {
+  console.log(bird.velocity);
+    if (gameOverFlap) return;
+
+    // Update bird
+    bird.velocity += GRAVITY;
+    bird.y += bird.velocity;
+
+    // Generate pipes
+    if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas6.width - PIPE_SPACING) {
+        pipes.push(createPipe());
+    }
+
+    // Update pipes
+    for (let i = pipes.length - 1; i >= 0; i--) {
+        pipes[i].x -= PIPE_SPEED;
+
+        // Score when bird passes pipe
+        if (!pipes[i].passed && bird.x > pipes[i].x + pipes[i].width) {
+            scoreFlap++;
+            pipes[i].passed = true;
+        }
+
+        // Remove off-screen pipes
+        if (pipes[i].x + pipes[i].width < 0) {
+            pipes.splice(i, 1);
+        }
+    }
+
+    // Check for collisions
+    if (checkCollisionFlap()) {
+        gameOverFlap = true;
+    }
+}
+
+
+
+// Render game
+async function drawFlap() {
+    // Clear canvas
+    ctx6.fillStyle = '#87CEEB'; // Sky blue background
+    ctx6.fillRect(0, 0, canvas6.width, canvas6.height);
+
+    // Draw bird
+    if (seedFlap % 7 == 0){
+      img_brd.src = "./img/flapup.svg";
+    }
+    else {
+      img_brd.src = "./img/flapdown.svg";
+    }
+
+
+    ctx6.drawImage(img_brd, bird.x, bird.y, bird.width, bird.height);
+
+    //ctx6.fillStyle = 'yellow';
+    //ctx6.fillRect(bird.x, bird.y, bird.width, bird.height);
+
+    // Draw pipes
+
+    for (let pipe of pipes) {
+        ctx6.fillStyle = 'green';
+        // Top pipe (from top to gapY - PIPE_GAP)
+        ctx6.fillRect(pipe.x, 0, pipe.width, pipe.gapY - PIPE_GAP);
+        // Bottom pipe (from gapY to canvas bottom)
+        ctx6.fillRect(pipe.x, pipe.gapY, pipe.width, canvas6.height - pipe.gapY);
+
+        console.log(pipe.gapY - PIPE_GAP);
+        ctx6.fillStyle = '#004400';
+        ctx6.fillRect(pipe.x - 5, pipe.gapY, pipe.width + 10, 10);
+        ctx6.fillRect(pipe.x - 5, pipe.gapY - PIPE_GAP - 10, pipe.width + 10, 10);
+    }
+
+    // Draw score
+    if (!gameOverFlap){
+      ctx6.fillStyle = 'black';
+      ctx6.font = '20px Arial';
+      ctx6.fillText(`Score: ${scoreFlap}`, 10, 30);
+    }
+
+
+    // Draw game over message
+    if (gameOverFlap) {
+      if (rafFlap !== null){
+        cancelAnimationFrame(rafFlap);
+        rafFlap = null;
+      }
+      lastEndFlap = Date.now();
+      ctx6.fillStyle = 'black';
+      ctx6.globalAlpha = 0.75;
+      ctx6.fillRect(0, canvas6.height / 2 - 30, canvas6.width, 120);
+
+      ctx6.globalAlpha = 1;
+      ctx6.fillStyle = 'white';
+      if (gridFlap == 25){
+        ctx6.font = '14px monospace';
+      }
+      else {
+        ctx6.font = '16px monospace';
+      }
+      ctx6.textAlign = 'center';
+      ctx6.textBaseline = 'middle';
+      ctx6.fillText('GAME OVER! Your score is '.concat(scoreFlap.toString()), canvas6.width / 2, canvas6.height / 2);
+
+      const acc = localStorage.getItem('acc');
+      const cn = localStorage.getItem('last_chain');
+      if (acc == null || acc == "" || cn == "" || cn == null){
+        ctx6.fillText('Thank you for playing', canvas6.width / 2, canvas6.height / 2 + 30);
+        ctx6.fillText('our Flapperoo Game', canvas6.width / 2, canvas6.height / 2 + 60);
+      }
+      else {
+        let ss = await checkIfHighscore(scoreFlap, 3);
+
+        if (ss){
+          ctx6.fillText('New High Score!', canvas6.width / 2, canvas6.height / 2 + 30);
+          ctx6.fillText('Click ENTER to record.', canvas6.width / 2, canvas6.height / 2 + 60);
+        }
+        else {
+          ctx6.fillText('Click ENTER to record your', canvas6.width / 2, canvas6.height / 2 + 30);
+          ctx6.fillText('score On-Chain', canvas6.width / 2, canvas6.height / 2 + 60);
+        }
+        await pause2();
+      }
+
+        cancelAnimationFrame(rafFlap);
+        gameOngoingFlap = false;
+    }
+    else {
+      seedFlap++;
+    }
+}
+
+
+// Game loop
+function gameLoopFlap() {
+    if (!gameOverFlap) {
+        updateFlap();
+    }
+
+    cancelAnimationFrame(rafFlap);
+    drawFlap();
+    rafFlap = requestAnimationFrame(gameLoopFlap);
+}
+
+
+async function reloadFlap(){
+  if (gameOngoingFlap || (Date.now() - lastEndFlap < 2000)){
+    return;
+  }
+  bird.y = canvas6.height / 2;
+  bird.velocity = 0;
+  pipes = [];
+  scoreFlap = 0;
+  gameOverFlap = false;
+  gameOngoingFlap = true;
+  gameLoopFlap();
+}
+window.reloadFlap = reloadFlap;
+
+
+
+async function restartFlap(){
+  window.location.reload();
+}
+window.restartFlap = restartFlap;
+
+
+
+
 // common
 
 async function to_wp(){
@@ -2188,6 +2487,16 @@ async function load_rules(){
         <p style="font-size: 1.9em;">The Iconic Classic Game is back to remind you of the Good Ol' Days</p>
         <p style="font-size: 1.5em;">Accommodate as many blocks on the canvas as you can before they overflow.  </p>
         <p style="font-size: 1.5em;">Completely filled horizontal rows disappear, leaving you with more room to work with.</p>
+        <p style="font-size: 1.5em;">The highest score at the time of competition close wins!</p>
+
+    `;
+  }
+  else if (game_name == 'flapperoo'){
+    el2.textContent = 'Flapperoo';
+    el.innerHTML = `
+        <p style="font-size: 1.9em;">This simple yet elegant masterpiece is back in a Web 3 avatar!</p>
+        <p style="font-size: 1.5em;">Can you keep Flapperoo the bird safe in his flight through the pipes?  </p>
+        <p style="font-size: 1.5em;">Use the UP button for the upward flight motion, and the LEFT button for going quicker.</p>
         <p style="font-size: 1.5em;">The highest score at the time of competition close wins!</p>
 
     `;
@@ -2367,6 +2676,28 @@ window.load_games = load_games;
 
     else {}
   }
+  else if (game_name == "flapperoo"){
+
+    if (e.code == "ArrowUp" && !gameOverFlap){
+
+      bird.velocity = FLAP;
+    }
+    else if (e.code == "ArrowLeft" && !gameOverFlap){
+
+      bird.velocity = FLAP * 2;
+    }
+    else if (e.code == "Enter"){
+        if (gameOverFlap){
+          const acc = localStorage.getItem('acc');
+          const cn = localStorage.getItem('last_chain');
+          if (acc == null || acc == "" || cn == "" || cn == null){}
+          else {
+            await registerScore(scoreFlap, 3);
+          }
+
+        }
+      }
+  }
 
 
 
@@ -2386,6 +2717,7 @@ async function loadHome(){
     if (w < 1000){
       document.getElementById('nright').style.display = 'none';
       document.getElementById('gli').style.display = 'none';
+
     };
     console.log(w);
     localStorage.setItem('warn_once','n');
