@@ -42583,6 +42583,11 @@ if (window.innerHeight < 725){
   gridFlap = 37;
 }
 
+var margin = 0;
+  if (gridFlap == 37){
+    margin = 5;
+  }
+
 // Game constants
 const GRAVITY = 0.04;
 const FLAP = -1;
@@ -42617,7 +42622,7 @@ let lastEndFlap = 0;
 function createPipe() {
     const minHeight = (100 * gridFlap) / 50; // Minimum pipe height to ensure gap is on canvas
     const maxHeight = canvas6.height - PIPE_GAP - minHeight;
-    const gapY = Math.random() * (maxHeight - minHeight) + minHeight;
+    const gapY = Math.random() * (maxHeight - minHeight) + minHeight + Math.random() * 40;
     return {
         x: canvas6.width,
         gapY: gapY,
@@ -42635,13 +42640,14 @@ function checkCollisionFlap() {
         if (
             bird.x + bird.width > pipe.x &&
             bird.x < pipe.x + pipe.width &&
-            (bird.y < pipe.gapY - PIPE_GAP || bird.y + bird.height > pipe.gapY)
+            (bird.y + margin < pipe.gapY - PIPE_GAP || bird.y + bird.height > pipe.gapY + margin)
         ) {
             return true;
         }
     }
+
     // Check if bird hits the ground or ceiling
-    if (bird.y + bird.height > canvas6.height || bird.y < 0) {
+    if (bird.y + bird.height > canvas6.height + margin || bird.y + margin < 0) {
         return true;
     }
     return false;

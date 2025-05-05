@@ -5,6 +5,7 @@ import ABIMNT from './abi_mnt.json';
 import ABILSK from './abi_lsk.json';
 import ABIGVT from './abi_gvt.json';
 import ABIFLR from './abi_flr.json';
+import ABISKL from './abi_skl.json';
 
 
 
@@ -75,6 +76,14 @@ async function connect(code) {
     name = 'SEPOLIA-ETH';
     symbol = 'ETH';
     rpc = "https://sepolia.infura.io";
+  }
+  else if (chain_name == 'skl'){
+    chainId = 37084624;
+    cid = '0x235ddd0';
+    chain = 'SKALE Nebula Hub Testnet';
+    name = 'SKALE-NEBULA';
+    symbol = 'sFUEL';
+    rpc = "https://testnet.skalenodes.com/v1/lanky-ill-funny-testnet";
   }
   else {
     console.log('unrecognized chain');
@@ -200,6 +209,12 @@ async function checkIfHighscore(scr, gid){
                                   abiInstance,
                     "0xAA1683d804f95FF02BB829A5616baDAc0B10732E");
   }
+  else if (chn == 'skl'){
+        abiInstance = ABISKL.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0xddFA5fE9a651eF1411605dA65D73971429841280");
+    }
   else {
       console.log('unknown chain');
       return false;
@@ -264,6 +279,12 @@ async function getMyScore() {
         contract = new web3.eth.Contract(
                                     abiInstance,
                      "0xAA1683d804f95FF02BB829A5616baDAc0B10732E");
+    }
+    else if (chn == 'skl'){
+        abiInstance = ABISKL.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0xddFA5fE9a651eF1411605dA65D73971429841280");
     }
     else {
         console.log('unknown chain');
@@ -1431,6 +1452,9 @@ else if (localStorage.getItem('last_chain') == 'lsk'){
 else if (localStorage.getItem('last_chain') == 'gvt'){
   playerImage.src = './img/gvtpl.png';
 }
+else if (localStorage.getItem('last_chain') == 'skl'){
+  playerImage.src = './img/sklpl.png';
+}
 
 const obstacle1Image = new Image();
 obstacle1Image.src = './img/obstacle1bg.png';
@@ -1777,6 +1801,9 @@ async function reloadRun() {
     }
     else if (chain_name == 'flr'){
       expImage.src = './img/flrlog.png';
+    }
+    else if (chain_name == 'skl'){
+      expImage.src = './img/skllog.png';
     }
     else if (chain_name == 'eth'){
       expImage.src = './img/ethlog2.png';
@@ -2173,6 +2200,11 @@ if (window.innerHeight < 725){
   gridFlap = 37;
 }
 
+var margin = 0;
+  if (gridFlap == 37){
+    margin = 5;
+  }
+
 // Game constants
 const GRAVITY = 0.04;
 const FLAP = -1;
@@ -2207,7 +2239,7 @@ let lastEndFlap = 0;
 function createPipe() {
     const minHeight = (100 * gridFlap) / 50; // Minimum pipe height to ensure gap is on canvas
     const maxHeight = canvas6.height - PIPE_GAP - minHeight;
-    const gapY = Math.random() * (maxHeight - minHeight) + minHeight;
+    const gapY = Math.random() * (maxHeight - minHeight) + minHeight + Math.random() * 40;
     return {
         x: canvas6.width,
         gapY: gapY,
@@ -2225,13 +2257,14 @@ function checkCollisionFlap() {
         if (
             bird.x + bird.width > pipe.x &&
             bird.x < pipe.x + pipe.width &&
-            (bird.y < pipe.gapY - PIPE_GAP || bird.y + bird.height > pipe.gapY)
+            (bird.y + margin < pipe.gapY - PIPE_GAP || bird.y + bird.height > pipe.gapY + margin)
         ) {
             return true;
         }
     }
+
     // Check if bird hits the ground or ceiling
-    if (bird.y + bird.height > canvas6.height || bird.y < 0) {
+    if (bird.y + bird.height > canvas6.height + margin || bird.y + margin < 0) {
         return true;
     }
     return false;
@@ -2779,6 +2812,7 @@ async function logout(){
         <option value="lsk">Lisk</option>
         <option value="flr">Flare</option>
         <option value="gvt">Gravity</option>
+        <option value="skl">Skale</option>
 
 
     </select>
@@ -2858,6 +2892,12 @@ async function registerScore(scr, gid){
         contract = new web3.eth.Contract(
                                     abiInstance,
                      "0x3C35228c92bd72D8A8871583F000F7EB70D1f29c");
+    }
+    else if (chn == 'skl'){
+        abiInstance = ABISKL.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0xddFA5fE9a651eF1411605dA65D73971429841280");
     }
     else if (chn == 'gvt'){
         abiInstance = ABIGVT.abi;
