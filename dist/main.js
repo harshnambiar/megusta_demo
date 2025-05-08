@@ -40407,7 +40407,10 @@ const abi_lsk_namespaceObject = /*#__PURE__*/JSON.parse('{"HV":[{"inputs":[{"int
 const abi_gvt_namespaceObject = /*#__PURE__*/JSON.parse('{"HV":[{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"bestscores","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"entries","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_bestscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"fetch_count","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_myscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_mytime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"score","type":"uint256"},{"internalType":"uint256","name":"game","type":"uint256"}],"name":"register","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"scores","outputs":[{"internalType":"uint256","name":"rid","type":"uint256"},{"internalType":"uint256","name":"scr","type":"uint256"},{"internalType":"uint256","name":"ts","type":"uint256"}],"stateMutability":"view","type":"function"}]}');
 ;// ./src/abi_flr.json
 const abi_flr_namespaceObject = /*#__PURE__*/JSON.parse('{"HV":[{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"bestscores","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"entries","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_bestscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"fetch_count","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_myscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_mytime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"score","type":"uint256"},{"internalType":"uint256","name":"game","type":"uint256"}],"name":"register","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"scores","outputs":[{"internalType":"uint256","name":"rid","type":"uint256"},{"internalType":"uint256","name":"scr","type":"uint256"},{"internalType":"uint256","name":"ts","type":"uint256"}],"stateMutability":"view","type":"function"}]}');
+;// ./src/abi_skl.json
+const abi_skl_namespaceObject = /*#__PURE__*/JSON.parse('{"HV":[{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"bestscores","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"entries","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_best","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_bestscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"fetch_count","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_myscore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gid","type":"uint256"}],"name":"fetch_mytime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"score","type":"uint256"},{"internalType":"uint256","name":"game","type":"uint256"}],"name":"register","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"scores","outputs":[{"internalType":"uint256","name":"rid","type":"uint256"},{"internalType":"uint256","name":"scr","type":"uint256"},{"internalType":"uint256","name":"ts","type":"uint256"}],"stateMutability":"view","type":"function"}]}');
 ;// ./src/index.js
+
 
 
 
@@ -40485,6 +40488,14 @@ async function connect(code) {
     name = 'SEPOLIA-ETH';
     symbol = 'ETH';
     rpc = "https://sepolia.infura.io";
+  }
+  else if (chain_name == 'skl'){
+    chainId = 37084624;
+    cid = '0x235ddd0';
+    chain = 'SKALE Nebula Hub Testnet';
+    name = 'SKALE-NEBULA';
+    symbol = 'sFUEL';
+    rpc = "https://testnet.skalenodes.com/v1/lanky-ill-funny-testnet";
   }
   else {
     console.log('unrecognized chain');
@@ -40610,6 +40621,12 @@ async function checkIfHighscore(scr, gid){
                                   abiInstance,
                     "0xAA1683d804f95FF02BB829A5616baDAc0B10732E");
   }
+  else if (chn == 'skl'){
+        abiInstance = abi_skl_namespaceObject.HV;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0xddFA5fE9a651eF1411605dA65D73971429841280");
+    }
   else {
       console.log('unknown chain');
       return false;
@@ -40674,6 +40691,12 @@ async function getMyScore() {
         contract = new web3.eth.Contract(
                                     abiInstance,
                      "0xAA1683d804f95FF02BB829A5616baDAc0B10732E");
+    }
+    else if (chn == 'skl'){
+        abiInstance = abi_skl_namespaceObject.HV;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0xddFA5fE9a651eF1411605dA65D73971429841280");
     }
     else {
         console.log('unknown chain');
@@ -41841,6 +41864,9 @@ else if (localStorage.getItem('last_chain') == 'lsk'){
 else if (localStorage.getItem('last_chain') == 'gvt'){
   playerImage.src = './img/gvtpl.png';
 }
+else if (localStorage.getItem('last_chain') == 'skl'){
+  playerImage.src = './img/sklpl.png';
+}
 
 const obstacle1Image = new Image();
 obstacle1Image.src = './img/obstacle1bg.png';
@@ -42187,6 +42213,9 @@ async function reloadRun() {
     }
     else if (chain_name == 'flr'){
       expImage.src = './img/flrlog.png';
+    }
+    else if (chain_name == 'skl'){
+      expImage.src = './img/skllog.png';
     }
     else if (chain_name == 'eth'){
       expImage.src = './img/ethlog2.png';
@@ -42905,31 +42934,31 @@ async function load_rules(){
   else if (game_name == 'spacerumble'){
     el2.textContent = 'Space Rumble';
     el.innerHTML = `
-        <p style="font-size: 2em;">A Sort of Variation of Space Impact from Our Black and White Phone Days</p>
-        <p style="font-size: 1.6em;">Can you help Space Doggo navigate through space dodging the scary asteroids?  </p>
-        <p style="font-size: 1.6em;">Move him up and down the screen to avoid getting hit. Remember, asteroids can destabilize the spacetime around the ship without touching it so try to not be TOO CLOSE. The red zone around the asteroid and your ship becomes visible when you're flying dangerously close. DO NOT let these fields overlap or it is game over. There is always 'at least' one place safe on the screen and it is advised to remain close to the center to have access to that spot at all times.</p>
-        <p style="font-size: 1.6em;">Try to get the EXP powerups that whizz past. They appear every 20 seconds. You also have an armor that makes you invincible for 3 seconds. You can activate it with the Left key, but don't rely on it too much: it gets rarer as your score goes higher.</p>
-        <p style="font-size: 1.6em;">The highest score at the time of competition close wins!</p>
+        <p style="font-size: 2em;color: #cccccc;font-family: monospace">A Sort of Variation of Space Impact from Our Black and White Phone Days</p>
+        <p style="font-size: 1.6em;color: #cccccc;font-family: monospace">Can you help Space Doggo navigate through space dodging the scary asteroids?  </p>
+        <p style="font-size: 1.6em;color: #cccccc;font-family: monospace">Move him up and down the screen to avoid getting hit. Remember, asteroids can destabilize the spacetime around the ship without touching it so try to not be TOO CLOSE. The red zone around the asteroid and your ship becomes visible when you're flying dangerously close. DO NOT let these fields overlap or it is game over. There is always 'at least' one place safe on the screen and it is advised to remain close to the center to have access to that spot at all times.</p>
+        <p style="font-size: 1.6em;color: #cccccc;font-family: monospace">Try to get the EXP powerups that whizz past. They appear every 20 seconds. You also have an armor that makes you invincible for 3 seconds. You can activate it with the Left key, but don't rely on it too much: it gets rarer as your score goes higher.</p>
+        <p style="font-size: 1.6em;color: #cccccc;font-family: monospace">The highest score at the time of competition close wins!</p>
 
     `;
   }
   else if (game_name == 'tilegusta'){
     el2.textContent = 'Tile Gusta';
     el.innerHTML = `
-        <p style="font-size: 1.9em;">The Iconic Classic Game is back to remind you of the Good Ol' Days</p>
-        <p style="font-size: 1.5em;">Accommodate as many blocks on the canvas as you can before they overflow.  </p>
-        <p style="font-size: 1.5em;">Completely filled horizontal rows disappear, leaving you with more room to work with.</p>
-        <p style="font-size: 1.5em;">The highest score at the time of competition close wins!</p>
+        <p style="font-size: 1.9em;color: #cccccc;font-family: monospace;margin-bottom: -3px">The Iconic Classic Game is back to remind you of the Good Ol' Days</p>
+        <p style="font-size: 1.5em;color: #cccccc;font-family: monospace">Accommodate as many blocks on the canvas as you can before they overflow.  </p>
+        <p style="font-size: 1.5em;color: #cccccc;font-family: monospace">Completely filled horizontal rows disappear, leaving you with more room to work with.</p>
+        <p style="font-size: 1.5em;color: #cccccc;font-family: monospace">The highest score at the time of competition close wins!</p>
 
     `;
   }
   else if (game_name == 'flapperoo'){
     el2.textContent = 'Flapperoo';
     el.innerHTML = `
-        <p style="font-size: 1.9em;">This simple yet elegant masterpiece is back in a Web 3 avatar!</p>
-        <p style="font-size: 1.5em;">Can you keep Flapperoo the bird safe in his flight through the pipes?  </p>
-        <p style="font-size: 1.5em;">Use the UP button for the upward flight motion, and the LEFT button for going quicker.</p>
-        <p style="font-size: 1.5em;">The highest score at the time of competition close wins!</p>
+        <p style="font-size: 1.9em;color: #cccccc;font-family: monospace; margin-bottom: -3px">This simple yet elegant masterpiece is back in a Web 3 avatar!</p>
+        <p style="font-size: 1.5em;color: #cccccc;font-family: monospace">Can you keep Flapperoo the bird safe in his flight through the pipes?  </p>
+        <p style="font-size: 1.5em;color: #cccccc;font-family: monospace">Use the UP button for the upward flight motion, and the LEFT button for going quicker.</p>
+        <p style="font-size: 1.5em;color: #cccccc;font-family: monospace">The highest score at the time of competition close wins!</p>
 
     `;
   }
@@ -42943,6 +42972,8 @@ async function load_rules(){
 
     `;
   }
+  el.style.marginLeft = "3%";
+  el.style.marginRight = "3%";
 }
 window.load_rules = load_rules;
 
@@ -43195,6 +43226,7 @@ async function logout(){
         <option value="lsk">Lisk</option>
         <option value="flr">Flare</option>
         <option value="gvt">Gravity</option>
+        <option value="skl">Skale</option>
 
 
     </select>
@@ -43274,6 +43306,12 @@ async function registerScore(scr, gid){
         contract = new web3.eth.Contract(
                                     abiInstance,
                      "0x3C35228c92bd72D8A8871583F000F7EB70D1f29c");
+    }
+    else if (chn == 'skl'){
+        abiInstance = abi_skl_namespaceObject.HV;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0xddFA5fE9a651eF1411605dA65D73971429841280");
     }
     else if (chn == 'gvt'){
         abiInstance = abi_gvt_namespaceObject.HV;

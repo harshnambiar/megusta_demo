@@ -2522,31 +2522,31 @@ async function load_rules(){
   else if (game_name == 'spacerumble'){
     el2.textContent = 'Space Rumble';
     el.innerHTML = `
-        <p style="font-size: 2em;">A Sort of Variation of Space Impact from Our Black and White Phone Days</p>
-        <p style="font-size: 1.6em;">Can you help Space Doggo navigate through space dodging the scary asteroids?  </p>
-        <p style="font-size: 1.6em;">Move him up and down the screen to avoid getting hit. Remember, asteroids can destabilize the spacetime around the ship without touching it so try to not be TOO CLOSE. The red zone around the asteroid and your ship becomes visible when you're flying dangerously close. DO NOT let these fields overlap or it is game over. There is always 'at least' one place safe on the screen and it is advised to remain close to the center to have access to that spot at all times.</p>
-        <p style="font-size: 1.6em;">Try to get the EXP powerups that whizz past. They appear every 20 seconds. You also have an armor that makes you invincible for 3 seconds. You can activate it with the Left key, but don't rely on it too much: it gets rarer as your score goes higher.</p>
-        <p style="font-size: 1.6em;">The highest score at the time of competition close wins!</p>
+        <p style="font-size: 2em;color: #cccccc;font-family: monospace">A Sort of Variation of Space Impact from Our Black and White Phone Days</p>
+        <p style="font-size: 1.6em;color: #cccccc;font-family: monospace">Can you help Space Doggo navigate through space dodging the scary asteroids?  </p>
+        <p style="font-size: 1.6em;color: #cccccc;font-family: monospace">Move him up and down the screen to avoid getting hit. Remember, asteroids can destabilize the spacetime around the ship without touching it so try to not be TOO CLOSE. The red zone around the asteroid and your ship becomes visible when you're flying dangerously close. DO NOT let these fields overlap or it is game over. There is always 'at least' one place safe on the screen and it is advised to remain close to the center to have access to that spot at all times.</p>
+        <p style="font-size: 1.6em;color: #cccccc;font-family: monospace">Try to get the EXP powerups that whizz past. They appear every 20 seconds. You also have an armor that makes you invincible for 3 seconds. You can activate it with the Left key, but don't rely on it too much: it gets rarer as your score goes higher.</p>
+        <p style="font-size: 1.6em;color: #cccccc;font-family: monospace">The highest score at the time of competition close wins!</p>
 
     `;
   }
   else if (game_name == 'tilegusta'){
     el2.textContent = 'Tile Gusta';
     el.innerHTML = `
-        <p style="font-size: 1.9em;">The Iconic Classic Game is back to remind you of the Good Ol' Days</p>
-        <p style="font-size: 1.5em;">Accommodate as many blocks on the canvas as you can before they overflow.  </p>
-        <p style="font-size: 1.5em;">Completely filled horizontal rows disappear, leaving you with more room to work with.</p>
-        <p style="font-size: 1.5em;">The highest score at the time of competition close wins!</p>
+        <p style="font-size: 1.9em;color: #cccccc;font-family: monospace;margin-bottom: -3px">The Iconic Classic Game is back to remind you of the Good Ol' Days</p>
+        <p style="font-size: 1.5em;color: #cccccc;font-family: monospace">Accommodate as many blocks on the canvas as you can before they overflow.  </p>
+        <p style="font-size: 1.5em;color: #cccccc;font-family: monospace">Completely filled horizontal rows disappear, leaving you with more room to work with.</p>
+        <p style="font-size: 1.5em;color: #cccccc;font-family: monospace">The highest score at the time of competition close wins!</p>
 
     `;
   }
   else if (game_name == 'flapperoo'){
     el2.textContent = 'Flapperoo';
     el.innerHTML = `
-        <p style="font-size: 1.9em;">This simple yet elegant masterpiece is back in a Web 3 avatar!</p>
-        <p style="font-size: 1.5em;">Can you keep Flapperoo the bird safe in his flight through the pipes?  </p>
-        <p style="font-size: 1.5em;">Use the UP button for the upward flight motion, and the LEFT button for going quicker.</p>
-        <p style="font-size: 1.5em;">The highest score at the time of competition close wins!</p>
+        <p style="font-size: 1.9em;color: #cccccc;font-family: monospace; margin-bottom: -3px">This simple yet elegant masterpiece is back in a Web 3 avatar!</p>
+        <p style="font-size: 1.5em;color: #cccccc;font-family: monospace">Can you keep Flapperoo the bird safe in his flight through the pipes?  </p>
+        <p style="font-size: 1.5em;color: #cccccc;font-family: monospace">Use the UP button for the upward flight motion, and the LEFT button for going quicker.</p>
+        <p style="font-size: 1.5em;color: #cccccc;font-family: monospace">The highest score at the time of competition close wins!</p>
 
     `;
   }
@@ -2560,6 +2560,8 @@ async function load_rules(){
 
     `;
   }
+  el.style.marginLeft = "3%";
+  el.style.marginRight = "3%";
 }
 window.load_rules = load_rules;
 
