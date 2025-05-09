@@ -362,7 +362,7 @@ var last_click = 0;
 var mental_clicks = 0;
 var mental_time = Date.now();
 
-
+var sessionId = "";
 
 
 
@@ -383,6 +383,8 @@ window.to_launch = to_launch;
 
 
 async function load_this_game(){
+  sessionId = (Date.now()).toString();
+  localStorage.setItem('session_id', sessionId);
   const w = window.innerWidth;
   const h = window.innerHeight;
   if (w < 1200 || h < 540){
@@ -2586,7 +2588,10 @@ async function load_games(){
   const warn = localStorage.getItem('warn_once');
   if ((acc == null || acc == "" || cn == "" || cn == null) && (warn == 'n')){
     localStorage.setItem('warn_once', 'y');
-    alert('You are not logged in to your Metamask. Please Login now if you want to store your score On-Chain. You can play without loggin in, though. Also, please note that we currently only support PCs for playing.');
+    alert('You are not logged in to your Metamask. Please Login now if you want to store your score On-Chain. You can play without logging in, though. Also, please note that we currently only support PCs for playing and you can only have one tab with the game running (to discourage automated parallel game farming).');
+  }
+  else {
+    alert('Welcome to Megusta games. Please note: \n 1. Our games are optimized for PCs only for now \n 2. Only one game session is allowed in the browser tabs (to discourage automated parallel game farming).');
   }
 }
 window.load_games = load_games;
@@ -2603,6 +2608,11 @@ window.load_games = load_games;
 
   var url = window.location.toString();
   var game_name = url.substring(url.indexOf('?') + 1);
+
+  const sId = localStorage.getItem('session_id');
+  if (sId != sessionId){
+    return;
+  }
 
   if (game_name == "snake"){
     //up
@@ -2771,6 +2781,7 @@ async function loadHome(){
 
     };
     console.log(w);
+    localStorage.setItem('session_id', '0');
     localStorage.setItem('warn_once','n');
     var c = localStorage.getItem('last_chain');
     var ts = localStorage.getItem('last_session');
