@@ -1,5 +1,6 @@
 import detectEthereumProvider from "@metamask/detect-provider"
 import Web3 from "web3";
+import axios from "axios";
 import ABIETH from './abi_eth.json';
 import ABIMNT from './abi_mnt.json';
 import ABILSK from './abi_lsk.json';
@@ -332,7 +333,136 @@ async function getMyScore() {
 window.getMyScore = getMyScore;
 
 
+async function getTopScore() {
+    const chn = localStorage.getItem("last_chain");
+    const acc = localStorage.getItem("acc");
+    const web3 = new Web3(window.ethereum);
+    var abiInstance;
+    var contract;
 
+    if (chn == 'eth'){
+        abiInstance = ABIETH.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0xdbd0b45076a748270e62d5378c233981db78d581");
+    }
+    else if (chn == 'mnt'){
+        abiInstance = ABIMNT.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x7440fb654481859c181a5b135a47f69b90f4c7ce");
+    }
+    else if (chn == 'lsk'){
+        abiInstance = ABILSK.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x293617E4cd7C57AD2Dd6239B4e7F47e0Fe1691a9");
+    }
+    else if (chn == 'flr'){
+        abiInstance = ABIFLR.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0x3C35228c92bd72D8A8871583F000F7EB70D1f29c");
+    }
+    else if (chn == 'gvt'){
+        abiInstance = ABIGVT.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0xAA1683d804f95FF02BB829A5616baDAc0B10732E");
+    }
+    else if (chn == 'skl'){
+        abiInstance = ABISKL.abi;
+        contract = new web3.eth.Contract(
+                                    abiInstance,
+                     "0xddFA5fE9a651eF1411605dA65D73971429841280");
+    }
+    else {
+        console.log('unknown chain');
+        return;
+    }
+
+
+  var s1 = 0;
+  var s2 = 0;
+  var s3 = 0;
+  var a1 = 'null';
+  var a2 = 'null';
+  var a3 = 'null';
+
+  try  {
+    const arg1 = BigInt(1);
+    var res1 = await contract.methods['fetch_bestscore'](arg1).call({from: acc});
+    s1 = res1;
+  }
+  catch (err){
+    console.log(err);
+  }
+
+  try  {
+    const arg2 = BigInt(2);
+    var res2 = await contract.methods['fetch_bestscore'](arg2).call({from: acc});
+    s2 = res2;
+  }
+  catch (err){
+    console.log(err);
+  }
+
+  try  {
+    const arg3 = BigInt(3);
+    var res3 = await contract.methods['fetch_bestscore'](arg3).call({from: acc});
+    s3 = res3;
+  }
+  catch (err){
+    console.log(err);
+  }
+
+  try  {
+    const arg1 = BigInt(1);
+    var res4 = await contract.methods['fetch_best'](arg1).call({from: acc});
+    a1 = res4;
+  }
+  catch (err){
+    console.log(err);
+  }
+
+  try  {
+    const arg2 = BigInt(2);
+    var res5 = await contract.methods['fetch_best'](arg2).call({from: acc});
+    a2 = res5;
+  }
+  catch (err){
+    console.log(err);
+  }
+
+  try  {
+    const arg3 = BigInt(3);
+    var res6 = await contract.methods['fetch_best'](arg3).call({from: acc});
+    a3 = res6;
+  }
+  catch (err){
+    console.log(err);
+  }
+
+  if (a1.length > 10){
+    a1 = a1.slice(0,10).concat('...').concat(a1.slice(a1.length - 10, a1.length));
+  }
+  if (a2.length > 10){
+    a2 = a2.slice(0,10).concat('...').concat(a2.slice(a2.length - 10, a2.length));
+  }
+  if (a3.length > 10){
+    a3 = a3.slice(0,10).concat('...').concat(a3.slice(a3.length - 10, a3.length));
+  }
+
+  document.getElementById('b1scr').textContent = s1.toString();
+  document.getElementById('l1scr').textContent = ' {'.concat(a1).concat(' }');
+  document.getElementById('b2scr').textContent = s2.toString();
+  document.getElementById('l2scr').textContent = ' {'.concat(a2).concat(' }');
+  document.getElementById('b3scr').textContent = s3.toString();
+  document.getElementById('l3scr').textContent = ' {'.concat(a3).concat(' }');
+
+
+}
+window.getTopScore = getTopScore;
 
 
 // connects metamask to the flare testnet (coston2)
@@ -2857,6 +2987,7 @@ async function load_scores(){
     return;
   }
   await getMyScore();
+  await getTopScore();
 }
 window.load_scores = load_scores;
 
@@ -2948,3 +3079,46 @@ console.log(gasPriceEst);
 
 }
 window.registerScore = registerScore;
+
+
+async function testDb1(){
+  const data = {
+    wallet: '0xD0dC8A261Ad1B75A92C5e502AE10c3Fde042b879',
+    gameId: "3"
+  };
+
+  try{
+    const res = await axios.post("https://gm-serve3.onrender.com/api/megustacampaign/get", {
+      data: data,
+    });
+    console.log(res.data.entries);
+  }
+  catch (err){
+    console.log(err);
+  }
+}
+window.testDb1 = testDb1;
+
+
+async function testDb(){
+  const wl = '0xD0dC8A261Ad1B75A92C5e502AE10c3Fde042b800';
+  const ts = (Date.now()).toString();
+  const data = {
+    wallet: wl,
+    timestamp: ts,
+    score: "111",
+    gameId: "3",
+    sessionId: wl.concat((Math.floor(Math.random(1000,9999))).toString()).concat(ts)
+  };
+  try{
+    const res = await axios.post("https://gm-serve3.onrender.com/api/megustacampaign/set", {
+      data: data,
+    });
+
+    console.log(res);
+  }
+  catch (err){
+    console.log(err);
+  }
+}
+window.testDb = testDb;
