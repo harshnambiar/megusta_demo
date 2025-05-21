@@ -128,7 +128,8 @@ async function connect(code) {
     }
     await startApp(provider, chain_name);
   } else {
-    console.log("Please install MetaMask!")
+    console.log("Please install MetaMask!");
+    alert("Please install metamask to be able to use this feature");
   }
 
 
@@ -136,23 +137,45 @@ async function connect(code) {
 }
 window.connect = connect;
 
+async function getActiveAccount(){
+  try {
+    const accounts = await window.ethereum.request({method: "eth_accounts"});
+    return accounts[0] || null;
+  }
+  catch (err){
+    console.log(err);
+    return null;
+  }
+}
+
 
 async function startApp(provider, chain) {
   if (provider !== window.ethereum) {
     console.error("Do you have multiple wallets installed?")
   }
   else {
-    const accounts = await window.ethereum
-    .request({ method: "eth_requestAccounts" })
-    .catch((err) => {
-      if (err.code === 4001) {
-        console.log("Please connect to MetaMask.")
-      } else {
-        console.error(err)
-      }
-    })
-    console.log("hi");
-  const account = accounts[0];
+    let active_acc = await getActiveAccount();
+    let account = '';
+    console.log(active_acc);
+
+
+    if (active_acc){
+      account = active_acc;
+    }
+    else {
+      const accounts = await window.ethereum
+      .request({ method: "eth_requestAccounts" })
+      .catch((err) => {
+        if (err.code === 4001) {
+          console.log("Please connect to MetaMask.")
+        } else {
+          console.error(err)
+        }
+      })
+      console.log("hi");
+      account = accounts[0];
+    }
+
   var web3 = new Web3(window.ethereum);
   const bal = await web3.eth.getBalance(account);
   //console.log("hi");
