@@ -3104,6 +3104,10 @@ console.log(gasPriceEst);
 window.registerScore = registerScore;
 
 
+
+
+// test functions
+
 async function testDb1(){
   const data = {
     wallet: '0xD0dC8A261Ad1B75A92C5e502AE10c3Fde042b879',
