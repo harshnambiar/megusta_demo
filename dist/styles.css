@@ -600,6 +600,8 @@ body {
     margin: 0 auto;
 }
 
+
+
 @media (min-width: 768px) {
     .about-container {
         flex-direction: row;

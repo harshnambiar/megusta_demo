@@ -1,83 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Scores</title>
-  <link rel="shortcut icon" href="img/logo.png">
-  <link rel="stylesheet" href="styles.css">
-  <script defer="defer" src="./main.js"></script>
+    <meta charset="utf-8">
+    <meta name="author" content="Kim Pettersson">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
+    <link rel="stylesheet" href="styles.css" />
+    <script defer="defer" src="./main.js"></script>
+     <style>
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+        }
+        .tab-button.active {
+            background: black;
+            color: white;
+            border-bottom: 1px solid #fff;
+        }
+        .tab-content {
+            display: none;
+            margin-left: 5%;
+            margin-right: 5%;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 0 5px 5px 5px;
+        }
+        .tab-content.active {
+            display: block;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #f4f4f4;
+        }
+    </style>
 </head>
-
-<body onload="load_scores();">
-
+<body style="background: linear-gradient(to right, black, #333333)">
  <header>
     <nav class="navbar">
       <div class="nav-left">
         <a href="index.html"><img src="img/logo.png" alt="Me Gusta Logo" class="logo"></a>
     </div>
     <div class="nav-center">
-         <h2 id="game_title" style="font-size: 2em;margin-right: 30%"> Your Scores </h2>
+         <h2 id="game_title" style="font-size: 2em;margin-right: 30%"> Leaderboard </h2>
     </div>
 
 
     </nav>
   </header>
+  <br/><br/>
+    <div class="tabs" style="margin-left: 5%;">
+        <button id="spacerumblebutton" class="tab-button active" onclick="openTab('spacerumble')">Space Rumble</button>
+        <button id="tilegustabutton" class="tab-button" onclick="openTab('tilegusta')">Tile Gusta</button>
+        <button id="flapperoobutton" class="tab-button" onclick="openTab('flapperoo')">Flapperoo</button>
+    </div>
 
+    <div id="spacerumble" class="tab-content active">
+        <table>
+            <thead>
+                <tr style="color: black;">
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Score</th>
+                    <th>Chain</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr>
+                    <td>1</td>
+                    <td>Player A</td>
+                    <td>5003</td>
+                    <td>SKL</td>
+                    <td>Today</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Player B</td>
+                    <td>3916</td>
+                    <td>STT</td>
+                    <td>Yesterday</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Player C</td>
+                    <td>3819</td>
+                    <td>FLR</td>
+                    <td>10 May 2025</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Player P</td>
+                    <td>3500</td>
+                    <td>GVT</td>
+                    <td>20 May 2025</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Player Q</td>
+                    <td>3411</td>
+                    <td>SKL</td>
+                    <td>25 May 2025</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Player R</td>
+                    <td>3330</td>
+                    <td>FLR</td>
+                    <td>24 May 2025</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Player P</td>
+                    <td>2501</td>
+                    <td>GVT</td>
+                    <td>20 May 2025</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Player Q</td>
+                    <td>1907</td>
+                    <td>SKL</td>
+                    <td>25 May 2025</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Player R</td>
+                    <td>1800</td>
+                    <td>FLR</td>
+                    <td>24 May 2025</td>
+                <tr>
+                    <td>10</td>
+                    <td>Player P</td>
+                    <td>1500</td>
+                    <td>GVT</td>
+                    <td>20 May 2025</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Player Q</td>
+                    <td>1400</td>
+                    <td>SKL</td>
+                    <td>25 May 2025</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Player R</td>
+                    <td>1300</td>
+                    <td>FLR</td>
+                    <td>24 May 2025</td>
+                </tr>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
+    <div id="tilegusta" class="tab-content">
+        <table>
+            <thead>
+               <tr style="color: black;">
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Score</th>
+                    <th>Chain</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Player X</td>
+                    <td>2200</td>
+                    <td>FLR</td>
+                    <td>5 May 2025</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Player Y</td>
+                    <td>16000</td>
+                    <td>LSK</td>
+                    <td>10 Apr 2025</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Player Z</td>
+                    <td>1000</td>
+                    <td>GVT</td>
+                    <td>20 May 2025</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Player P</td>
+                    <td>1500</td>
+                    <td>GVT</td>
+                    <td>20 May 2025</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Player Q</td>
+                    <td>1400</td>
+                    <td>SKL</td>
+                    <td>25 May 2025</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Player R</td>
+                    <td>1300</td>
+                    <td>FLR</td>
+                    <td>24 May 2025</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Player P</td>
+                    <td>1500</td>
+                    <td>GVT</td>
+                    <td>20 May 2025</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Player Q</td>
+                    <td>1400</td>
+                    <td>SKL</td>
+                    <td>25 May 2025</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Player R</td>
+                    <td>1300</td>
+                    <td>FLR</td>
+                    <td>24 May 2025</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-
-<section class="featured-games" id="featured-games">
-        <h2>🔥 Your Best Scores So Far 🔥</h2>
-        <div class="game-grid">
-            <div class="game-card animated">
-                <img src="img/sr.png" alt="Space Rumble" style="height: 300px;width: 300px;object-fit: fill;">
-                <h3 id="g1scr">NA</h3>
-
-            </div>
-            <div class="game-card animated">
-                <img src="img/tet.png" alt="Tetris" style="height: 300px;width: 300px;object-fit: fill;">
-                <h3 id="g2scr">NA</h3>
-
-            </div>
-            <div class="game-card animated">
-                <img src="img/flap.png" alt="Flapperoo" style="height: 300px;width: 300px;object-fit: fill;">
-                <h3 id="g3scr">NA</h3>
-
-            </div>
-        </div>
-    </section>
-
-
-<section class="featured-games" id="featured-games">
-        <h2>🔥 Overall Best Scores So Far 🔥</h2>
-        <div class="game-grid">
-            <div class="game-card animated">
-                <img src="img/sr.png" alt="Space Rumble" style="height: 300px;width: 300px;object-fit: fill;">
-                <h3 id="b1scr">NA</h3>
-                <h3 id="l1scr">NA</h3>
-            </div>
-            <div class="game-card animated">
-                <img src="img/tet.png" alt="Tetris" style="height: 300px;width: 300px;object-fit: fill;">
-                <h3 id="b2scr">NA</h3>
-                <h3 id="l2scr">NA</h3>
-            </div>
-            <div class="game-card animated">
-                <img src="img/flap.png" alt="Flapperoo" style="height: 300px;width: 300px;object-fit: fill;">
-                <h3 id="b3scr">NA</h3>
-                <h3 id="l3scr">NA</h3>
-            </div>
-        </div>
-    </section>
-
-
-
-
-
-
-  <canvas id="game" width="620" height="620" style="display:none"></canvas>
-
+    <div id="flapperoo" class="tab-content">
+        <table>
+            <thead>
+                <tr style="color: black;">
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Score</th>
+                    <th>Chain</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Player P</td>
+                    <td>1500</td>
+                    <td>GVT</td>
+                    <td>20 May 2025</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Player Q</td>
+                    <td>1400</td>
+                    <td>SKL</td>
+                    <td>25 May 2025</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Player R</td>
+                    <td>1300</td>
+                    <td>FLR</td>
+                    <td>24 May 2025</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Player P</td>
+                    <td>1500</td>
+                    <td>GVT</td>
+                    <td>20 May 2025</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Player Q</td>
+                    <td>1400</td>
+                    <td>SKL</td>
+                    <td>25 May 2025</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Player R</td>
+                    <td>1300</td>
+                    <td>FLR</td>
+                    <td>24 May 2025</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Player P</td>
+                    <td>1500</td>
+                    <td>GVT</td>
+                    <td>20 May 2025</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Player Q</td>
+                    <td>1400</td>
+                    <td>SKL</td>
+                    <td>25 May 2025</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Player R</td>
+                    <td>1300</td>
+                    <td>FLR</td>
+                    <td>24 May 2025</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<canvas id="game" width="620" height="620" style="display:none"></canvas>
 </body>
-
 </html>

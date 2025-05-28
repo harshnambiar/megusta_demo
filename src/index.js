@@ -3103,8 +3103,19 @@ console.log(gasPriceEst);
 }
 window.registerScore = registerScore;
 
+async function openTab(s){
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  document.querySelectorAll('.tab-button').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  document.getElementById(s).classList.add('active');
+  const str = s.concat('button');
 
-
+  document.getElementById(str).classList.add('active');
+}
+window.openTab = openTab;
 
 // test functions
 
