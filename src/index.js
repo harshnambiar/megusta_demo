@@ -2961,6 +2961,14 @@ async function loadHome(){
       `);
 
     }
+    try{
+      const res = await axios.post("https://gm-serve3.onrender.com/api/megustacampaign/all", {
+        data: null,
+      });
+    }
+    catch(err){
+      console.log(err);
+    }
 
 
 }
@@ -3090,6 +3098,7 @@ async function registerScore(scr, gid){
   }
   catch (err){
     console.log(err);
+    return;
   }
 
 console.log(gasEst);
@@ -3098,7 +3107,28 @@ console.log(gasPriceEst);
     .send({from: acc, gas: gasEst, gasPrice: gasPriceEst})
     .catch((error) => {
         console.error('Call Error:', error);
+        return;
     });
+
+  const ts = (Date.now()).toString();
+  const data = {
+    wallet: acc,
+    timestamp: ts,
+    score: scr.toString(),
+    chain: chn.toUpperCase(),
+    gameId: gid.toString(),
+    sessionId: acc.concat((Math.floor(Math.random(1000,9999))).toString()).concat(ts)
+  };
+  try{
+    const res = await axios.post("https://gm-serve3.onrender.com/api/megustacampaign/set", {
+      data: data,
+    });
+
+    console.log(res);
+  }
+  catch (err){
+    console.log(err);
+  }
 
 }
 window.registerScore = registerScore;
@@ -3116,6 +3146,142 @@ async function openTab(s){
   document.getElementById(str).classList.add('active');
 }
 window.openTab = openTab;
+
+
+async function load_scores2(){
+
+  var ret1 = [];
+  var ret2 = [];
+  var ret3 = [];
+  try{
+    const res = await axios.post("https://gm-serve3.onrender.com/api/megustacampaign/all", {
+      data: null,
+    });
+    var i = 0;
+    while (i < res.data.entries1.length){
+      ret1.push(res.data.entries1[i]);
+      i++;
+    }
+    i = 0;
+    while (i < res.data.entries2.length){
+      ret2.push(res.data.entries2[i]);
+      i++;
+    }
+    i = 0;
+    while (i < res.data.entries3.length){
+      ret3.push(res.data.entries3[i]);
+      i++;
+    }
+
+  }
+  catch (err){
+    console.log(err);
+  }
+  console.log('First Game:');
+  console.log(ret1);
+  console.log('Second Game');
+  console.log(ret2);
+  console.log('Third Game');
+  console.log(ret3);
+
+  const acc = localStorage.getItem("acc");
+  var accInTopScores = false;
+
+
+  if (acc === "" || !acc || acc === null){
+    alert('You are not logged in. Please use metamask to log in.');
+    return;
+  }
+
+  if (ret1.length != ret2.length || ret2.length != ret3.length || ret3.length != 20){
+    alert('Something went wrong. Please try later.');
+    return;
+  }
+
+  console.log(acc);
+
+  var j = 0;
+  var tbody1 = document.getElementById('tbd1');
+  var tbody2 = document.getElementById('tbd2');
+  var tbody3 = document.getElementById('tbd3');
+  while (j < ret1.length){
+    const r1 = document.createElement('tr');
+    const rankcell1 = document.createElement('td');
+    const walletcell1 = document.createElement('td');
+    const scorecell1 = document.createElement('td');
+    const chaincell1 = document.createElement('td');
+    const datecell1 = document.createElement('td');
+    rankcell1.textContent = j + 1;
+    walletcell1.textContent = ret1[j].wallet;
+    chaincell1.textContent = ret1[j].chain;
+    scorecell1.textContent = ret1[j].score;
+    datecell1.textContent = (ret1[j].timestamp).slice(0,10);
+
+
+    r1.appendChild(rankcell1);
+    r1.appendChild(walletcell1);
+    r1.appendChild(scorecell1);
+    r1.appendChild(chaincell1);
+    r1.appendChild(datecell1);
+
+    if (acc.toUpperCase() === ret1[j].wallet.toUpperCase()){
+      r1.style.color = 'red';
+    }
+
+    tbody1.appendChild(r1);
+
+    const r2 = document.createElement('tr');
+    const rankcell2 = document.createElement('td');
+    const walletcell2 = document.createElement('td');
+    const scorecell2 = document.createElement('td');
+    const chaincell2 = document.createElement('td');
+    const datecell2 = document.createElement('td');
+    rankcell2.textContent = j + 1;
+    walletcell2.textContent = ret2[j].wallet;
+    chaincell2.textContent = ret2[j].chain;
+    scorecell2.textContent = ret2[j].score;
+    datecell2.textContent = ret2[j].timestamp.slice(0,10);
+    r2.appendChild(rankcell2);
+    r2.appendChild(walletcell2);
+    r2.appendChild(scorecell2);
+    r2.appendChild(chaincell2);
+    r2.appendChild(datecell2);
+
+    if (acc.toUpperCase() === ret2[j].wallet.toUpperCase()){
+      r2.style.color = 'red';
+    }
+
+    tbody2.appendChild(r2);
+
+    const r3 = document.createElement('tr');
+    const rankcell3 = document.createElement('td');
+    const walletcell3 = document.createElement('td');
+    const scorecell3 = document.createElement('td');
+    const chaincell3 = document.createElement('td');
+    const datecell3 = document.createElement('td');
+    rankcell3.textContent = j + 1;
+    walletcell3.textContent = ret3[j].wallet;
+    chaincell3.textContent = ret3[j].chain;
+    scorecell3.textContent = ret3[j].score;
+    datecell3.textContent = ret3[j].timestamp.slice(0,10);
+    r3.appendChild(rankcell3);
+    r3.appendChild(walletcell3);
+    r3.appendChild(scorecell3);
+    r3.appendChild(chaincell3);
+    r3.appendChild(datecell3);
+
+    if (acc.toUpperCase() === ret3[j].wallet.toUpperCase()){
+      r3.style.color = 'red';
+    }
+
+
+    tbody3.appendChild(r3);
+
+    j++;
+  }
+  await getMyScore();
+}
+window.load_scores2 = load_scores2;
 
 // test functions
 
@@ -3145,6 +3311,7 @@ async function testDb(){
     wallet: wl,
     timestamp: ts,
     score: "111",
+    chain: "MNT",
     gameId: "3",
     sessionId: wl.concat((Math.floor(Math.random(1000,9999))).toString()).concat(ts)
   };

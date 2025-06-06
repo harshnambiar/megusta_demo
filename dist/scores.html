@@ -53,7 +53,7 @@
         }
     </style>
 </head>
-<body style="background: linear-gradient(to right, black, #333333)">
+<body style="background: linear-gradient(to right, black, #333333)" onload="load_scores2();">
  <header>
     <nav class="navbar">
       <div class="nav-left">
@@ -71,6 +71,7 @@
         <button id="spacerumblebutton" class="tab-button active" onclick="openTab('spacerumble')">Space Rumble</button>
         <button id="tilegustabutton" class="tab-button" onclick="openTab('tilegusta')">Tile Gusta</button>
         <button id="flapperoobutton" class="tab-button" onclick="openTab('flapperoo')">Flapperoo</button>
+        <button id="yourbestbutton" class="tab-button" onclick="openTab('yourbest')">Your Scores</button>
     </div>
 
     <div id="spacerumble" class="tab-content active">
@@ -84,91 +85,8 @@
                     <th>Time</th>
                 </tr>
             </thead>
-            <tbody >
-                <tr>
-                    <td>1</td>
-                    <td>Player A</td>
-                    <td>5003</td>
-                    <td>SKL</td>
-                    <td>Today</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Player B</td>
-                    <td>3916</td>
-                    <td>STT</td>
-                    <td>Yesterday</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Player C</td>
-                    <td>3819</td>
-                    <td>FLR</td>
-                    <td>10 May 2025</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Player P</td>
-                    <td>3500</td>
-                    <td>GVT</td>
-                    <td>20 May 2025</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Player Q</td>
-                    <td>3411</td>
-                    <td>SKL</td>
-                    <td>25 May 2025</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Player R</td>
-                    <td>3330</td>
-                    <td>FLR</td>
-                    <td>24 May 2025</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Player P</td>
-                    <td>2501</td>
-                    <td>GVT</td>
-                    <td>20 May 2025</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Player Q</td>
-                    <td>1907</td>
-                    <td>SKL</td>
-                    <td>25 May 2025</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Player R</td>
-                    <td>1800</td>
-                    <td>FLR</td>
-                    <td>24 May 2025</td>
-                <tr>
-                    <td>10</td>
-                    <td>Player P</td>
-                    <td>1500</td>
-                    <td>GVT</td>
-                    <td>20 May 2025</td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>Player Q</td>
-                    <td>1400</td>
-                    <td>SKL</td>
-                    <td>25 May 2025</td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td>Player R</td>
-                    <td>1300</td>
-                    <td>FLR</td>
-                    <td>24 May 2025</td>
-                </tr>
-                </tr>
+            <tbody id="tbd1">
+
             </tbody>
         </table>
     </div>
@@ -184,70 +102,8 @@
                     <th>Time</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Player X</td>
-                    <td>2200</td>
-                    <td>FLR</td>
-                    <td>5 May 2025</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Player Y</td>
-                    <td>16000</td>
-                    <td>LSK</td>
-                    <td>10 Apr 2025</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Player Z</td>
-                    <td>1000</td>
-                    <td>GVT</td>
-                    <td>20 May 2025</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Player P</td>
-                    <td>1500</td>
-                    <td>GVT</td>
-                    <td>20 May 2025</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Player Q</td>
-                    <td>1400</td>
-                    <td>SKL</td>
-                    <td>25 May 2025</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Player R</td>
-                    <td>1300</td>
-                    <td>FLR</td>
-                    <td>24 May 2025</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Player P</td>
-                    <td>1500</td>
-                    <td>GVT</td>
-                    <td>20 May 2025</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Player Q</td>
-                    <td>1400</td>
-                    <td>SKL</td>
-                    <td>25 May 2025</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Player R</td>
-                    <td>1300</td>
-                    <td>FLR</td>
-                    <td>24 May 2025</td>
-                </tr>
+            <tbody id="tbd2">
+
             </tbody>
         </table>
     </div>
@@ -263,72 +119,27 @@
                     <th>Time</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Player P</td>
-                    <td>1500</td>
-                    <td>GVT</td>
-                    <td>20 May 2025</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Player Q</td>
-                    <td>1400</td>
-                    <td>SKL</td>
-                    <td>25 May 2025</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Player R</td>
-                    <td>1300</td>
-                    <td>FLR</td>
-                    <td>24 May 2025</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Player P</td>
-                    <td>1500</td>
-                    <td>GVT</td>
-                    <td>20 May 2025</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Player Q</td>
-                    <td>1400</td>
-                    <td>SKL</td>
-                    <td>25 May 2025</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Player R</td>
-                    <td>1300</td>
-                    <td>FLR</td>
-                    <td>24 May 2025</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Player P</td>
-                    <td>1500</td>
-                    <td>GVT</td>
-                    <td>20 May 2025</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Player Q</td>
-                    <td>1400</td>
-                    <td>SKL</td>
-                    <td>25 May 2025</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Player R</td>
-                    <td>1300</td>
-                    <td>FLR</td>
-                    <td>24 May 2025</td>
-                </tr>
+            <tbody id="tbd3">
+
             </tbody>
         </table>
+    </div>
+    <div id="yourbest" class="tab-content">
+        <h2>🔥 Your Best Scores So Far 🔥</h2>
+        <div class="game-grid">
+            <div class="game-card2 animated">
+                <img src="img/sr.png" alt="Space Rumble" style="height: 300px;width: 300px;object-fit: fill;">
+                <h3 id="g1scr">NA</h3>
+            </div>
+            <div class="game-card2 animated">
+                <img src="img/tet.png" alt="Tetris" style="height: 300px;width: 300px;object-fit: fill;">
+                <h3 id="g2scr">NA</h3>
+            </div>
+            <div class="game-card2 animated">
+                <img src="img/flap.png" alt="Flapperoo" style="height: 300px;width: 300px;object-fit: fill;">
+                <h3 id="g3scr">NA</h3>
+            </div>
+        </div>
     </div>
 <canvas id="game" width="620" height="620" style="display:none"></canvas>
 </body>

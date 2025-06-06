@@ -376,6 +376,36 @@ nav {
     margin-bottom: 10px;
 }
 
+.game-card2 {
+    background: #aaaaaa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease-in-out;
+    width: calc(33.33% - 20px);
+    box-sizing: border-box;
+}
+
+.game-card2:hover {
+    transform: translateY(-5px);
+}
+
+.game-card2 img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    margin-bottom: 15px;
+}
+
+.game-card2:hover img {
+    transform: scale(1.1);
+}
+
+.game-card2 h3 {
+    color: #ff6600;
+    margin-bottom: 10px;
+}
+
 footer {
     background: linear-gradient(to right, #333, #555);
     padding: 20px;
