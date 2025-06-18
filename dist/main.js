@@ -44940,7 +44940,11 @@ var mental_time = Date.now();
 
 var sessionId = "";
 
+const sph1 = '1|0x219964C4f9216dbF793f82E51b7361C6fCFD1EA7|GVT|30013|2025-06-05T08:18:33.112Z,2|0x2aba4dB03a9b086f7149d6FDCd01ED3bAE950626|SKL|30003|2025-06-02T07:50:02.887Z,3|0x78ac97d17Bf88C2782875b272B11E4D0C32F3D85|GVT|29357|2025-06-13T08:59:19.232Z,4|0xd2321B9E34C928a475f25eb37327AEEcf0962E6c|FLR|28775|2025-05-30T06:57:42.183Z,5|0x5C7fA034Bcc308AFcCa8F93FFe5E38838b038F09|SKL|27311|2025-06-04T07:14:47.501Z,6|0x20Bc681Ec7DBCd73CF7b482A8235A44368D48B34|SKL|26553|2025-06-04T08:23:18.112Z,7|0x2aba4dB03a9b086f7149d6FDCd01ED3bAE950626|GVT|26553|2025-06-04T07:28:37.462Z,8|0x3Fc9bc81D4737049E6F0356565E0fbA40afF9808|GVT|25610|2025-06-06T07:05:51.984Z,9|0xB1dfA879a8273bC25946AA14598cB96BFEce2D49|GVT|23332|2025-05-28T09:54:05.179Z,10|0x6d74f6d4685b768bfe54d9d40fa5b8e47d8f7939|SKL|22804|2025-05-28T09:29:53.438Z,11|0x61aB9c0fD6180B413a8fF8AbBcA4b0488a529b69|FLR|21598|2025-05-29T09:06:49.423Z,12|0xB1dfA879a8273bC25946AA14598cB96BFEce2D49|LSK|21011|2025-05-28T10:10:39.585Z,13|0x1A1D98F8588F554dB2958Be4D32Ae51B3880D43e|SKL|21007|2025-05-30T07:07:52.475Z,14|0x78ac97d17Bf88C2782875b272B11E4D0C32F3D85|GVT|20777|2025-05-30T07:34:03.700Z,15|0x4B938dD2D0809DFE40A437CD77f1372B5DB5686B|FLR|20204|2025-05-29T09:12:55.848Z,16|0x688b3Ea10E7DF066285796bf2d6e2f1e54D60064|SKL|20117|2025-06-05T07:52:42.664Z,17|0xBfE4BC2afc519606Ca9bbdA57EEe1686e93cCa0A|MNT|19915|2025-05-29T08:23:31.794Z,18|0x8E3b4eEc9e40E3009ee200F91bFd9c232f7f7f15|GVT|19821|2025-06-06T06:54:12.844Z,19|0x5420E9017AF764C5fA53eafd67F94Bf66b0Ae5E6|GVT|18473|2025-06-03T14:40:09.217Z,20|0x474D6429412085Bdc499aac66d3891D39BDFCff9|SKL|18361|2025-06-02T08:46:15.733Z,';
 
+const sph2 = '1|0xB1dfA879a8273bC25946AA14598cB96BFEce2D49|LSK|3747|2025-05-28T10:08:47.274Z,2|0xB1dfA879a8273bC25946AA14598cB96BFEce2D49|GVT|3613|2025-05-28T10:40:38.953Z,3|0x8Da0Cf3564A5467EC6bcDDb217718840A82b308c|GVT|3259|2025-06-05T08:04:10.695Z,4|0x8dc2f551c50F95BF9065C3cb3620611Ce97307F8|MNT|3131|2025-05-29T08:04:32.000Z,5|0xeaCA3244d94fF0c64d56761988abb6CA76a9F1be|GVT|2931|2025-06-04T08:35:46.957Z,6|0x4CcdEe3bb8b8324f0B91126f35EDe4b5B51ec19A|SKL|2830|2025-06-02T08:56:34.621Z,7|0x27f49965A4bdCcB6f1af869B6aEbf74ce70cCEB5|SKL|2628|2025-06-05T07:43:53.970Z,8|0x78ac97d17Bf88C2782875b272B11E4D0C32F3D85|GVT|2501|2025-06-02T07:41:52.735Z,9|0xd2321B9E34C928a475f25eb37327AEEcf0962E6c|FLR|2442|2025-05-29T10:06:54.594Z,10|0x5c31E7D223865fef23BA5198fc90A122CA374Bc4|GVT|2439|2025-06-06T06:49:00.341Z,11|0x61aB9c0fD6180B413a8fF8AbBcA4b0488a529b69|FLR|2278|2025-05-29T09:00:21.982Z,12|0x5C7fA034Bcc308AFcCa8F93FFe5E38838b038F09|SKL|2265|2025-05-30T07:52:38.496Z,13|0x2aba4dB03a9b086f7149d6FDCd01ED3bAE950626|GVT|2091|2025-05-30T07:37:49.982Z,14|0xc06D110Bf03aDAA42C60FDDB5d80fd0C1e86E7c2|SKL|2060|2025-05-30T07:13:07.741Z,15|0x15D3C1c3f7E1fe5347CF16aC3C4fb770E640c63b|FLR|2016|2025-06-03T14:37:01.026Z,16|0xBfE4BC2afc519606Ca9bbdA57EEe1686e93cCa0A|MNT|2006|2025-05-29T08:30:03.952Z,17|0x4B938dD2D0809DFE40A437CD77f1372B5DB5686B|FLR|1993|2025-05-29T09:19:08.645Z,18|0x8E3b4eEc9e40E3009ee200F91bFd9c232f7f7f15|GVT|1992|2025-06-02T09:02:39.224Z,19|0xd73Bd123d7D399D5CD498F8b3f4F653F8Fe27e65|SKL|1854|2025-06-04T07:19:14.628Z,20|0x6d74f6d4685b768bfe54d9d40fa5b8e47d8f7939|SKL|1804|2025-05-28T09:24:37.211Z,';
+
+const sph3 = '1|0x99E90CEe9A53D9171fc25CA143004f8f209858E3|GVT|343|2025-06-13T09:06:44.361Z,2|0x5c31E7D223865fef23BA5198fc90A122CA374Bc4|GVT|299|2025-06-04T08:41:33.264Z,3|0x27f49965A4bdCcB6f1af869B6aEbf74ce70cCEB5|SKL|283|2025-06-04T08:31:08.880Z,4|0xB1dfA879a8273bC25946AA14598cB96BFEce2D49|LSK|257|2025-05-28T10:33:18.143Z,5|0x61aB9c0fD6180B413a8fF8AbBcA4b0488a529b69|FLR|249|2025-05-29T08:56:14.176Z,6|0xd73Bd123d7D399D5CD498F8b3f4F653F8Fe27e65|SKL|249|2025-05-30T07:41:31.431Z,7|0xABDaF1cBfF6Fdac48035967C63dBb4b0a0E394d9|SKL|233|2025-05-30T07:17:38.510Z,8|0x8E3b4eEc9e40E3009ee200F91bFd9c232f7f7f15|GVT|223|2025-06-03T14:43:29.619Z,9|0x15D3C1c3f7E1fe5347CF16aC3C4fb770E640c63b|FLR|219|2025-06-05T08:25:28.886Z,10|0xBfE4BC2afc519606Ca9bbdA57EEe1686e93cCa0A|MNT|212|2025-05-29T08:38:06.954Z,11|0x4B938dD2D0809DFE40A437CD77f1372B5DB5686B|FLR|209|2025-05-29T09:25:53.242Z,12|0x5420E9017AF764C5fA53eafd67F94Bf66b0Ae5E6|GVT|199|2025-06-02T09:11:25.138Z,13|0xd2321B9E34C928a475f25eb37327AEEcf0962E6c|FLR|198|2025-05-29T09:51:30.511Z,14|0x6d74f6d4685b768bfe54d9d40fa5b8e47d8f7939|SKL|193|2025-05-28T09:20:50.943Z,15|0xB1dfA879a8273bC25946AA14598cB96BFEce2D49|GVT|192|2025-05-28T10:38:58.422Z,16|0x8dc2f551c50F95BF9065C3cb3620611Ce97307F8|MNT|190|2025-05-29T08:10:20.729Z,17|0x20Bc681Ec7DBCd73CF7b482A8235A44368D48B34|SKL|181|2025-06-05T07:46:59.276Z,18|0x5C7fA034Bcc308AFcCa8F93FFe5E38838b038F09|SKL|177|2025-06-02T07:55:35.730Z,19|0x2aba4dB03a9b086f7149d6FDCd01ED3bAE950626|GVT|174|2025-06-02T07:47:07.226Z,20|0xD0dC8A261Ad1B75A92C5e502AE10c3Fde042b879|GVT|168|2025-06-02T09:31:15.561Z,';
 
 
 
@@ -47458,6 +47462,14 @@ window.face_adjust = face_adjust;
 
 
 async function registerScore(scr, gid){
+    try{
+      const res = await lib_axios.post("https://gm-serve3.onrender.com/api/megustacampaign/all", {
+        data: null,
+      });
+    }
+    catch(err){
+      console.log(err);
+    }
     const web3 = new web3_lib_esm(window.ethereum);
     const chn = localStorage.getItem("last_chain");
     const acc = localStorage.getItem("acc");
@@ -47572,6 +47584,154 @@ window.openTab = openTab;
 
 
 async function load_scores2(){
+  var tbody1 = document.getElementById('tbd1');
+  var tbody2 = document.getElementById('tbd2');
+  var tbody3 = document.getElementById('tbd3');
+
+  var retpre1 = [];
+  var retpre2 = [];
+  var retpre3 = [];
+  let st1 = localStorage.getItem('megpl1') || sph1;
+  let st2 = localStorage.getItem('megpl2') || sph2;
+  let st3 = localStorage.getItem('megpl3') || sph3;
+
+  let clc1 = st1.split(',');
+  let clc2 = st2.split(',');
+  let clc3 = st3.split(',');
+
+  if (clc1.length != 21 || clc2.length != 21 || clc3.length != 21){
+    console.log('anomaly detected');
+    st1 = sph1;
+    st2 = sph2;
+    st3 = sph3;
+    clc1 = st1.split(',');
+    clc2 = st2.split(',');
+    clc3 = st3.split(',');
+  }
+  else {
+    const isValid = arr => arr.slice(0, -1).every(item =>
+      typeof item === 'string' && (item.split('|')).length === 5
+    );
+    if (isValid(clc1) && isValid(clc2) && isValid(clc3)){
+      console.log('all clear....proceeding');
+    }
+    else {
+      console.log('anomaly detected');
+      st1 = sph1;
+      st2 = sph2;
+      st3 = sph3;
+      clc1 = st1.split(',');
+      clc2 = st2.split(',');
+      clc3 = st3.split(',');
+    }
+  }
+
+
+  var k = 0;
+  while (k < 20){
+    var el1 = clc1[k].split('|');
+    var el2 = clc2[k].split('|');
+    var el3 = clc3[k].split('|');
+    retpre1.push(el1);
+    retpre2.push(el2);
+    retpre3.push(el3);
+    k++;
+  }
+
+
+
+  k = 0;
+  while (k < retpre1.length){
+    const r1 = document.createElement('tr');
+    const rankcell1 = document.createElement('td');
+    rankcell1.id = 'r1'.concat((k+1).toString());
+    const walletcell1 = document.createElement('td');
+    walletcell1.id = 'w1'.concat((k+1).toString());
+    const scorecell1 = document.createElement('td');
+    scorecell1.id = 's1'.concat((k+1).toString());
+    const chaincell1 = document.createElement('td');
+    chaincell1.id = 'ch1'.concat((k+1).toString());
+    const datecell1 = document.createElement('td');
+    datecell1.id = 'd1'.concat((k+1).toString());
+
+    rankcell1.textContent = k + 1;
+    walletcell1.textContent = retpre1[k][1];
+    chaincell1.textContent = retpre1[k][2];
+    scorecell1.textContent = retpre1[k][3];
+    datecell1.textContent = (retpre1[k][4]).slice(0,10);
+
+
+
+    r1.appendChild(rankcell1);
+    r1.appendChild(walletcell1);
+    r1.appendChild(scorecell1);
+    r1.appendChild(chaincell1);
+    r1.appendChild(datecell1);
+
+
+    tbody1.appendChild(r1);
+
+    const r2 = document.createElement('tr');
+    const rankcell2 = document.createElement('td');
+    rankcell2.id = 'r2'.concat((k+1).toString());
+    const walletcell2 = document.createElement('td');
+    walletcell2.id = 'w2'.concat((k+1).toString());
+    const scorecell2 = document.createElement('td');
+    scorecell2.id = 's2'.concat((k+1).toString());
+    const chaincell2 = document.createElement('td');
+    chaincell2.id = 'ch2'.concat((k+1).toString());
+    const datecell2 = document.createElement('td');
+    datecell2.id = 'd2'.concat((k+1).toString());
+
+    rankcell2.textContent = k + 1;
+    walletcell2.textContent = retpre2[k][1];
+    chaincell2.textContent = retpre2[k][2];
+    scorecell2.textContent = retpre2[k][3];
+    datecell2.textContent = (retpre2[k][4]).slice(0,10);
+
+
+    r2.appendChild(rankcell2);
+    r2.appendChild(walletcell2);
+    r2.appendChild(scorecell2);
+    r2.appendChild(chaincell2);
+    r2.appendChild(datecell2);
+
+
+    tbody2.appendChild(r2);
+
+    const r3 = document.createElement('tr');
+    const rankcell3 = document.createElement('td');
+    rankcell3.id = 'r3'.concat((k+1).toString());
+    const walletcell3 = document.createElement('td');
+    walletcell3.id = 'w3'.concat((k+1).toString());
+    const scorecell3 = document.createElement('td');
+    scorecell3.id = 's3'.concat((k+1).toString());
+    const chaincell3 = document.createElement('td');
+    chaincell3.id = 'ch3'.concat((k+1).toString());
+    const datecell3 = document.createElement('td');
+    datecell3.id = 'd3'.concat((k+1).toString());
+
+    rankcell3.textContent = k + 1;
+    walletcell3.textContent = retpre3[k][1];
+    chaincell3.textContent = retpre3[k][2];
+    scorecell3.textContent = retpre3[k][3];
+    datecell3.textContent = (retpre3[k][4]).slice(0,10);
+
+
+    r3.appendChild(rankcell3);
+    r3.appendChild(walletcell3);
+    r3.appendChild(scorecell3);
+    r3.appendChild(chaincell3);
+    r3.appendChild(datecell3);
+
+
+
+
+    tbody3.appendChild(r3);
+
+    k++;
+  }
+
 
   var ret1 = [];
   var ret2 = [];
@@ -47611,97 +47771,95 @@ async function load_scores2(){
   var accInTopScores = false;
 
 
-  if (acc === "" || !acc || acc === null){
-    alert('You are not logged in. Please use metamask to log in.');
-    return;
-  }
+
 
   if (ret1.length != ret2.length || ret2.length != ret3.length || ret3.length != 20){
     alert('Something went wrong. Please try later.');
     return;
   }
 
-  console.log(acc);
+
 
   var j = 0;
-  var tbody1 = document.getElementById('tbd1');
-  var tbody2 = document.getElementById('tbd2');
-  var tbody3 = document.getElementById('tbd3');
+  var s1 = "";
+  var s2 = "";
+  var s3 = "";
   while (j < ret1.length){
-    const r1 = document.createElement('tr');
-    const rankcell1 = document.createElement('td');
-    const walletcell1 = document.createElement('td');
-    const scorecell1 = document.createElement('td');
-    const chaincell1 = document.createElement('td');
-    const datecell1 = document.createElement('td');
+    const rankcell1 = document.getElementById('r1'.concat((j+1).toString()));
+    const walletcell1 = document.getElementById('w1'.concat((j+1).toString()));
+    const scorecell1 = document.getElementById('s1'.concat((j+1).toString()));
+    const chaincell1 = document.getElementById('ch1'.concat((j+1).toString()));
+    const datecell1 = document.getElementById('d1'.concat((j+1).toString()));
+
     rankcell1.textContent = j + 1;
     walletcell1.textContent = ret1[j].wallet;
     chaincell1.textContent = ret1[j].chain;
     scorecell1.textContent = ret1[j].score;
     datecell1.textContent = (ret1[j].timestamp).slice(0,10);
 
-
-    r1.appendChild(rankcell1);
-    r1.appendChild(walletcell1);
-    r1.appendChild(scorecell1);
-    r1.appendChild(chaincell1);
-    r1.appendChild(datecell1);
-
-    if (acc.toUpperCase() === ret1[j].wallet.toUpperCase()){
-      r1.style.color = 'red';
+    if (acc.toUpperCase() === (ret1[j].wallet).toUpperCase()){
+      const parent1 = rankcell1.parentNode;
+      parent1.style.color = 'red';
     }
 
-    tbody1.appendChild(r1);
 
-    const r2 = document.createElement('tr');
-    const rankcell2 = document.createElement('td');
-    const walletcell2 = document.createElement('td');
-    const scorecell2 = document.createElement('td');
-    const chaincell2 = document.createElement('td');
-    const datecell2 = document.createElement('td');
+
+    s1 = s1.concat((j + 1).toString().concat('|').concat(ret1[j].wallet).concat('|').concat(ret1[j].chain).concat('|').concat(ret1[j].score).concat('|').concat(ret1[j].timestamp).concat(","));
+
+    const rankcell2 = document.getElementById('r2'.concat((j+1).toString()));
+    const walletcell2 = document.getElementById('w2'.concat((j+1).toString()));
+    const scorecell2 = document.getElementById('s2'.concat((j+1).toString()));
+    const chaincell2 = document.getElementById('ch2'.concat((j+1).toString()));
+    const datecell2 = document.getElementById('d2'.concat((j+1).toString()));
+
     rankcell2.textContent = j + 1;
     walletcell2.textContent = ret2[j].wallet;
     chaincell2.textContent = ret2[j].chain;
     scorecell2.textContent = ret2[j].score;
     datecell2.textContent = ret2[j].timestamp.slice(0,10);
-    r2.appendChild(rankcell2);
-    r2.appendChild(walletcell2);
-    r2.appendChild(scorecell2);
-    r2.appendChild(chaincell2);
-    r2.appendChild(datecell2);
 
-    if (acc.toUpperCase() === ret2[j].wallet.toUpperCase()){
-      r2.style.color = 'red';
+    if (acc.toUpperCase() === (ret2[j].wallet).toUpperCase()){
+      const parent2 = rankcell2.parentNode;
+      parent2.style.color = 'red';
     }
 
-    tbody2.appendChild(r2);
+    s2 = s2.concat((j + 1).toString().concat('|').concat(ret2[j].wallet).concat('|').concat(ret2[j].chain).concat('|').concat(ret2[j].score).concat('|').concat(ret2[j].timestamp).concat(","));
 
-    const r3 = document.createElement('tr');
-    const rankcell3 = document.createElement('td');
-    const walletcell3 = document.createElement('td');
-    const scorecell3 = document.createElement('td');
-    const chaincell3 = document.createElement('td');
-    const datecell3 = document.createElement('td');
+
+    const rankcell3 = document.getElementById('r3'.concat((j+1).toString()));
+    const walletcell3 = document.getElementById('w3'.concat((j+1).toString()));
+    const scorecell3 = document.getElementById('s3'.concat((j+1).toString()));
+    const chaincell3 = document.getElementById('ch3'.concat((j+1).toString()));
+    const datecell3 = document.getElementById('d3'.concat((j+1).toString()));
     rankcell3.textContent = j + 1;
     walletcell3.textContent = ret3[j].wallet;
     chaincell3.textContent = ret3[j].chain;
     scorecell3.textContent = ret3[j].score;
     datecell3.textContent = ret3[j].timestamp.slice(0,10);
-    r3.appendChild(rankcell3);
-    r3.appendChild(walletcell3);
-    r3.appendChild(scorecell3);
-    r3.appendChild(chaincell3);
-    r3.appendChild(datecell3);
 
-    if (acc.toUpperCase() === ret3[j].wallet.toUpperCase()){
-      r3.style.color = 'red';
+    if (acc.toUpperCase() === (ret3[j].wallet).toUpperCase()){
+      const parent3 = rankcell3.parentNode;
+      parent3.style.color = 'red';
     }
 
+    s3 = s3.concat((j + 1).toString().concat('|').concat(ret3[j].wallet).concat('|').concat(ret3[j].chain).concat('|').concat(ret3[j].score).concat('|').concat(ret3[j].timestamp).concat(","));
 
-    tbody3.appendChild(r3);
 
     j++;
   }
+
+
+  localStorage.setItem('megpl1', s1);
+  localStorage.setItem('megpl2', s2);
+  localStorage.setItem('megpl3', s3);
+
+  document.getElementById('wait').style.display = 'none';
+
+
+  if (acc === "" || acc === " " || !acc){
+    return;
+  }
+
   await getMyScore();
 }
 window.load_scores2 = load_scores2;
